@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Game Setup Share</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; background: #121212; color: white; }
+        select, button { padding: 10px; font-size: 16px; margin: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; }
+        button { background: #0070f3; border: none; cursor: pointer; }
+        #link-box { margin-top: 20px; font-weight: bold; word-break: break-all; color: #0070f3; }
+    </style>
+</head>
+<body>
+
+    <h1>Setup Share Tool</h1>
+    <p>Select a hero to place on your board:</p>
+
+    <select id="heroSelect">
+        <option value="none">-- Choose a Hero --</option>
+        <option value="Warrior">Warrior ⚔️</option>
+        <option value="Mage">Mage 🔮</option>
+        <option value="Rogue">Rogue 🗡️</option>
+    </select>
+
+    <br>
+    <button onclick="generateLink()">Generate Share Link</button>
+
+    <div id="link-box"></div>
+
+    <script>
+        // 1. Read the URL when the page loads
+        const urlParams = new URLSearchParams(window.location.search);
+        const savedHero = urlParams.get('hero');
+
+        if (savedHero) {
+            // If there's a hero in the link, auto-select it and show an alert
+            document.getElementById('heroSelect').value = savedHero;
+            alert("Loaded setup: " + savedHero + " is on the board!");
+        }
+
+        // 2. Generate a link with the current setup
+        function generateLink() {
+            const selectedHero = document.getElementById('heroSelect').value;
+            if (selectedHero === 'none') {
+                alert("Please select a hero first!");
+                return;
+            }
+            
+            // Create the new URL
+            const currentDomain = window.location.origin + window.location.pathname;
+            const shareableLink = `${currentDomain}?hero=${selectedHero}`;
+            
+            // Display the link to the user
+            document.getElementById('link-box').innerHTML = `
+                <p>Share this link with friends:</p>
+                <a href="${shareableLink}" target="_blank" style="color: #00DF89;">${shareableLink}</a>
+            `;
+        }
+    </script>
+</body>
+</html>
