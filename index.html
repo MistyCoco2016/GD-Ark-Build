@@ -552,16 +552,16 @@
         </div>
 
         <!-- Selection Pools Divided by Categories -->
-        <div class="pool-title white-card">○ NORMAL CARDS (WHITE)</div>
+        <div class="pool-title white-card">○ NORMAL CARDS</div>
         <div class="cards-pool" id="normalPool"></div>
 
-        <div class="pool-title white-card">○ CHAIN CARDS (WHITE)</div>
+        <div class="pool-title white-card">○ CHAIN CARDS</div>
         <div class="cards-pool" id="chainPool"></div>
 
-        <div class="pool-title white-card">○ COMBO CARDS (WHITE)</div>
+        <div class="pool-title white-card">○ COMBO CARDS</div>
         <div class="cards-pool" id="comboPool"></div>
 
-        <div class="pool-title purple-card">● BREAKTHROUGH CARDS (PURPLE)</div>
+        <div class="pool-title purple-card">● BREAKTHROUGH CARDS</div>
         <div class="cards-pool" id="breakthroughPool"></div>
 
         <div class="actions">
@@ -589,11 +589,11 @@
         let cardLibrary = {
             skyguard: {
                 normal: [
-                    { id: "skyguard_n_t1_1", name: "Flak Barrage", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Sky Guard Mod<br>+15% Flak DMG" },
-                    { id: "skyguard_n_t1_2", name: "High-Alt Radar", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Sky Guard Scan<br>+10% Flight Range" },
-                    { id: "skyguard_n_t1_3", name: "Thermal Ignition", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Sky Guard Shift<br>+12% Fire Rate" },
-                    { id: "skyguard_n_t2_1", name: "Cluster Shells", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Shrapnel Blast<br>+1 Target, DMG -15%" },
-                    { id: "skyguard_n_t2_2", name: "Proximity Fuse", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Airburst Radius<br>CRIT Multi +25%" },
+                    { id: "skyguard_n_t1_1", name: "Flak Barrage", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/skyguard.jpg">', desc: "Sky Guard Mod<br>+15% Flak DMG" },
+                    { id: "skyguard_n_t1_2", name: "High-Alt Radar", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/skyguard.jpg">', desc: "Sky Guard Scan<br>+10% Flight Range" },
+                    { id: "skyguard_n_t1_3", name: "Thermal Ignition", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/skyguard.jpg">', desc: "Sky Guard Shift<br>+12% Fire Rate" },
+                    { id: "skyguard_n_t2_1", name: "Cluster Shells", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/skyguard.jpg">', desc: "Shrapnel Blast<br>+1 Target, DMG -15%" },
+                    { id: "skyguard_n_t2_2", name: "Proximity Fuse", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/skyguard.jpg">', desc: "Airburst Radius<br>CRIT Multi +25%" },
                     { id: "skyguard_n_t2_3", name: "Incinerating Core", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Thermite Matrix<br>Melts 15 Armor" },
                     { id: "skyguard_n_t3_1", name: "Stratosphere Gun", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Mach Loader<br>Insta-Reload clip" },
                     { id: "skyguard_n_t3_2", name: "Solar Flares", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Heat Shroud<br>Ongoing burn aura" },
@@ -622,11 +622,11 @@
                     { id: "skyguard_co_t3_3", name: "Meteor Rain", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Airstrike Call<br>Calls secondary fire" }
                 ],
                 breakthrough: [
-                    { id: "skyguard_b_t1_1", name: "Fire Core V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Flame Part<br>Unlocks Ultimates" },
-                    { id: "skyguard_b_t1_2", name: "Flame Aegis", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Fire Protection<br>Spatial force shield" },
-                    { id: "skyguard_b_t1_3", name: "Thermal Backblast", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Heat Wave Push<br>Knocks back foes" },
-                    { id: "skyguard_b_t2_1", name: "Fire Hole", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Gravity Heat<br>Pulls targets in" },
-                    { id: "skyguard_b_t2_2", name: "Melting Stasis", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "Heat Freeze<br>Slows space by 40%" },
+                    { id: "skyguard_b_t1_1", name: "Fire Core V1", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/skyguard_purple.jpg">', desc: "Elite Flame Part<br>Unlocks Ultimates" },
+                    { id: "skyguard_b_t1_2", name: "Flame Aegis", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/skyguard_purple.jpg">', desc: "Fire Protection<br>Spatial force shield" },
+                    { id: "skyguard_b_t1_3", name: "Thermal Backblast", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/skyguard_purple.jpg">', desc: "Heat Wave Push<br>Knocks back foes" },
+                    { id: "skyguard_b_t2_1", name: "Fire Hole", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/skyguard_purple.jpg">', desc: "Gravity Heat<br>Pulls targets in" },
+                    { id: "skyguard_b_t2_2", name: "Melting Stasis", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/skyguard_purple.jpg">', desc: "Heat Freeze<br>Slows space by 40%" },
                     { id: "skyguard_b_t2_3", name: "Molten Fracture", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Shield Breaker<br>Bypasses shields" },
                     { id: "skyguard_b_t3_1", name: "Overheat Command", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Alpha Burn Rules<br>Doubles target count" },
                     { id: "skyguard_b_t3_2", name: "Lord of Cinder", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "Pure Fire Power<br>True base damage" },
