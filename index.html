@@ -1186,6 +1186,7 @@
         }
 
         function toggleSelect(id) {
+            const turret = turretsData.find(t => t.id === id);
             const index = selectedTurrets.indexOf(id);
 
             // Rule 1: Prevent deselecting the default turret
