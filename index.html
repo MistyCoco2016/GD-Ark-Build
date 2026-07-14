@@ -1215,7 +1215,7 @@
             updateTurretUI();
         }
 
-        /*function updateTurretUI() {
+        function updateTurretUI() {
             turretsData.forEach(t => document.getElementById(`card-${t.id}`).classList.remove('selected'));
             selectedTurrets.forEach(id => {
                 const card = document.getElementById(`card-${id}`);
@@ -1223,9 +1223,9 @@
             });
             document.getElementById('countLabel').innerText = `(${selectedTurrets.length-1} / 4 selected)`;
             document.getElementById('nextBtn').disabled = (selectedTurrets.length !== 5);
-        }*/
+        }
 
-        function updateTurretUI() {
+        /*function updateTurretUI() {
             // 1. Reset all cards
             turretsData.forEach(t => {
                 const card = document.getElementById(`card-${t.id}`);
@@ -1253,7 +1253,7 @@
             } else if (typeof renderTabs === 'function') {
                 renderTabs(); // Change this to whatever function draws your card sub-tabs
             }
-        }
+        } */
 
         function renderCardsPage() {
             const subtabsContainer = document.getElementById('turretSubtabs');
@@ -1436,7 +1436,10 @@
                 try {
                     const profiles = shortState.split('_');
                     selectedTurrets = [];
-                    deckData = {};
+                    deckData = {
+                        guardian: [],
+                        ...deckData
+                    };
 
                     profiles.forEach(profile => {
                         const tokens = profile.split('-');
