@@ -1215,8 +1215,8 @@
                 selectedTurrets.splice(index, 1);
                 delete deckData[id];
             } else {
-                if (selectedTurrets.length >= 4) {
-                    alert("You can only select a maximum of 4 turrets!");
+                if (selectedTurrets.length >= 5) {
+                    alert("You can only select a maximum of 5 turrets!");
                     return;
                 }
                 selectedTurrets.push(id);
