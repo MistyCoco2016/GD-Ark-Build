@@ -1206,13 +1206,13 @@
                     return;
                 }
                 selectedTurrets.push(id);
-                /*deckData[id] = {
+                deckData[id] = {
                     T1: [null, null, null, null],
                     T2: [null, null, null, null],
                     T3: [null, null, null, null]
-                };*/
+                };
             }
-            updateTurretUI();
+            updateSelectionUI();
         }
 
         function updateTurretUI() {
