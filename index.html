@@ -264,7 +264,7 @@
 
         .deck-slots {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(9, 1fr);
             gap: 12px;
             flex-grow: 1;
         }
@@ -1139,7 +1139,7 @@
                 selectedTurrets.splice(index, 1);
                 delete deckData[id];
             } else {
-                if (selectedTurrets.length >= 4) {
+                if (selectedTurrets.length >= 5) {
                     alert("You can only select a maximum of 4 turrets!");
                     return;
                 }
