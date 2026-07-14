@@ -564,16 +564,16 @@
     <script>
         const turretsData = [
             { id: "skyguard", name: "Sky Guard", type: "fire", art: '<img src="images/skyguard.jpg">', color: "var(--color-fire)" },
-            { id: "laser", name: "Laser", type: "energy", icon: "🔦", color: "var(--color-energy)" },
-            { id: "disruption", name: "Disruption Drone", type: "force-field", icon: "🛸", color: "var(--color-forcefield)" },
-            { id: "aeroblast", name: "Aeroblast", type: "physical", icon: "💨", color: "var(--color-physical)" },
-            { id: "thunderbolt", name: "Thunderbolt", type: "electric", icon: "🔮", color: "var(--color-electric)" },
-            { id: "beam", name: "Beam", type: "energy", icon: "📐", color: "var(--color-energy)" },
-            { id: "firewheel", name: "Firewheel Drone", type: "fire", icon: "🔥", color: "var(--color-fire)" },
-            { id: "hive", name: "Hive", type: "force-field", icon: "⬡", color: "var(--color-forcefield)" },
-            { id: "railgun", name: "Railgun", type: "physical", icon: "🔫", color: "var(--color-physical)" },
-            { id: "teslacoil", name: "Teslacoil", type: "electric", icon: "⚡", color: "var(--color-electric)" },
-            { id: "gravity", name: "Gravity Vortex Gun", type: "force-field", icon: "🕳️", color: "var(--color-forcefield)" }
+            { id: "laser", name: "Laser", type: "energy", art: '<img src="images/skyguard.jpg">', color: "var(--color-energy)" },
+            { id: "disruption", name: "Disruption Drone", type: "force-field",art: '<img src="images/skyguard.jpg">', color: "var(--color-forcefield)" },
+            { id: "aeroblast", name: "Aeroblast", type: "physical", art: '<img src="images/skyguard.jpg">', color: "var(--color-physical)" },
+            { id: "thunderbolt", name: "Thunderbolt", type: "electric", art: '<img src="images/skyguard.jpg">', color: "var(--color-electric)" },
+            { id: "beam", name: "Beam", type: "energy", art: '<img src="images/skyguard.jpg">', color: "var(--color-energy)" },
+            { id: "firewheel", name: "Firewheel Drone", type: "fire", art: '<img src="images/skyguard.jpg">', color: "var(--color-fire)" },
+            { id: "hive", name: "Hive", type: "force-field", art: '<img src="images/skyguard.jpg">', color: "var(--color-forcefield)" },
+            { id: "railgun", name: "Railgun", type: "physical", art: '<img src="images/skyguard.jpg">', color: "var(--color-physical)" },
+            { id: "teslacoil", name: "Teslacoil", type: "electric", art: '<img src="images/skyguard.jpg">', color: "var(--color-electric)" },
+            { id: "gravity", name: "Gravity Vortex Gun", type: "force-field", art: '<img src="images/skyguard.jpg">', color: "var(--color-forcefield)" }
         ];
 
         let cardLibrary = {};
@@ -641,7 +641,7 @@
             card.onclick = () => toggleSelect(turret.id);
 
             card.innerHTML = `
-                <div class="icon-placeholder" style="color: ${turret.color}">${turret.icon}</div>
+                <div class="icon-placeholder" style="color: ${turret.color}">${turret.art}</div>
                 <div class="turret-name">${turret.name}</div>
                 <div class="badge type-${turret.type}">${turret.type.replace('-', ' ')}</div>
             `;
