@@ -497,8 +497,8 @@
 
     <!-- PANEL 1: TURRET SELECTION -->
     <div id="panel-1" class="section-panel active">
-        <h2>Combat Turrets <span class="counter" id="countLabel">(0 / 4 selected)</span></h2>
-        <p class="subtitle">Select exactly 4 turrets for your ARK setup.</p>
+        <h2>Combat Turrets <span class="counter" id="countLabel">(0 / 5 selected)</span></h2>
+        <p class="subtitle">Select exactly 5 turrets for your ARK setup.</p>
         <div class="grid" id="turretGrid"></div>
         <div class="actions">
             <button class="btn-primary" id="nextBtn" onclick="goToCardsPage()" disabled>Next ➔</button>
@@ -1263,7 +1263,7 @@
                 const card = document.getElementById(`card-${id}`);
                 if (card) card.classList.add('selected');
             });
-            document.getElementById('countLabel').innerText = `(${selectedTurrets.length-1} / 4 selected)`;
+            document.getElementById('countLabel').innerText = `(${selectedTurrets.length} / 5 selected)`;
             document.getElementById('nextBtn').disabled = (selectedTurrets.length !== 5);
         }
 
