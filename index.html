@@ -20,11 +20,14 @@
             --color-physical: #ffaa00;
             --color-electric: #d4af37;
 
-            /* Card Rarities */
-            --white-border: rgba(255, 255, 255, 0.3);
-            --white-glow: rgba(255, 255, 255, 0.1);
-            --purple-border: rgba(181, 76, 255, 0.5);
-            --purple-glow: rgba(181, 76, 255, 0.2);
+            /* Visual Themes for Cards from User Screenshot */
+            --white-card-bg: #0d282b;
+            --white-card-header: #286e6b;
+            --white-card-border: #245856;
+            
+            --purple-card-bg: #1f112e;
+            --purple-card-header: #5f288f;
+            --purple-card-border: #4d2373;
         }
 
         body {
@@ -248,9 +251,9 @@
         }
 
         .deck-slot {
-            width: 100px;
-            height: 140px;
-            border-radius: 6px;
+            width: 120px;
+            height: 165px;
+            border-radius: 8px;
             border: 2px dashed #1a364d;
             background: rgba(15, 34, 51, 0.4);
             display: flex;
@@ -261,6 +264,7 @@
             cursor: pointer;
             position: relative;
             transition: all 0.2s;
+            box-sizing: border-box;
         }
 
         .deck-slot:hover {
@@ -269,49 +273,99 @@
         }
 
         .deck-slot.breakthrough-slot {
-            border-color: var(--purple-border);
-            background: rgba(181, 76, 255, 0.05);
+            border-color: #4d2373;
+            background: rgba(95, 40, 143, 0.05);
         }
 
-        /* Actual Slotted Cards inside Deck */
-        .slotted-card {
+        /* Highly Styled Card Layout Blueprint based on User Reference */
+        .styled-card {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 4px;
-            background: #0e2030;
+            border-radius: 6px;
             display: flex;
             flex-direction: column;
-            padding: 6px;
             box-sizing: border-box;
-            border: 2px solid var(--white-border);
-            text-align: center;
+            overflow: visible; /* Allows tier circle to overflow left border slightly */
+            text-align: left;
         }
 
-        .slotted-card.breakthrough {
-            border-color: var(--purple-border);
-            box-shadow: inset 0 0 8px rgba(181, 76, 255, 0.3);
+        .styled-card.white-rarity {
+            background-color: var(--white-card-bg);
+            border: 1.5px solid var(--white-card-border);
         }
 
-        .slotted-card .card-title {
-            font-size: 9px;
+        .styled-card.purple-rarity {
+            background-color: var(--purple-card-bg);
+            border: 1.5px solid var(--purple-card-border);
+        }
+
+        .card-top-header {
+            padding: 5px 6px;
+            font-size: 11px;
             font-weight: bold;
-            line-height: 1.2;
-            margin-top: auto;
-            margin-bottom: auto;
-        }
-
-        .slotted-card .card-num {
-            font-size: 10px;
             color: #ffffff;
-            font-weight: bold;
-            margin-bottom: 2px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .slotted-card.breakthrough .card-num {
-            color: #b54cff;
+        .styled-card.white-rarity .card-top-header { background-color: var(--white-card-header); }
+        .styled-card.purple-rarity .card-top-header { background-color: var(--purple-card-header); }
+
+        .card-mid-artwork {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            position: relative;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Left-aligned absolute circle tier marker split between header and artwork rows */
+        .card-tier-circle {
+            position: absolute;
+            left: -10px;
+            bottom: -10px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: #0d2024;
+            border: 2px solid #286e6b;
+            color: #52ffd8;
+            font-size: 11px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .styled-card.purple-rarity .card-tier-circle {
+            background-color: #170d24;
+            border-color: var(--purple-card-header);
+            color: #d852ff;
+        }
+
+        .card-desc-body {
+            padding: 8px 6px;
+            font-size: 10px;
+            line-height: 1.3;
+            color: #d1f1ee;
+            min-height: 52px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .styled-card.purple-rarity .card-desc-body {
+            color: #ecd1f1;
         }
 
         /* Selection Pool Section */
@@ -331,59 +385,31 @@
 
         .cards-pool {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 16px;
             margin-bottom: 15px;
         }
 
-        /* Actionable Card Items */
-        .pool-card {
-            background: #0f2233;
-            border: 2px solid var(--white-border);
-            border-radius: 6px;
-            height: 140px;
-            padding: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.15s;
+        /* Actionable Card Items inside Pool */
+        .pool-card-wrapper {
+            width: 120px;
+            height: 165px;
             position: relative;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
 
-        .pool-card.breakthrough {
-            border-color: var(--purple-border);
+        .pool-card-wrapper:hover {
+            transform: scale(1.04);
         }
+        
+        .pool-card-wrapper.white-type:hover { box-shadow: 0 0 10px rgba(40, 110, 107, 0.6); }
+        .pool-card-wrapper.purple-type:hover { box-shadow: 0 0 10px rgba(95, 40, 143, 0.6); }
 
-        .pool-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
-        }
-
-        .pool-card.breakthrough:hover {
-            box-shadow: 0 0 10px rgba(181, 76, 255, 0.3);
-        }
-
-        .pool-card.in-deck {
-            opacity: 0.5;
+        .pool-card-wrapper.in-deck {
+            opacity: 0.35;
             cursor: not-allowed;
             pointer-events: none;
-        }
-
-        .card-art {
-            font-size: 22px;
-            margin-top: 8px;
-            margin-bottom: 5px;
-        }
-
-        .card-type-sub {
-            font-size: 8px;
-            background: rgba(255,255,255,0.1);
-            padding: 1px 4px;
-            border-radius: 3px;
-            margin-bottom: 4px;
-            color: #b5d3ee;
         }
 
         /* Action Footer */
@@ -431,7 +457,7 @@
     <div class="top-nav">
         <div class="logo-area">
             <div class="logo-title">Galaxy Defense <span>ARK BUILDER</span></div>
-            <div class="badge-ver">v0.15.4</div>
+            <div class="badge-ver">v0.16.0</div>
         </div>
         <div class="nav-tabs">
             <button class="nav-tab active" id="tab1-btn" onclick="switchMainTab(1)">1. Turrets</button>
@@ -531,53 +557,53 @@
 
         let cardLibrary = {};
 
-        // Populate a robust card pool matching constraints:
-        // 4 categories (Normal, Chain, Combo, Breakthrough), each containing exactly 9 cards (3x T1, 3x T2, 3x T3)
+        // Generate robust card libraries for each turret containing custom descriptions matching the image style format
         turretsData.forEach(turret => {
+            const shortName = turret.name;
             cardLibrary[turret.id] = {
                 normal: [
-                    { id: `${turret.id}_n_t1_1`, name: "Base DMG +15%", class: "Normal", cardTier: "T1", art: "⚔️" },
-                    { id: `${turret.id}_n_t1_2`, name: "Base Range +10%", class: "Normal", cardTier: "T1", art: "📏" },
-                    { id: `${turret.id}_n_t1_3`, name: "Reload Speed +12%", class: "Normal", cardTier: "T1", art: "⚡" },
-                    { id: `${turret.id}_n_t2_1`, name: "Heavy Payload", class: "Normal", cardTier: "T2", art: "📦" },
-                    { id: `${turret.id}_n_t2_2`, name: "Optimal Scope", class: "Normal", cardTier: "T2", art: "🎯" },
-                    { id: `${turret.id}_n_t2_3`, name: "Armor Shred V1", class: "Normal", cardTier: "T2", art: "🛡️" },
-                    { id: `${turret.id}_n_t3_1`, name: "Hyper Accelerator", class: "Normal", cardTier: "T3", art: "🚀" },
-                    { id: `${turret.id}_n_t3_2`, name: "Plasma Shroud", class: "Normal", cardTier: "T3", art: "🌌" },
-                    { id: `${turret.id}_n_t3_3`, name: "Titan Protocol", class: "Normal", cardTier: "T3", art: "🤖" }
+                    { id: `${turret.id}_n_t1_1`, name: "Volley Missile", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: `${shortName} Weapon Mod<br>+15% Base Damage` },
+                    { id: `${turret.id}_n_t1_2`, name: "Scouting Sight", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: `${shortName} Scanner<br>+10% Base Range` },
+                    { id: `${turret.id}_n_t1_3`, name: "Overdrive Core", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: `${shortName} System Shift<br>+12% Fire Rate` },
+                    { id: `${turret.id}_n_t2_1`, name: "Heavy Payload", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: `Calibrated Warheads<br>+1, DMG -15%` },
+                    { id: `${turret.id}_n_t2_2`, name: "Optimal Scope", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: `Hawkeye Alignment Targeter<br>CRIT Multiplier +25%` },
+                    { id: `${turret.id}_n_t2_3`, name: "Armor Shred V1", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: `Corrosive Compound Rounds<br>Melts 15 Armor per hit` },
+                    { id: `${turret.id}_n_t3_1`, name: "Hyper Drive", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: `Tachyon Acceleration Engine<br>Instantly reloads clips` },
+                    { id: `${turret.id}_n_t3_2`, name: "Plasma Shroud", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: `Superheated Radiation Grid<br>Deals ongoing burn aura` },
+                    { id: `${turret.id}_n_t3_3`, name: "Titan Protocol", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: `Heavy Defense Framework<br>Max Base Stats +30%` }
                 ],
                 chain: [
-                    { id: `${turret.id}_ch_t1_1`, name: "Spark Stream", class: "Chain", cardTier: "T1", art: "🔗" },
-                    { id: `${turret.id}_ch_t1_2`, name: "Pulse Bridge", class: "Chain", cardTier: "T1", art: "📡" },
-                    { id: `${turret.id}_ch_t1_3`, name: "Current Splitter", class: "Chain", cardTier: "T1", art: "🔀" },
-                    { id: `${turret.id}_ch_t2_1`, name: "Amplified Conduit", class: "Chain", cardTier: "T2", art: "🔋" },
-                    { id: `${turret.id}_ch_t2_2`, name: "Superconductor", class: "Chain", cardTier: "T2", art: "🧲" },
-                    { id: `${turret.id}_ch_t2_3`, name: "Chain Reaction", class: "Chain", cardTier: "T2", art: "💥" },
-                    { id: `${turret.id}_ch_t3_1`, name: "Voltage Overdrive", class: "Chain", cardTier: "T3", art: "⚡" },
-                    { id: `${turret.id}_ch_t3_2`, name: "Storm Nexus Link", class: "Chain", cardTier: "T3", art: "🌀" },
-                    { id: `${turret.id}_ch_t3_3`, name: "Tesla Command Unit", class: "Chain", cardTier: "T3", art: "⚙️" }
+                    { id: `${turret.id}_ch_t1_1`, name: "Spark Stream", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: `Conductive Relays Loaded<br>Arcs to 1 extra target` },
+                    { id: `${turret.id}_ch_t1_2`, name: "Pulse Bridge", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: `Energy Discharge Mesh<br>Increases arc jump radius` },
+                    { id: `${turret.id}_ch_t1_3`, name: "Split Current", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: `Forked Distribution Line<br>Splits damage between links` },
+                    { id: `${turret.id}_ch_t2_1`, name: "Amp Conduit", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: `Charged Storage Battery<br>+15% damage per bounce` },
+                    { id: `${turret.id}_ch_t2_2`, name: "Superconductor", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: `Zero Resistance Wiring<br>No decay on bounce damage` },
+                    { id: `${turret.id}_ch_t2_3`, name: "Chain Reaction", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: `Unstable Impact Matrix<br>Final bounce detonates` },
+                    { id: `${turret.id}_ch_t3_1`, name: "Volt Overdrive", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: `Substation Generator Rig<br>Stuns all targets for 1s` },
+                    { id: `${turret.id}_ch_t3_2`, name: "Storm Nexus", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: `Localized Atmospheric Node<br>Summons continuous storm` },
+                    { id: `${turret.id}_ch_t3_3`, name: "Tesla Command", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: `Central Network Matrix<br>Global Chain speed +50%` }
                 ],
                 combo: [
-                    { id: `${turret.id}_co_t1_1`, name: "Strike Synthesis", class: "Combo", cardTier: "T1", art: "♊" },
-                    { id: `${turret.id}_co_t1_2`, name: "Double Tap Mod", class: "Combo", cardTier: "T1", art: "👥" },
-                    { id: `${turret.id}_co_t1_3`, name: "Tempo Flow", class: "Combo", cardTier: "T1", art: "🎵" },
-                    { id: `${turret.id}_co_t2_1`, name: "Binary Trigger", class: "Combo", cardTier: "T2", art: "⏱️" },
-                    { id: `${turret.id}_co_t2_2`, name: "Catalyst Shells", class: "Combo", cardTier: "T2", art: "🧪" },
-                    { id: `${turret.id}_co_t2_3`, name: "Fusion Core Surge", class: "Combo", cardTier: "T2", art: "⚛️" },
-                    { id: `${turret.id}_co_t3_1`, name: "Annihilation Array", class: "Combo", cardTier: "T3", art: "☢️" },
-                    { id: `${turret.id}_co_t3_2`, name: "Ultimate Resonance", class: "Combo", cardTier: "T3", art: "🔔" },
-                    { id: `${turret.id}_co_t3_3`, name: "ARK Devastation", class: "Combo", cardTier: "T3", art: "☄️" }
+                    { id: `${turret.id}_co_t1_1`, name: "Strike Synthesis", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: `Synchronized Fire Sequence<br>Every 3rd hit doubles down` },
+                    { id: `${turret.id}_co_t1_2`, name: "Double Tap Mod", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: `Recoil Buffer Coupling<br>Fires quick 2-round bursts` },
+                    { id: `${turret.id}_co_t1_3`, name: "Tempo Flow", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: `Metronome Processor Unit<br>Consecutive hits boost speed` },
+                    { id: `${turret.id}_co_t2_1`, name: "Binary Trigger", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: `Alternating Hammer Release<br>Double fire rate capacity` },
+                    { id: `${turret.id}_co_t2_2`, name: "Catalyst Shells", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: `Elemental Primer Compound<br>Prepares enemies for combos` },
+                    { id: `${turret.id}_co_t2_3`, name: "Fusion Surge", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: `Thermal Reactor Coupling<br>Triggers massive explosions` },
+                    { id: `${turret.id}_co_t3_1`, name: "Annihilation", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: `Singularity Collapse Laser<br>Disintegrates minor health pools` },
+                    { id: `${turret.id}_co_t3_2`, name: "Resonance Core", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: `Harmonic Soundwaves<br>Spreads status effects outwards` },
+                    { id: `${turret.id}_co_t3_3`, name: "ARK Devastator", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: `Orbital Strike Coordinates<br>Calls down secondary fire` }
                 ],
                 breakthrough: [
-                    { id: `${turret.id}_b_t1_1`, name: "Super Core V1", class: "Breakthrough", cardTier: "T1", art: "💎" },
-                    { id: `${turret.id}_b_t1_2`, name: "Aegis Command", class: "Breakthrough", cardTier: "T1", art: "🛡️" },
-                    { id: `${turret.id}_b_t1_3`, name: "Aero Engine", class: "Breakthrough", cardTier: "T1", art: "🌀" },
-                    { id: `${turret.id}_b_t2_1`, name: "Warp Singularity", class: "Breakthrough", cardTier: "T2", art: "👁️" },
-                    { id: `${turret.id}_b_t2_2`, name: "Chrono Inhibitor", class: "Breakthrough", cardTier: "T2", art: "⏳" },
-                    { id: `${turret.id}_b_t2_3`, name: "Shatter Core", class: "Breakthrough", cardTier: "T2", art: "💔" },
-                    { id: `${turret.id}_b_t3_1`, name: "Genesis Command", class: "Breakthrough", cardTier: "T3", art: "👑" },
-                    { id: `${turret.id}_b_t3_2`, name: "Omni Overlord", class: "Breakthrough", cardTier: "T3", art: "🌟" },
-                    { id: `${turret.id}_b_t3_3`, name: "Void Cataclysm", class: "Breakthrough", cardTier: "T3", art: "🕳️" }
+                    { id: `${turret.id}_b_t1_1`, name: "Super Core V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: `Elite Modification Part<br>Unlocks Ultimate Slots` },
+                    { id: `${turret.id}_b_t1_2`, name: "Aegis Command", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: `Guardian Logic Protocol<br> प्रोजेक्ट्स a spatial force shield` },
+                    { id: `${turret.id}_b_t1_3`, name: "Aero Engine", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: `Turbine Wind Channeler<br>Knocks back incoming hostiles` },
+                    { id: `${turret.id}_b_t2_1`, name: "Warp Vortex", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: `Quantum Void Condenser<br>Pulls targets to center` },
+                    { id: `${turret.id}_b_t2_2`, name: "Chrono Inhibitor", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: `Temporal Distortion Field<br>Slows down target space by 40%` },
+                    { id: `${turret.id}_b_t2_3`, name: "Shatter Core", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: `Structural Fracture Device<br>Bypasses defensive shields` },
+                    { id: `${turret.id}_b_t3_1`, name: "Genesis Protocol", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: `Master AI Sovereignty<br>Doubles turret target counts` },
+                    { id: `${turret.id}_b_t3_2`, name: "Omni Overlord", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: `Max Evolution Matrix<br>All damage converted to true base` },
+                    { id: `${turret.id}_b_t3_3`, name: "Void Cataclysm", class: "Breakthrough", cardTier: "T3", num: 3, art: "🕳️", desc: `End-state Quantum Collapse<br>Erases everything instantly` }
                 ]
             };
         });
@@ -672,6 +698,23 @@
             renderSelectionPools();
         }
 
+        // Generates the layout inside the target board using the custom screenshot template rules
+        function getCardHTML(card, isBt) {
+            const rarityClass = isBt ? 'purple-rarity' : 'white-rarity';
+            return `
+                <div class="styled-card ${rarityClass}">
+                    <div class="card-top-header">${card.name}</div>
+                    <div class="card-mid-artwork">
+                        ${card.art}
+                        <div class="card-tier-circle">${card.num}</div>
+                    </div>
+                    <div class="card-desc-body">
+                        ${card.desc}
+                    </div>
+                </div>
+            `;
+        }
+
         function renderDeckBoard() {
             const activeDeck = deckData[activeTurretTabId];
             ["T1", "T2", "T3"].forEach(tier => {
@@ -680,14 +723,8 @@
                     const card = activeDeck[tier][i];
                     
                     if (card) {
-                        const isBt = i === 3;
-                        slot.innerHTML = `
-                            <div class="slotted-card ${isBt ? 'breakthrough' : ''}">
-                                <div class="card-num" style="font-size:8px; opacity:0.7;">${card.cardTier} ${card.class}</div>
-                                <div class="card-art">${card.art}</div>
-                                <div class="card-title">${card.name}</div>
-                            </div>
-                        `;
+                        const isBt = (i === 3);
+                        slot.innerHTML = getCardHTML(card, isBt);
                     } else {
                         slot.innerHTML = i === 3 ? "Breakthrough" : "Empty";
                     }
@@ -701,7 +738,7 @@
             const comboContainer = document.getElementById('comboPool');
             const btContainer = document.getElementById('breakthroughPool');
 
-            // Clear previous UI Elements
+            // Clear previous elements
             normalContainer.innerHTML = '';
             chainContainer.innerHTML = '';
             comboContainer.innerHTML = '';
@@ -715,29 +752,23 @@
             };
 
             const buildCardNode = (card, container, isBt) => {
-                const div = document.createElement('div');
-                div.className = `pool-card ${isBt ? 'breakthrough' : ''} ${isSlotted(card.id) ? 'in-deck' : ''}`;
-                div.onclick = () => addCardToDeck(card, isBt);
-                div.innerHTML = `
-                    <div style="font-size:10px; color:${isBt ? '#b54cff' : '#ffffff'}; font-weight:bold;">${card.cardTier}</div>
-                    <div class="card-type-sub">${card.class}</div>
-                    <div class="card-art">${card.art}</div>
-                    <div class="card-title">${card.name}</div>
-                `;
-                container.appendChild(div);
+                const wrapper = document.createElement('div');
+                wrapper.className = `pool-card-wrapper ${isBt ? 'purple-type' : 'white-type'} ${isSlotted(card.id) ? 'in-deck' : ''}`;
+                wrapper.onclick = () => addCardToDeck(card, isBt);
+                wrapper.innerHTML = getCardHTML(card, isBt);
+                container.appendChild(wrapper);
             };
 
-            // Render pools
+            // Render matching categories
             library.normal.forEach(card => buildCardNode(card, normalContainer, false));
             library.chain.forEach(card => buildCardNode(card, chainContainer, false));
             library.combo.forEach(card => buildCardNode(card, comboContainer, false));
             library.breakthrough.forEach(card => buildCardNode(card, btContainer, true));
         }
 
-        // Custom Slot Auto-fill with Level Rules Check
         function addCardToDeck(card, isBreakthrough) {
             const activeDeck = deckData[activeTurretTabId];
-            const srcTier = card.cardTier; // T1, T2, or T3
+            const srcTier = card.cardTier; 
 
             let targetRow = null;
             let targetSlotIdx = -1;
@@ -783,7 +814,6 @@
             }
         }
 
-        // 5. Highly Optimized Short Compression Engine Link Mapping
         function generateShareLink() {
             if (selectedTurrets.length === 0) return;
             const segments = [];
@@ -793,7 +823,6 @@
                 const activeDeck = deckData[turretId];
                 const lib = cardLibrary[turretId];
 
-                // Combine normal, chain, and combo pools for index lookup mapping [0-26]
                 const allWhitePool = [...lib.normal, ...lib.chain, ...lib.combo];
 
                 const compressRow = (rowSlots) => {
@@ -818,7 +847,6 @@
             `;
         }
 
-        // On Load Parameter Restore Engine
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
             const shortState = urlParams.get('s');
