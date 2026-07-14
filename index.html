@@ -427,6 +427,7 @@
 </head>
 <body>
 
+    <!-- Top Navigation -->
     <div class="top-nav">
         <div class="logo-area">
             <div class="logo-title">Galaxy Defense <span>ARK BUILDER</span></div>
@@ -438,21 +439,26 @@
         </div>
     </div>
 
+    <!-- PANEL 1: TURRET SELECTION -->
     <div id="panel-1" class="section-panel active">
         <h2>Combat Turrets <span class="counter" id="countLabel">(0 / 4 selected)</span></h2>
         <p class="subtitle">Select exactly 4 turrets for your ARK setup.</p>
         <div class="grid" id="turretGrid"></div>
     </div>
 
+    <!-- PANEL 2: CARDS DECK LAYOUT -->
     <div id="panel-2" class="section-panel">
         <h2>Cards Custom Deck Setup</h2>
         <p class="subtitle">Equip up to 3 Normal (Green) cards and 1 Breakthrough (Purple) card per Tier (T1-T3) for each of your selected turrets.</p>
 
+        <!-- Subtabs for Selected Turrets -->
         <div class="turret-subtabs" id="turretSubtabs"></div>
 
+        <!-- Current Selected Turret Deck Board -->
         <div class="deck-board">
             <div class="deck-header">DECK CONFIGURATION</div>
 
+            <!-- T1 Row -->
             <div class="deck-row">
                 <div class="deck-row-label">T1</div>
                 <div class="deck-slots">
@@ -463,6 +469,7 @@
                 </div>
             </div>
 
+            <!-- T2 Row -->
             <div class="deck-row">
                 <div class="deck-row-label">T2</div>
                 <div class="deck-slots">
@@ -473,6 +480,7 @@
                 </div>
             </div>
 
+            <!-- T3 Row -->
             <div class="deck-row">
                 <div class="deck-row-label">T3</div>
                 <div class="deck-slots">
@@ -484,6 +492,7 @@
             </div>
         </div>
 
+        <!-- Selection Pool -->
         <div class="pool-title green">● NORMAL CARDS</div>
         <div class="cards-pool" id="normalCardsPool"></div>
 
@@ -491,13 +500,14 @@
         <div class="cards-pool" id="breakthroughCardsPool"></div>
     </div>
 
+    <!-- Action Footer / Share Area -->
     <div class="actions">
         <button class="btn-primary" id="shareBtn" onclick="generateShareLink()">Generate Share Link</button>
         <div id="link-box"></div>
     </div>
 
     <script>
-        // Data containing all 11 Turrets
+        // Data containing all 11 Turrets (Ordered strategically for index indexing)
         const turretsData = [
             { id: "skyguard", name: "Sky Guard", type: "fire", icon: "📡", color: "var(--color-fire)" },
             { id: "laser", name: "Laser", type: "energy", icon: "🔦", color: "var(--color-energy)" },
@@ -512,7 +522,7 @@
             { id: "gravity", name: "Gravity Vortex Gun", type: "force-field", icon: "🕳️", color: "var(--color-forcefield)" }
         ];
 
-        // Unique dynamic cards available to pick per Turret
+        // Unique dynamic cards available to pick per Turret (ID-index map works on indices 0-8 for normal, 0-2 for breakthrough)
         const cardLibrary = {
             "disruption": {
                 normal: [
@@ -731,10 +741,8 @@
             const tier = card.tier; // T1, T2, or T3
 
             if (isBreakthrough) {
-                // Breakthrough sits in slot index 3
                 activeDeck[tier][3] = card;
             } else {
-                // Normal cards go into first free spot (indices 0, 1, or 2)
                 let added = false;
                 for (let i = 0; i < 3; i++) {
                     if (activeDeck[tier][i] === null) {
@@ -760,84 +768,106 @@
             }
         }
 
-        // 5. Encoding Engine (Generate & Decode links)
+        // 5. Advanced Short Compression Engine
+        // Serializes complex data state into a ultra-short structured string parameter: ?s=A_B_C_D
         function generateShareLink() {
             if (selectedTurrets.length === 0) {
                 alert("Please select at least 1 turret!");
                 return;
             }
 
-            // Construct state object: { t: [list of turrets], d: { turret1: { T1: [...ids], ...} } }
-            const exportState = {
-                t: selectedTurrets,
-                d: {}
-            };
+            const segments = [];
 
-            selectedTurrets.forEach(id => {
-                exportState.d[id] = {
-                    T1: deckData[id].T1.map(c => c ? c.id : ""),
-                    T2: deckData[id].T2.map(c => c ? c.id : ""),
-                    T3: deckData[id].T3.map(c => c ? c.id : "")
+            selectedTurrets.forEach(turretId => {
+                const turretIndex = turretsData.findIndex(t => t.id === turretId);
+                const activeDeck = deckData[turretId];
+                const lib = cardLibrary[turretId];
+
+                const compressRow = (rowSlots) => {
+                    return rowSlots.map((card, idx) => {
+                        if (!card) return 'x';
+                        // Breakthrough sits in last position (slot index 3)
+                        if (idx === 3) {
+                            return lib.breakthrough.findIndex(c => c.id === card.id);
+                        }
+                        return lib.normal.findIndex(c => c.id === card.id);
+                    }).join('-');
                 };
+
+                const t1Str = compressRow(activeDeck.T1);
+                const t2Str = compressRow(activeDeck.T2);
+                const t3Str = compressRow(activeDeck.T3);
+
+                // Format: TurretIdx-T1Slots-T2Slots-T3Slots
+                // E.g: 2-0-1-x-x-3-x-x-x-x-x-x-x
+                segments.push(`${turretIndex}-${t1Str}-${t2Str}-${t3Str}`);
             });
 
-            // Convert state to Base64 string so the URL stays compact
-            const encodedData = btoa(encodeURIComponent(JSON.stringify(exportState)));
+            const shortState = segments.join('_'); // Joins each turret profile with an underscore
             const currentDomain = window.location.origin + window.location.pathname;
-            const shareableLink = `${currentDomain}?state=${encodedData}`;
+            const shareableLink = `${currentDomain}?s=${shortState}`;
 
             const box = document.getElementById('link-box');
             box.style.display = 'block';
             box.innerHTML = `
-                <p style="margin-top:0; font-size: 14px;">ARK Combat Setup & Deck Configured! Copy the share link below:</p>
+                <p style="margin-top:0; font-size: 14px;">ARK Combat Setup & Deck Configured! Copy your short link below:</p>
                 <a href="${shareableLink}" target="_blank">${shareableLink}</a>
             `;
         }
 
-        // Load encoded setup when someone opens a shared link
+        // Decode short state parameter on page load
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const savedState = urlParams.get('state');
+            const shortState = urlParams.get('s');
 
-            if (savedState) {
+            if (shortState) {
                 try {
-                    const parsedState = JSON.parse(decodeURIComponent(atob(savedState)));
-                    
-                    // Restore Turrets
-                    selectedTurrets = parsedState.t.filter(id => turretsData.some(t => t.id === id));
-                    updateTurretUI();
+                    const profiles = shortState.split('_');
+                    selectedTurrets = [];
+                    deckData = {};
 
-                    // Restore Decks
-                    selectedTurrets.forEach(turretId => {
-                        deckData[turretId] = {
-                            T1: [null, null, null, null],
-                            T2: [null, null, null, null],
-                            T3: [null, null, null, null]
-                        };
+                    profiles.forEach(profile => {
+                        const tokens = profile.split('-');
+                        const turretIdx = parseInt(tokens[0], 10);
+                        const turret = turretsData[turretIdx];
 
-                        const savedDeck = parsedState.d[turretId];
-                        if (savedDeck) {
-                            ["T1", "T2", "T3"].forEach(tier => {
-                                for (let i = 0; i < 4; i++) {
-                                    const cardId = savedDeck[tier][i];
-                                    if (cardId) {
-                                        // Find exact card reference
-                                        const cLib = cardLibrary[turretId];
-                                        const match = cLib.normal.find(c => c.id === cardId) || cLib.breakthrough.find(c => c.id === cardId);
-                                        if (match) {
-                                            deckData[turretId][tier][i] = match;
+                        if (turret) {
+                            const turretId = turret.id;
+                            selectedTurrets.push(turretId);
+
+                            deckData[turretId] = {
+                                T1: [null, null, null, null],
+                                T2: [null, null, null, null],
+                                T3: [null, null, null, null]
+                            };
+
+                            const lib = cardLibrary[turretId];
+
+                            const loadTier = (tierKey, tokensSubset) => {
+                                tokensSubset.forEach((token, idx) => {
+                                    if (token !== 'x') {
+                                        const parsedIdx = parseInt(token, 10);
+                                        if (idx === 3) {
+                                            deckData[turretId][tierKey][idx] = lib.breakthrough[parsedIdx] || null;
+                                        } else {
+                                            deckData[turretId][tierKey][idx] = lib.normal[parsedIdx] || null;
                                         }
                                     }
-                                }
-                            });
+                                });
+                            };
+
+                            // Slice indices correspond to compiled token segments
+                            loadTier('T1', tokens.slice(1, 5));
+                            loadTier('T2', tokens.slice(5, 9));
+                            loadTier('T3', tokens.slice(9, 13));
                         }
                     });
 
-                    // Redirect viewer directly to Tab 2 to view deck
+                    updateTurretUI();
                     switchMainTab(2);
 
                 } catch (e) {
-                    console.error("Failed decoding shared state", e);
+                    console.error("Failed decoding short link state", e);
                 }
             }
         };
