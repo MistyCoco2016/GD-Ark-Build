@@ -1141,6 +1141,11 @@
             card.id = `card-${turret.id}`;
             card.onclick = () => toggleSelect(turret.id);
 
+            // If it's the default turret, give it a permanent "selected" or "locked" class visually
+            if (turret.isDefault) {
+                card.classList.add('selected', 'locked-default');
+            }
+            
             card.innerHTML = `
                 <div class="icon-placeholder" style="color: ${turret.color}">${turret.art}</div>
                 <div class="turret-name">${turret.name}</div>
