@@ -572,7 +572,7 @@
 
     <script>
         //{ id: "guardian", name: "Guardian", type: "physical", art: '<img src="images/skyguard.jpg">', color: "var(--color-physical)", isDefault: true },
-        const turretsData = [            
+        const turretsData = [
             { id: "guardian", name: "Guardian", type: "physical", art: '<img src="images/skyguard.jpg">', color: "var(--color-physical)" },
             { id: "skyguard", name: "Sky Guard", type: "fire", art: '<img src="images/skyguard.jpg">', color: "var(--color-fire)" },
             { id: "laser", name: "Laser", type: "energy", art: '<img src="images/skyguard.jpg">', color: "var(--color-energy)" },
@@ -1150,7 +1150,7 @@
             card.onclick = () => toggleSelect(turret.id);
 
             card.innerHTML = `
-                <div class="icon-placeholder" style="color: ${turret.color}">${turret.icon}</div>
+                <div class="icon-placeholder" style="color: ${turret.color}">${turret.art}</div>
                 <div class="turret-name">${turret.name}</div>
                 <div class="badge type-${turret.type}">${turret.type.replace('-', ' ')}</div>
             `;
