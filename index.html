@@ -572,7 +572,8 @@
 
     <script>
         const turretsData = [
-            { id: "guardian", name: "Guardian", type: "physical", art: '<img src="images/skyguard.jpg">', color: "var(--color-physical)", isDefault: true },
+            //{ id: "guardian", name: "Guardian", type: "physical", art: '<img src="images/skyguard.jpg">', color: "var(--color-physical)", isDefault: true },
+            { id: "guardian", name: "Guardian", type: "physical", art: '<img src="images/skyguard.jpg">', color: "var(--color-physical)" },
             { id: "skyguard", name: "Sky Guard", type: "fire", art: '<img src="images/skyguard.jpg">', color: "var(--color-fire)" },
             { id: "laser", name: "Laser", type: "energy", art: '<img src="images/skyguard.jpg">', color: "var(--color-energy)" },
             { id: "disruption", name: "Disruption Drone", type: "force-field",art: '<img src="images/skyguard.jpg">', color: "var(--color-forcefield)" },
@@ -1129,13 +1130,34 @@
                 ],
             }};
 
-        let selectedTurrets = ["guardian"];
+
+        let selectedTurrets = [];
+        let activeTurretTabId = "";
+        let deckData = {};
+        
+/*        let selectedTurrets = ["guardian"];
         let activeTurretTabId = "guardian";
         let deckData = {
             guardian: []
-        };
+        };*/
 
         // Initial UI Render
+        const gridEl = document.getElementById('turretGrid');
+        turretsData.forEach(turret => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${turret.id}`;
+            card.onclick = () => toggleSelect(turret.id);
+
+            card.innerHTML = `
+                <div class="icon-placeholder" style="color: ${turret.color}">${turret.icon}</div>
+                <div class="turret-name">${turret.name}</div>
+                <div class="badge type-${turret.type}">${turret.type.replace('-', ' ')}</div>
+            `;
+            gridEl.appendChild(card);
+        });
+        
+     /*   // Initial UI Render
         const gridEl = document.getElementById('turretGrid');
         turretsData.forEach(turret => {
             const card = document.createElement('div');
@@ -1154,7 +1176,7 @@
                 <div class="badge type-${turret.type}">${turret.type.replace('-', ' ')}</div>
             `;
             gridEl.appendChild(card);
-        });
+        }); */
 
         function switchMainTab(tabIndex) {
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
