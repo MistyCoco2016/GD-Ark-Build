@@ -182,8 +182,8 @@
 <body>
 
     <header>
-        <h1>Tourelles de combat <span class="counter" id="countLabel">(0 / 4 sélectionnées)</span></h1>
-        <p class="subtitle">Choisissez exactement 4 tourelles pour votre composition ARK.</p>
+        <h1>Combat Turrets <span class="counter" id="countLabel">(0 / 4 selected)</span></h1>
+        <p class="subtitle">Select exactly 4 turrets for your ARK setup.</p>
     </header>
 
     <!-- The 11 Turrets Grid -->
@@ -195,7 +195,7 @@
     </div>
 
     <script>
-        // Data mapping matching your image exactly
+        // Data mapping
         const turretsData = [
             { id: "skyguard", name: "Sky Guard", type: "fire", icon: "📡", color: "var(--color-fire)" },
             { id: "laser", name: "Laser", type: "energy", icon: "🔦", color: "var(--color-energy)" },
@@ -239,7 +239,7 @@
             } else {
                 // Prevent adding more than 4
                 if (selectedTurrets.length >= 4) {
-                    alert("Vous ne pouvez sélectionner que 4 tourelles maximum !");
+                    alert("You can only select a maximum of 4 turrets!");
                     return;
                 }
                 selectedTurrets.push(id);
@@ -261,7 +261,7 @@
             });
 
             // Update Counter Text
-            document.getElementById('countLabel').innerText = `(${selectedTurrets.length} / 4 sélectionnées)`;
+            document.getElementById('countLabel').innerText = `(${selectedTurrets.length} / 4 selected)`;
 
             // Enable Share button ONLY if exactly 4 are chosen
             document.getElementById('shareBtn').disabled = (selectedTurrets.length !== 4);
