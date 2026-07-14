@@ -1225,36 +1225,6 @@
             document.getElementById('nextBtn').disabled = (selectedTurrets.length !== 5);
         }
 
-        /*function updateTurretUI() {
-            // 1. Reset all cards
-            turretsData.forEach(t => {
-                const card = document.getElementById(`card-${t.id}`);
-                if (card) card.classList.remove('selected');
-            });
-            
-            // 2. Add selected class & ensure it exists in deckData
-            selectedTurrets.forEach(id => {
-                const card = document.getElementById(`card-${id}`);
-                if (card) card.classList.add('selected');
-        
-                // CRITICAL FIX: Make sure this selected turret has a deck slot ready
-                if (!deckData[id]) {
-                    deckData[id] = [];
-                }
-            });
-            
-            // 3. Update the labels and buttons
-            document.getElementById('countLabel').innerText = `(${selectedTurrets.length - 1} / 4 selected)`;
-            document.getElementById('nextBtn').disabled = (selectedTurrets.length !== 5);
-        
-            // 4. Force Tab 2 (Cards tab) to redraw so the default deck shows up instantly
-            if (typeof renderCardsPage === 'function') {
-                renderCardsPage();
-            } else if (typeof renderTabs === 'function') {
-                renderTabs(); // Change this to whatever function draws your card sub-tabs
-            }
-        } */
-
         function renderCardsPage() {
             const subtabsContainer = document.getElementById('turretSubtabs');
             subtabsContainer.innerHTML = '';
