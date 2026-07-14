@@ -587,55 +587,512 @@
 
         let cardLibrary = {};
 
-        turretsData.forEach(turret => {
-            const shortName = turret.name;
-            cardLibrary[turret.id] = {
+        // Manually defined explicit card library config for all 11 combat turrets
+        let cardLibrary = {
+            skyguard: {
                 normal: [
-                    { id: `${turret.id}_n_t1_1`, name: "Volley Missile", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: `${shortName} Mod<br>+15% DMG` },
-                    { id: `${turret.id}_n_t1_2`, name: "Scouting Sight", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: `${shortName} Scan<br>+10% Range` },
-                    { id: `${turret.id}_n_t1_3`, name: "Overdrive Core", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: `${shortName} Shift<br>+12% Fire Rate` },
-                    { id: `${turret.id}_n_t2_1`, name: "Heavy Payload", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: `Calibrated Shells<br>+1, DMG -15%` },
-                    { id: `${turret.id}_n_t2_2`, name: "Optimal Scope", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: `Hawkeye Aim<br>CRIT Multi +25%` },
-                    { id: `${turret.id}_n_t2_3`, name: "Armor Shred V1", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: `Corrosive Rounds<br>Melts 15 Armor` },
-                    { id: `${turret.id}_n_t3_1`, name: "Hyper Drive", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: `Tachyon Engine<br>Insta-Reload clip` },
-                    { id: `${turret.id}_n_t3_2`, name: "Plasma Shroud", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: `Radiation Grid<br>Ongoing burn aura` },
-                    { id: `${turret.id}_n_t3_3`, name: "Titan Protocol", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: `Heavy Framework<br>Base Stats +30%` }
+                    { id: "skyguard_n_t1_1", name: "Flak Barrage", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Sky Guard Mod<br>+15% Flak DMG" },
+                    { id: "skyguard_n_t1_2", name: "High-Alt Radar", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Sky Guard Scan<br>+10% Flight Range" },
+                    { id: "skyguard_n_t1_3", name: "Thermal Ignition", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Sky Guard Shift<br>+12% Fire Rate" },
+                    { id: "skyguard_n_t2_1", name: "Cluster Shells", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Shrapnel Blast<br>+1 Target, DMG -15%" },
+                    { id: "skyguard_n_t2_2", name: "Proximity Fuse", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Airburst Radius<br>CRIT Multi +25%" },
+                    { id: "skyguard_n_t2_3", name: "Incinerating Core", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Thermite Matrix<br>Melts 15 Armor" },
+                    { id: "skyguard_n_t3_1", name: "Stratosphere Gun", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Mach Loader<br>Insta-Reload clip" },
+                    { id: "skyguard_n_t3_2", name: "Solar Flares", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Heat Shroud<br>Ongoing burn aura" },
+                    { id: "skyguard_n_t3_3", name: "Phoenix Protocol", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Heavy Frame<br>Base Stats +30%" }
                 ],
                 chain: [
-                    { id: `${turret.id}_ch_t1_1`, name: "Spark Stream", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: `Conductive Relay<br>+1 extra target` },
-                    { id: `${turret.id}_ch_t1_2`, name: "Pulse Bridge", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: `Discharge Mesh<br>Boost arc radius` },
-                    { id: `${turret.id}_ch_t1_3`, name: "Split Current", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: `Forked Line<br>Splits link DMG` },
-                    { id: `${turret.id}_ch_t2_1`, name: "Amp Conduit", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: `Charged Battery<br>+15% DMG / bounce` },
-                    { id: `${turret.id}_ch_t2_2`, name: "Superconductor", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: `Zero Resistance<br>No decay on bounce` },
-                    { id: `${turret.id}_ch_t2_3`, name: "Chain Reaction", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: `Impact Matrix<br>Final bounce pops` },
-                    { id: `${turret.id}_ch_t3_1`, name: "Volt Overdrive", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: `Generator Rig<br>Stuns target 1s` },
-                    { id: `${turret.id}_ch_t3_2`, name: "Storm Nexus", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: `Atmospheric Node<br>Summons a storm` },
-                    { id: `${turret.id}_ch_t3_3`, name: "Tesla Command", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: `Network Matrix<br>Chain Speed +50%` }
+                    { id: "skyguard_ch_t1_1", name: "Combustion Relay", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Fire Linker<br>+1 extra target" },
+                    { id: "skyguard_ch_t1_2", name: "Spark Spread", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: "Ignite Mesh<br>Boost arc radius" },
+                    { id: "skyguard_ch_t1_3", name: "Thermal Dissipate", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: "Split Heat<br>Splits link DMG" },
+                    { id: "skyguard_ch_t2_1", name: "Blaze Conduit", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: "Thermal Amp<br>+15% DMG / bounce" },
+                    { id: "skyguard_ch_t2_2", name: "Inferno Link", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: "Wildfire Net<br>No decay on bounce" },
+                    { id: "skyguard_ch_t2_3", name: "Detonation Cycle", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: "Explosive Spark<br>Final bounce pops" },
+                    { id: "skyguard_ch_t3_1", name: "Supernova Chain", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: "Stoke Furnace<br>Stuns target 1s" },
+                    { id: "skyguard_ch_t3_2", name: "Wildfire Storm", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: "Heat Nexus<br>Summons a storm" },
+                    { id: "skyguard_ch_t3_3", name: "Magma Command", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: "Flame Grid<br>Chain Speed +50%" }
                 ],
                 combo: [
-                    { id: `${turret.id}_co_t1_1`, name: "Strike Synthesis", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: `Fire Sequence<br>3rd hit doubles` },
-                    { id: `${turret.id}_co_t1_2`, name: "Double Tap Mod", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: `Buffer Coupling<br>Quick 2x bursts` },
-                    { id: `${turret.id}_co_t1_3`, name: "Tempo Flow", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: `Metronome Unit<br>Hits boost speed` },
-                    { id: `${turret.id}_co_t2_1`, name: "Binary Trigger", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: `Hammer Release<br>Double fire cap` },
-                    { id: `${turret.id}_co_t2_2`, name: "Catalyst Shells", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: `Primer Compound<br>Preps combo hooks` },
-                    { id: `${turret.id}_co_t2_3`, name: "Fusion Surge", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: `Reactor Coupling<br>Massive explosion` },
-                    { id: `${turret.id}_co_t3_1`, name: "Annihilation", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: `Collapse Laser<br>Disintegrates HP` },
-                    { id: `${turret.id}_co_t3_2`, name: "Resonance Core", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: `Harmonic Waves<br>Spreads statuses` },
-                    { id: `${turret.id}_co_t3_3`, name: "ARK Devastator", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: `Orbital Strike<br>Calls secondary fire` }
+                    { id: "skyguard_co_t1_1", name: "Ignite Rhythm", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: "Triple Singe<br>3rd hit doubles" },
+                    { id: "skyguard_co_t1_2", name: "Twin Burner", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: "Dual Igniter<br>Quick 2x bursts" },
+                    { id: "skyguard_co_t1_3", name: "Accelerant Flow", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: "Heat Cadence<br>Hits boost speed" },
+                    { id: "skyguard_co_t2_1", name: "Blast Trigger", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: "Heat Valve<br>Double fire cap" },
+                    { id: "skyguard_co_t2_2", name: "Fueling Catalyst", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: "Melting Hooks<br>Preps combo hooks" },
+                    { id: "skyguard_co_t2_3", name: "Volcanic Surge", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: "Magma Fusion<br>Massive explosion" },
+                    { id: "skyguard_co_t3_1", name: "Melt Down", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: "Thermal Beam<br>Disintegrates HP" },
+                    { id: "skyguard_co_t3_2", name: "Kindling Core", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: "Burn Wave<br>Spreads statuses" },
+                    { id: "skyguard_co_t3_3", name: "Meteor Rain", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Airstrike Call<br>Calls secondary fire" }
                 ],
                 breakthrough: [
-                    { id: `${turret.id}_b_t1_1`, name: "Super Core V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: `Elite Mod Part<br>Unlocks Ultimates` },
-                    { id: `${turret.id}_b_t1_2`, name: "Aegis Command", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: `Logic Protocol<br>Spatial force shield` },
-                    { id: `${turret.id}_b_t1_3`, name: "Aero Engine", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: `Wind Channeler<br>Knocks back foes` },
-                    { id: `${turret.id}_b_t2_1`, name: "Warp Vortex", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: `Void Condenser<br>Pulls targets in` },
-                    { id: `${turret.id}_b_t2_2`, name: "Chrono Inhibitor", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: `Distortion Field<br>Slows space by 40%` },
-                    { id: `${turret.id}_b_t2_3`, name: "Shatter Core", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: `Fracture Device<br>Bypasses shields` },
-                    { id: `${turret.id}_b_t3_1`, name: "Genesis Protocol", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: `Master AI Rule<br>Doubles target count` },
-                    { id: `${turret.id}_b_t3_2`, name: "Omni Overlord", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: `Evolution Matrix<br>True base damage` },
-                    { id: `${turret.id}_b_t3_3`, name: "Void Cataclysm", class: "Breakthrough", cardTier: "T3", num: 3, art: "🕳️", desc: `Quantum Collapse<br>Erases map items` }
+                    { id: "skyguard_b_t1_1", name: "Fire Core V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Flame Part<br>Unlocks Ultimates" },
+                    { id: "skyguard_b_t1_2", name: "Flame Aegis", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Fire Protection<br>Spatial force shield" },
+                    { id: "skyguard_b_t1_3", name: "Thermal Backblast", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Heat Wave Push<br>Knocks back foes" },
+                    { id: "skyguard_b_t2_1", name: "Fire Hole", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Gravity Heat<br>Pulls targets in" },
+                    { id: "skyguard_b_t2_2", name: "Melting Stasis", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "Heat Freeze<br>Slows space by 40%" },
+                    { id: "skyguard_b_t2_3", name: "Molten Fracture", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Shield Breaker<br>Bypasses shields" },
+                    { id: "skyguard_b_t3_1", name: "Overheat Command", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Alpha Burn Rules<br>Doubles target count" },
+                    { id: "skyguard_b_t3_2", name: "Lord of Cinder", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "Pure Fire Power<br>True base damage" },
+                    { id: "skyguard_b_t3_3", name: "Fire Cataclysm", class: "Breakthrough", cardTier: "T3", num: 3, art: "🕳️", desc: "Ash World Collapse<br>Erases map items" }
                 ]
-            };
-        });
+            },
+            laser: {
+                normal: [
+                    { id: "laser_n_t1_1", name: "Focuser Lens", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Laser Mod<br>+15% Beam DMG" },
+                    { id: "laser_n_t1_2", name: "Long Refractor", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Laser Scan<br>+10% Reach Range" },
+                    { id: "laser_n_t1_3", name: "Diode Overclock", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Laser Shift<br>+12% Tick Speed" },
+                    { id: "laser_n_t2_1", name: "Split Prism", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Dual Rays<br>+1 Beam, DMG -15%" },
+                    { id: "laser_n_t2_2", name: "Glow Point Optic", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Pinpoint Heat<br>CRIT Multi +25%" },
+                    { id: "laser_n_t2_3", name: "Thermal Corroder", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Melt Array<br>Melts 15 Armor" },
+                    { id: "laser_n_t3_1", name: "Infinity Photon", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Zero Rest Engine<br>Insta-Reload clip" },
+                    { id: "laser_n_t3_2", name: "Gamma Radiation", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Rad Shroud<br>Ongoing burn aura" },
+                    { id: "laser_n_t3_3", name: "Photon Protocol", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Mirror Frame<br>Base Stats +30%" }
+                ],
+                chain: [
+                    { id: "laser_ch_t1_1", name: "Ray Splice", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Light Bouncer<br>+1 extra target" },
+                    { id: "laser_ch_t1_2", name: "Reflect Path", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: "Mirror Array<br>Boost arc radius" },
+                    { id: "laser_ch_t1_3", name: "Scatter Beam", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: "Split Beam<br>Splits link DMG" },
+                    { id: "laser_ch_t2_1", name: "Prism Conduit", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: "Refract Amp<br>+15% DMG / bounce" },
+                    { id: "laser_ch_t2_2", name: "Total Reflex", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: "Glass Core<br>No decay on bounce" },
+                    { id: "laser_ch_t2_3", name: "Photon Pop", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: "End Wave Burst<br>Final bounce pops" },
+                    { id: "laser_ch_t3_1", name: "Gamma Stunner", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: "Solar Relay<br>Stuns target 1s" },
+                    { id: "laser_ch_t3_2", name: "Aurora Core", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: "Sky Lattice<br>Summons a storm" },
+                    { id: "laser_ch_t3_3", name: "Array Command", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: "Matrix Mesh<br>Chain Speed +50%" }
+                ],
+                combo: [
+                    { id: "laser_co_t1_1", name: "Laser Synapse", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: "Ray Cadence<br>3rd hit doubles" },
+                    { id: "laser_co_t1_2", name: "Double Diode", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: "Pulse Stacker<br>Quick 2x bursts" },
+                    { id: "laser_co_t1_3", name: "Photon Cadence", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: "Wave Speed<br>Hits boost speed" },
+                    { id: "laser_co_t2_1", name: "Pulse Trigger", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: "Overcharge Key<br>Double fire cap" },
+                    { id: "laser_co_t2_2", name: "Reactive Lens", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: "Primer Glow<br>Preps combo hooks" },
+                    { id: "laser_co_t2_3", name: "Nuclear Fusion", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: "Core Fusion<br>Massive explosion" },
+                    { id: "laser_co_t3_1", name: "Hyper Beam", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: "Melt Cannon<br>Disintegrates HP" },
+                    { id: "laser_co_t3_2", name: "Prism Node", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: "Glow Echoes<br>Spreads statuses" },
+                    { id: "laser_co_t3_3", name: "Quantum Strike", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Sun Burst Call<br>Calls secondary fire" }
+                ],
+                breakthrough: [
+                    { id: "laser_b_t1_1", name: "Photon Core V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Ray Part<br>Unlocks Ultimates" },
+                    { id: "laser_b_t1_2", name: "Mirror Aegis", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Glass Shield<br>Spatial force shield" },
+                    { id: "laser_b_t1_3", name: "Pulse Rebound", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Light Pushing<br>Knocks back foes" },
+                    { id: "laser_b_t2_1", name: "Laser Well", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Beam Puller<br>Pulls targets in" },
+                    { id: "laser_b_t2_2", name: "Chrono Prism", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "Time Dilator<br>Slows space by 40%" },
+                    { id: "laser_b_t2_3", name: "Ray Pierce", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Pure Light Edge<br>Bypasses shields" },
+                    { id: "laser_b_t3_1", name: "Giga Protocol", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Master Array Rule<br>Doubles target count" },
+                    { id: "laser_b_t3_2", name: "Solar God", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "True Solar Heat<br>True base damage" },
+                    { id: "laser_b_t3_3", name: "Laser Collapse", class: "Breakthrough", cardTier: "T3", num: 3, art: "🕳️", desc: "Light Void Crump<br>Erases map items" }
+                ]
+            },
+            disruption: {
+                normal: [
+                    { id: "disruption_n_t1_1", name: "EMP Capacitor", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Disruption Mod<br>+15% Jam DMG" },
+                    { id: "disruption_n_t1_2", name: "Signal Extender", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Disruption Scan<br>+10% Aura Range" },
+                    { id: "disruption_n_t1_3", name: "Rotary Engine", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Disruption Shift<br>+12% Pulse Rate" },
+                    { id: "disruption_n_t2_1", name: "Sub-Drones", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Mini Squad<br>+1 Pod, DMG -15%" },
+                    { id: "disruption_n_t2_2", name: "Sensor Lock", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Radar Sync<br>CRIT Multi +25%" },
+                    { id: "disruption_n_t2_3", name: "Shield Breaker", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Static Disrupter<br>Melts 15 Armor" },
+                    { id: "disruption_n_t3_1", name: "Warp Battery", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Infinite Fuel Cells<br>Insta-Reload clip" },
+                    { id: "disruption_n_t3_2", name: "Feedback Field", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Stall Grid<br>Ongoing burn aura" },
+                    { id: "disruption_n_t3_3", name: "Drone Overlord", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Titan Pod Frame<br>Base Stats +30%" }
+                ],
+                chain: [
+                    { id: "disruption_ch_t1_1", name: "Jumper Core", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Node Relay<br>+1 extra target" },
+                    { id: "disruption_ch_t1_2", name: "Cross Signal", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: "Mesh Linker<br>Boost arc radius" },
+                    { id: "disruption_ch_t1_3", name: "Diffused Pulse", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: "Split Signal<br>Splits link DMG" },
+                    { id: "disruption_ch_t2_1", name: "Interference Amp", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: "Dynamic Relay<br>+15% DMG / bounce" },
+                    { id: "disruption_ch_t2_2", name: "Static Bridge", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: "No Loss Jumper<br>No decay on bounce" },
+                    { id: "disruption_ch_t2_3", name: "Signal Burst", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: "Terminal Discharge<br>Final bounce pops" },
+                    { id: "disruption_ch_t3_1", name: "Stasis Linker", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: "Crash Driver<br>Stuns target 1s" },
+                    { id: "disruption_ch_t3_2", name: "EMP Monsoon", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: "Overload Web<br>Summons a storm" },
+                    { id: "disruption_ch_t3_3", name: "Swarm Grid", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: "Network Hub<br>Chain Speed +50%" }
+                ],
+                combo: [
+                    { id: "disruption_co_t1_1", name: "Pulse Sequence", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: "Echo Cycle<br>3rd hit doubles" },
+                    { id: "disruption_co_t1_2", name: "Dual Jammer", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: "Double Pinger<br>Quick 2x bursts" },
+                    { id: "disruption_co_t1_3", name: "Frequency Speed", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: "Hz Meter<br>Hits boost speed" },
+                    { id: "disruption_co_t2_1", name: "Repeater Switch", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: "Overclock Trigger<br>Double fire cap" },
+                    { id: "disruption_co_t2_2", name: "Catalyst Virus", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: "Primer Bug<br>Preps combo hooks" },
+                    { id: "disruption_co_t2_3", name: "Core Cascade", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: "Grid Burnout<br>Massive explosion" },
+                    { id: "disruption_co_t3_1", name: "Total Shutdown", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: "Disintegrate Wave<br>Disintegrates HP" },
+                    { id: "disruption_co_t3_2", name: "Resonator Hub", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: "Vibration Wave<br>Spreads statuses" },
+                    { id: "disruption_co_t3_3", name: "Orbital Jammer", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Mega Blast Call<br>Calls secondary fire" }
+                ],
+                breakthrough: [
+                    { id: "disruption_b_t1_1", name: "Pod Core V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Drone Part<br>Unlocks Ultimates" },
+                    { id: "disruption_b_t1_2", name: "Aegis Shielding", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Drone Barrier<br>Spatial force shield" },
+                    { id: "disruption_b_t1_3", name: "Repulsion Pulse", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Force Field Push<br>Knocks back foes" },
+                    { id: "disruption_b_t2_1", name: "Singularity Drone", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Magnetic Vortex<br>Pulls targets in" },
+                    { id: "disruption_b_t2_2", name: "Stasis Engine", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "Field Brake<br>Slows space by 40%" },
+                    { id: "disruption_b_t2_3", name: "Shield Smasher", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Phase Penetrator<br>Bypasses shields" },
+                    { id: "disruption_b_t3_1", name: "Swarm Intelligence", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Hive Mind Protocol<br>Doubles target count" },
+                    { id: "disruption_b_t3_2", name: "Apex Jammer", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "Ultimate Static<br>True base damage" },
+                    { id: "disruption_b_t3_3", name: "Vortex Cataclysm", class: "Breakthrough", cardTier: "T3", num: 3, art: "🕳️", desc: "Drone Void Boom<br>Erases map items" }
+                ]
+            },
+            aeroblast: {
+                normal: [
+                    { id: "aeroblast_n_t1_1", name: "Wind Concentrator", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Aeroblast Mod<br>+15% Aero DMG" },
+                    { id: "aeroblast_n_t1_2", name: "Jet Pipe", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Aeroblast Scan<br>+10% Blast Distance" },
+                    { id: "aeroblast_n_t1_3", name: "Quick Turbine", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Aeroblast Shift<br>+12% Fan Speed" },
+                    { id: "aeroblast_n_t2_1", name: "Dual Funnels", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Double Funnels<br>+1 Jet, DMG -15%" },
+                    { id: "aeroblast_n_t2_2", name: "Vortex Pinpoint", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Gale Precision<br>CRIT Multi +25%" },
+                    { id: "aeroblast_n_t2_3", name: "Pressure Ripper", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Carving Drafts<br>Melts 15 Armor" },
+                    { id: "aeroblast_n_t3_1", name: "Cyclone Generator", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Infinite Air Rig<br>Insta-Reload clip" },
+                    { id: "aeroblast_n_t3_2", name: "Vacuum Cage", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Friction Shroud<br>Ongoing burn aura" },
+                    { id: "aeroblast_n_t3_3", name: "Hurricane Core", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Alloy Frame<br>Base Stats +30%" }
+                ],
+                chain: [
+                    { id: "aeroblast_ch_t1_1", name: "Gale Jumper", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Draft Linker<br>+1 extra target" },
+                    { id: "aeroblast_ch_t1_2", name: "Wind Bridge", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: "Jet Stream Mesh<br>Boost arc radius" },
+                    { id: "aeroblast_ch_t1_3", name: "Split Current", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: "Forked Air<br>Splits link DMG" },
+                    { id: "aeroblast_ch_t2_1", name: "Aero Conduit", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: "Pressure Booster<br>+15% DMG / bounce" },
+                    { id: "aeroblast_ch_t2_2", name: "Zephyr Line", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: "Smooth Stream<br>No decay on bounce" },
+                    { id: "aeroblast_ch_t2_3", name: "Air Explosion", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: "Draft Pop Matrix<br>Final bounce pops" },
+                    { id: "aeroblast_ch_t3_1", name: "Tornado Clamp", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: "Air Brake Rig<br>Stuns target 1s" },
+                    { id: "aeroblast_ch_t3_2", name: "Typhoon Nexus", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: "Vortex Node<br>Summons a storm" },
+                    { id: "aeroblast_ch_t3_3", name: "Tempest Drive", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: "Wind Master Net<br>Chain Speed +50%" }
+                ],
+                combo: [
+                    { id: "aeroblast_co_t1_1", name: "Draft Sync", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: "Wind Sequence<br>3rd hit doubles" },
+                    { id: "aeroblast_co_t1_2", name: "Twin Jetter", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: "Double Puffer<br>Quick 2x bursts" },
+                    { id: "aeroblast_co_t1_3", name: "Cyclone Flow", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: "Draft Cadence<br>Hits boost speed" },
+                    { id: "aeroblast_co_t2_1", name: "Binary Blowers", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: "Release Valve<br>Double fire cap" },
+                    { id: "aeroblast_co_t2_2", name: "Primer Squall", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: "Low Pressure Hook<br>Preps combo hooks" },
+                    { id: "aeroblast_co_t2_3", name: "Storm Surge", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: "Kinetic Compression<br>Massive explosion" },
+                    { id: "aeroblast_co_t3_1", name: "Vacuum Shear", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: "Aero Ripper Line<br>Disintegrates HP" },
+                    { id: "aeroblast_co_t3_2", name: "Sonic Core", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: "Pressure Waves<br>Spreads statuses" },
+                    { id: "aeroblast_co_t3_3", name: "Gale Overlord", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Sky Drop Call<br>Calls secondary fire" }
+                ],
+                breakthrough: [
+                    { id: "aeroblast_b_t1_1", name: "Wind Engine V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Fan Part<br>Unlocks Ultimates" },
+                    { id: "aeroblast_b_t1_2", name: "Gale Deflector", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Wind Barrier<br>Spatial force shield" },
+                    { id: "aeroblast_b_t1_3", name: "Sonic Blast", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Super Knockback<br>Knocks back foes" },
+                    { id: "aeroblast_b_t2_1", name: "Vacuum Puller", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Low Pressure Sink<br>Pulls targets in" },
+                    { id: "aeroblast_b_t2_2", name: "Zephyr Hold", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "Air Friction Brake<br>Slows space by 40%" },
+                    { id: "aeroblast_b_t2_3", name: "Pressure Pierce", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Wind Razor Edge<br>Bypasses shields" },
+                    { id: "aeroblast_b_t3_1", name: "Hurricane Rule", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Typhoon King Logic<br>Doubles target count" },
+                    { id: "aeroblast_b_t3_2", name: "God of Winds", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "Pure Kinetic Blast<br>True base damage" },
+                    { id: "aeroblast_b_t3_3", name: "Sky Collapse", class: "Breakthrough", cardTier: "T3", num: 3, art: "🕳️", desc: "Atmosphere Rupture<br>Erases map items" }
+                ]
+            },
+            thunderbolt: {
+                normal: [
+                    { id: "thunderbolt_n_t1_1", name: "Volt Coil", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Thunderbolt Mod<br>+15% Shock DMG" },
+                    { id: "thunderbolt_n_t1_2", name: "Ion Finder", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Thunderbolt Scan<br>+10% Zap Range" },
+                    { id: "thunderbolt_n_t1_3", name: "Amp Frequency", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Thunderbolt Shift<br>+12% Bolt Rate" },
+                    { id: "thunderbolt_n_t2_1", name: "Split Sparker", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Forked Emitters<br>+1 Arc, DMG -15%" },
+                    { id: "thunderbolt_n_t2_2", name: "Fulminant Lens", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Lightning Focus<br>CRIT Multi +25%" },
+                    { id: "thunderbolt_n_t2_3", name: "Conductive Shred", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Corrosive Arcs<br>Melts 15 Armor" },
+                    { id: "thunderbolt_n_t3_1", name: "Overcharge Capacitor", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Lightning Engine<br>Insta-Reload clip" },
+                    { id: "thunderbolt_n_t3_2", name: "Static Cloud", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Ozone Shroud<br>Ongoing burn aura" },
+                    { id: "thunderbolt_n_t3_3", name: "Storm Master Core", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Tesla Framework<br>Base Stats +30%" }
+                ],
+                chain: [
+                    { id: "thunderbolt_ch_t1_1", name: "Lightning Relay", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Zap Bouncer<br>+1 extra target" },
+                    { id: "thunderbolt_ch_t1_2", name: "Ion Mesh", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: "Discharge Net<br>Boost arc radius" },
+                    { id: "thunderbolt_ch_t1_3", name: "Forked Ground", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: "Split Lightning<br>Splits link DMG" },
+                    { id: "thunderbolt_ch_t2_1", name: "Charge Conduit", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: "Battery Jumper<br>+15% DMG / bounce" },
+                    { id: "thunderbolt_ch_t2_2", name: "Super Sparker", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: "Zero Resistance<br>No decay on bounce" },
+                    { id: "thunderbolt_ch_t2_3", name: "Discharge Shock", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: "End Arc Burst<br>Final bounce pops" },
+                    { id: "thunderbolt_ch_t3_1", name: "Paralysis Arc", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: "Neuro Clipper<br>Stuns target 1s" },
+                    { id: "thunderbolt_ch_t3_2", name: "Nimbus Core", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: "Storm Nexus Node<br>Summons a storm" },
+                    { id: "thunderbolt_ch_t3_3", name: "Volt Command", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: "Matrix Terminal<br>Chain Speed +50%" }
+                ],
+                combo: [
+                    { id: "thunderbolt_co_t1_1", name: "Zap Stacker", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: "Charge Loop<br>3rd hit doubles" },
+                    { id: "thunderbolt_co_t1_2", name: "Double Striker", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: "Twin Shockers<br>Quick 2x bursts" },
+                    { id: "thunderbolt_co_t1_3", name: "Lightning Cadence", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: "Frequency Step<br>Hits boost speed" },
+                    { id: "thunderbolt_co_t2_1", name: "Overload Trigger", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: "Dual Contacts<br>Double fire cap" },
+                    { id: "thunderbolt_co_t2_2", name: "Ion Catalyst", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: "Static Primer<br>Preps combo hooks" },
+                    { id: "thunderbolt_co_t2_3", name: "Plasma Singularity", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: "Reactor Spark<br>Massive explosion" },
+                    { id: "thunderbolt_co_t3_1", name: "Atomize Ray", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: "Electron Disintegrator<br>Disintegrates HP" },
+                    { id: "thunderbolt_co_t3_2", name: "Ozone Hub", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: "Harmonic Waves<br>Spreads statuses" },
+                    { id: "thunderbolt_co_t3_3", name: "Thor Devastator", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Lightning Strike Call<br>Calls secondary fire" }
+                ],
+                breakthrough: [
+                    { id: "thunderbolt_b_t1_1", name: "Volt Core V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Storm Item<br>Unlocks Ultimates" },
+                    { id: "thunderbolt_b_t1_2", name: "Static Aegis", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Ion Field Screen<br>Spatial force shield" },
+                    { id: "thunderbolt_b_t1_3", name: "Magnetic Repulsion", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Polar Shift Kick<br>Knocks back foes" },
+                    { id: "thunderbolt_b_t2_1", name: "Ion Well", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Static Vortex<br>Pulls targets in" },
+                    { id: "thunderbolt_b_t2_2", name: "Ozone Stasis", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "EMP Grid Lock<br>Slows space by 40%" },
+                    { id: "thunderbolt_b_t2_3", name: "Lightning Fracture", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Arc Piercer<br>Bypasses shields" },
+                    { id: "thunderbolt_b_t3_1", name: "Zeus Protocol", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Storm Sovereign Law<br>Doubles target count" },
+                    { id: "thunderbolt_b_t3_2", name: "Odin Overlord", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "True Base Spark Damage<br>True base damage" },
+                    { id: "thunderbolt_b_t3_3", name: "Ozone Storm End", class: "Breakthrough", cardTier: "T3", num: 3, art: "🕳️", desc: "Sky Grid Breakdown<br>Erases map items" }
+                ]
+            },
+            beam: {
+                normal: [
+                    { id: "beam_n_t1_1", name: "Refractive Emitter", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Beam Mod<br>+15% Linear DMG" },
+                    { id: "beam_n_t1_2", name: "Collimator Scope", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Beam Scan<br>+10% Vector Length" },
+                    { id: "beam_n_t1_3", name: "Focus Overdrive", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Beam Shift<br>+12% Energy Burst" },
+                    { id: "beam_n_t2_1", name: "Dual Concentrators", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Parallel Vectors<br>+1 Line, DMG -15%" },
+                    { id: "beam_n_t2_2", name: "Pinpoint Focal", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Crosshair Node<br>CRIT Multi +25%" },
+                    { id: "beam_n_t2_3", name: "Vector Melt V1", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Plasma Scythe<br>Melts 15 Armor" },
+                    { id: "beam_n_t3_1", name: "Hyper Resonator", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Zero Dissipate Cells<br>Insta-Reload clip" },
+                    { id: "beam_n_t3_2", name: "Thermal Field Aura", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Degrade Ring<br>Ongoing burn aura" },
+                    { id: "beam_n_t3_3", name: "Titan Grid System", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Heavy Core Truss<br>Base Stats +30%" }
+                ],
+                chain: [
+                    { id: "beam_ch_t1_1", name: "Vector Jumper", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Line Splitter<br>+1 extra target" },
+                    { id: "beam_ch_t1_2", name: "Emitter Bridge", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: "Discharge Matrix<br>Boost arc radius" },
+                    { id: "beam_ch_t1_3", name: "Fractured Focus", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: "Split Line<br>Splits link DMG" },
+                    { id: "beam_ch_t2_1", name: "Conduit Array", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: "Linked Storage cells<br>+15% DMG / bounce" },
+                    { id: "beam_ch_t2_2", name: "Total Resistor", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: "Lossless Wave<br>No decay on bounce" },
+                    { id: "beam_ch_t2_3", name: "Vector Pop", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: "End Sweep Burst<br>Final bounce pops" },
+                    { id: "beam_ch_t3_1", name: "Stasis Generator", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: "Ray Brake Unit<br>Stuns target 1s" },
+                    { id: "beam_ch_t3_2", name: "Ion Tempest Mesh", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: "Vector Storm Node<br>Summons a storm" },
+                    { id: "beam_ch_t3_3", name: "Master Hub Driver", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: "Lattice Terminal<br>Chain Speed +50%" }
+                ],
+                combo: [
+                    { id: "beam_co_t1_1", name: "Sync Frequency", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: "Pulse String<br>3rd hit doubles" },
+                    { id: "beam_co_t1_2", name: "Double Line Mod", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: "Buffer Emitter<br>Quick 2x bursts" },
+                    { id: "beam_co_t1_3", name: "Tempo Resonance", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: "Wave Speed Meter<br>Hits boost speed" },
+                    { id: "beam_co_t2_1", name: "Binary Ray Trigger", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: "Gate Release Switch<br>Double fire cap" },
+                    { id: "beam_co_t2_2", name: "Primer Compounds", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: "Energy Hooks Unit<br>Preps combo hooks" },
+                    { id: "beam_co_t2_3", name: "Quantum Fusion", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: "Reactor Grid Joint<br>Massive explosion" },
+                    { id: "beam_co_t3_1", name: "Total Disintegration", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: "Collapse Vector<br>Disintegrates HP" },
+                    { id: "beam_co_t3_2", name: "Wave Sync Hub", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: "Harmonic Strings<br>Spreads statuses" },
+                    { id: "beam_co_t3_3", name: "ARK Ray Devastator", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Orbital Vector Call<br>Calls secondary fire" }
+                ],
+                breakthrough: [
+                    { id: "beam_b_t1_1", name: "Vector Core V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Ray Joint<br>Unlocks Ultimates" },
+                    { id: "beam_b_t1_2", name: "Aegis Shield Guard", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Plasma Wall Shield<br>Spatial force shield" },
+                    { id: "beam_b_t1_3", name: "Kinetic Ejection", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Pressure Repulsion<br>Knocks back foes" },
+                    { id: "beam_b_t2_1", name: "Void Gravity Sink", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Ray Condenser Unit<br>Pulls targets in" },
+                    { id: "beam_b_t2_2", name: "Chrono Brake Loop", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "Space Slower Field<br>Slows space by 40%" },
+                    { id: "beam_b_t2_3", name: "Phase Core Smasher", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Vector Armor Bypass<br>Bypasses shields" },
+                    { id: "beam_b_t3_1", name: "Omni Rule System", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Master Vector Law<br>Doubles target count" },
+                    { id: "beam_b_t3_2", name: "Core Evolution King", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "Absolute Pure Output<br>True base damage" },
+                    { id: "beam_b_t3_3", name: "Void Ray End", class: "Breakthrough", cardTier: "T3", num: 3, art: "🕳️", desc: "Space Grid Wipeout<br>Erases map items" }
+                ]
+            },
+            firewheel: {
+                normal: [
+                    { id: "firewheel_n_t1_1", name: "Flame Spindle", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Firewheel Mod<br>+15% Orbit DMG" },
+                    { id: "firewheel_n_t1_2", name: "Orbit Expander", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Firewheel Scan<br>+10% Spin Radius" },
+                    { id: "firewheel_n_t1_3", name: "Rotor Accelerant", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Firewheel Shift<br>+12% RPM Speed" },
+                    { id: "firewheel_n_t2_1", name: "Dual Bladed Rings", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Double Orbits<br>+1 Blade, DMG -15%" },
+                    { id: "firewheel_n_t2_2", name: "Centrifugal Focus", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Vortex Striker<br>CRIT Multi +25%" },
+                    { id: "firewheel_n_t2_3", name: "Melt Shredder", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Thermal Saws<br>Melts 15 Armor" },
+                    { id: "firewheel_n_t3_1", name: "Perpetual Spin", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Flywheel Drive<br>Insta-Reload clip" },
+                    { id: "firewheel_n_t3_2", name: "Magma Radiance", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Ignite Shroud<br>Ongoing burn aura" },
+                    { id: "firewheel_n_t3_3", name: "Molten Core Frame", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Heavy Rotor Body<br>Base Stats +30%" }
+                ],
+                chain: [
+                    { id: "firewheel_ch_t1_1", name: "Spark Jumper", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Spin Relay Node<br>+1 extra target" },
+                    { id: "firewheel_ch_t1_2", name: "Blaze Arcs Mesh", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: "Flame Net Bridge<br>Boost arc radius" },
+                    { id: "firewheel_ch_t1_3", name: "Divided Heatline", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: "Forked Sparks<br>Splits link DMG" },
+                    { id: "firewheel_ch_t2_1", name: "Rotor Amp Cell", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: "Kinetic Spark Storage<br>+15% DMG / bounce" },
+                    { id: "firewheel_ch_t2_2", name: "Zero Loss Igniter", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: "Heatless Decay Jumper<br>No decay on bounce" },
+                    { id: "firewheel_ch_t2_3", name: "Ring Pop Matrix", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: "Terminal Ring Pop<br>Final bounce pops" },
+                    { id: "firewheel_ch_t3_1", name: "Thermal Grid Clamp", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: "Stun Blast Trigger<br>Stuns target 1s" },
+                    { id: "firewheel_ch_t3_2", name: "Solar Core Typhoon", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: "Spindle Storm Hub<br>Summons a storm" },
+                    { id: "firewheel_ch_t3_3", name: "Command Matrix Net", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: "Rotor Sync Hub<br>Chain Speed +50%" }
+                ],
+                combo: [
+                    { id: "firewheel_co_t1_1", name: "Orbit Singe Sequence", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: "Triple Spin Loop<br>3rd hit doubles" },
+                    { id: "firewheel_co_t1_2", name: "Double Spindle Mod", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: "Twin Coupling Ring<br>Quick 2x bursts" },
+                    { id: "firewheel_co_t1_3", name: "Rhythm Flow Unit", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: "Spin Speed Counter<br>Hits boost speed" },
+                    { id: "firewheel_co_t2_1", name: "Binary Blade Release", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: "Overcharge Gate Key<br>Double fire cap" },
+                    { id: "firewheel_co_t2_2", name: "Catalyst Primer Compound", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: "Melting Hooks System<br>Preps combo hooks" },
+                    { id: "firewheel_co_t2_3", name: "Fusion Ring Surge", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: "Reactor Spindle Joint<br>Massive explosion" },
+                    { id: "firewheel_co_t3_1", name: "Total Ash Collapse", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: "Annihilation Saw Line<br>Disintegrates HP" },
+                    { id: "firewheel_co_t3_2", name: "Resonance Fire Hub", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: "Harmonic Burn Waves<br>Spreads statuses" },
+                    { id: "firewheel_co_t3_3", name: "ARK Fire Storm Devastator", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Orbital Flame Drop<br>Calls secondary fire" }
+                ],
+                breakthrough: [
+                    { id: "firewheel_b_t1_1", name: "Rotor Core Elite V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Blade Joint<br>Unlocks Ultimates" },
+                    { id: "firewheel_b_t1_2", name: "Aegis Wall Deflector", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Flame Shield Screen<br>Spatial force shield" },
+                    { id: "firewheel_b_t1_3", name: "Blast Repulsion Drive", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Spin Backforce Shift<br>Knocks back foes" },
+                    { id: "firewheel_b_t2_1", name: "Gravity Thermal Sink", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Blade Condenser Unit<br>Pulls targets in" },
+                    { id: "firewheel_b_t2_2", name: "Chrono Brake Spinner", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "Space Friction Field<br>Slows space by 40%" },
+                    { id: "firewheel_b_t2_3", name: "Molten Ring Fracture", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Blade Armor Piercer<br>Bypasses shields" },
+                    { id: "firewheel_b_t3_1", name: "Genesis Master Protocol", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Alpha Ring Sovereign Law<br>Doubles target count" },
+                    { id: "firewheel_b_t3_2", name: "Omni Fire Lord Overlord", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "True Incinerate Output<br>True base damage" },
+                    { id: "firewheel_b_t3_3", name: "Void Inferno Cataclysm", class: "Breakthrough", cardTier: "T3", num: 3, art: "🕳️", desc: "Quantum Flame Breakdown<br>Erases map items" }
+                ]
+            },
+            hive: {
+                normal: [
+                    { id: "hive_n_t1_1", name: "Swarm Calibrator", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Hive Mod<br>+15% Droid DMG" },
+                    { id: "hive_n_t1_2", name: "Grid Signal Boost", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Hive Scan<br>+10% Nest Territory" },
+                    { id: "hive_n_t1_3", name: "Spawn Accelerator", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Hive Shift<br>+12% Hatch Rate" },
+                    { id: "hive_n_t2_1", name: "Multi Nest Cell", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Twin Launchers<br>+1 Brood, DMG -15%" },
+                    { id: "hive_n_t2_2", name: "Vanguard Targeter", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Stinger Sync<br>CRIT Multi +25%" },
+                    { id: "hive_n_t2_3", name: "Acid Injection", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Corrosive Stings<br>Melts 15 Armor" },
+                    { id: "hive_n_t3_1", name: "Infinite Brood", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Nanite Engine<br>Insta-Reload clip" },
+                    { id: "hive_n_t3_2", name: "Pheromone Spores", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Miasma Shroud<br>Ongoing burn aura" },
+                    { id: "hive_n_t3_3", name: "Queen Frame Core", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Heavy Nest Wall<br>Base Stats +30%" }
+                ],
+                chain: [
+                    { id: "hive_ch_t1_1", name: "Swarm Cross Jumper", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Droid Relay Line<br>+1 extra target" },
+                    { id: "hive_ch_t1_2", name: "Hive Signal Mesh", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: "Nest Pinger Net<br>Boost arc radius" },
+                    { id: "hive_ch_t1_3", name: "Split Droid Path", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: "Forked Stingers<br>Splits link DMG" },
+                    { id: "hive_ch_t2_1", name: "Brood Amp Emitter", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: "Kinetic Storage Net<br>+15% DMG / bounce" },
+                    { id: "hive_ch_t2_2", name: "Zero Loss Relay", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: "Lossless Droid Jump<br>No decay on bounce" },
+                    { id: "hive_ch_t2_3", name: "Stinger Pop Matrix", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: "End Wave Burst<br>Final bounce pops" },
+                    { id: "hive_ch_t3_1", name: "Neuro Paralysis Link", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: "Neural Shock Clamp<br>Stuns target 1s" },
+                    { id: "hive_ch_t3_2", name: "Nanite Cloud Typhoon", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: "Swarm Nexus Core<br>Summons a storm" },
+                    { id: "hive_ch_t3_3", name: "Brood Command Array", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: "Network Hive Hub<br>Chain Speed +50%" }
+                ],
+                combo: [
+                    { id: "hive_co_t1_1", name: "Stinger Rhythm Sync", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: "Triple Sting Cycle<br>3rd hit doubles" },
+                    { id: "hive_co_t1_2", name: "Twin Launch Buffer", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: "Dual Hatch Mod<br>Quick 2x bursts" },
+                    { id: "hive_co_t1_3", name: "Brood Tempo Tracker", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: "Swarm Speed Step<br>Hits boost speed" },
+                    { id: "hive_co_t2_1", name: "Binary Swarm Gates", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: "Hatch Gate Key<br>Double fire cap" },
+                    { id: "hive_co_t2_2", name: "Primer Toxin Cell", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: "Infection Hooks Mod<br>Preps combo hooks" },
+                    { id: "hive_co_t2_3", name: "Brood Reaction Surge", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: "Nest Core Fusion<br>Massive explosion" },
+                    { id: "hive_co_t3_1", name: "Total Swarm Melt", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: "Annihilation Nanites<br>Disintegrates HP" },
+                    { id: "hive_co_t3_2", name: "Harmonic Pheromones", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: "Spore Echo Waves<br>Spreads statuses" },
+                    { id: "hive_co_t3_3", name: "ARK Swarm Overlord", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Orbital Cloud Call<br>Calls secondary fire" }
+                ],
+                breakthrough: [
+                    { id: "hive_b_t1_1", name: "Nest Core Elite V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Nest Engine<br>Unlocks Ultimates" },
+                    { id: "hive_b_t1_2", name: "Aegis Honeycomb Wall", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Nanite Force Shield<br>Spatial force shield" },
+                    { id: "hive_b_t1_3", name: "Repulsion Swarm Cloud", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Backforce Wind Blast<br>Knocks back foes" },
+                    { id: "hive_b_t2_1", name: "Gravity Nest Sink", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Brood Puller Core<br>Pulls targets in" },
+                    { id: "hive_b_t2_2", name: "Chrono Brake Swarm", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "Nanite Drag Field<br>Slows space by 40%" },
+                    { id: "hive_b_t2_3", name: "Acidic Shell Fracture", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Stinger Armor Piercer<br>Bypasses shields" },
+                    { id: "hive_b_t3_1", name: "Queen Alpha Sovereign", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Mother Mind Logic Rules<br>Doubles target count" },
+                    { id: "hive_b_t3_2", name: "Omni Swarm Empress", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "Absolute True Droid Power<br>True base damage" },
+                    { id: "hive_b_t3_3", name: "Void Hive Collapse", class: "Breakthrough", cardTier: "T3", num: 3, art: "🕳️", desc: "Quantum Brood Breakdown<br>Erases map items" }
+                ]
+            },
+            railgun: {
+                normal: [
+                    { id: "railgun_n_t1_1", name: "Hyper Velocity Magnetic Bolt", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Railgun Mod<br>+15% Kinetic DMG" },
+                    { id: "railgun_n_t1_2", name: "Supersonic Targeter", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Railgun Scan<br>+10% Scope Line" },
+                    { id: "railgun_n_t1_3", name: "Magnetic Charger", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Railgun Shift<br>+12% Rail Charge" },
+                    { id: "railgun_n_t2_1", name: "Dual Rails Mod", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Twin Shell Barrels<br>+1 Slugs, DMG -15%" },
+                    { id: "railgun_n_t2_2", name: "Hawkeye Piercer", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Hypersonic Sight<br>CRIT Multi +25%" },
+                    { id: "railgun_n_t2_3", name: "Depleted Core", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Heavy Slug Edge<br>Melts 15 Armor" },
+                    { id: "railgun_n_t3_1", name: "Infinite Induction", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Tachyon Rails Rig<br>Insta-Reload clip" },
+                    { id: "railgun_n_t3_2", name: "Friction Shroud", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Heat Wake Ring<br>Ongoing burn aura" },
+                    { id: "railgun_n_t3_3", name: "Titan Rail Frame", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Heavy Truss Work<br>Base Stats +30%" }
+                ],
+                chain: [
+                    { id: "railgun_ch_t1_1", name: "Slug Fragmenter", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Kinetic Relay Node<br>+1 extra target" },
+                    { id: "railgun_ch_t1_2", name: "Shrapnel Line Mesh", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: "Splinter Web Bridge<br>Boost arc radius" },
+                    { id: "railgun_ch_t1_3", name: "Split Kinetic Path", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: "Forked Shrapnel Lines<br>Splits link DMG" },
+                    { id: "railgun_ch_t2_1", name: "Velocity Booster Cell", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: "Magnetic Jumper Cells<br>+15% DMG / bounce" },
+                    { id: "railgun_ch_t2_2", name: "Lossless Penetrator", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: "Zero Friction Slugs<br>No decay on bounce" },
+                    { id: "railgun_ch_t2_3", name: "Impact Burst Matrix", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: "Terminal Impact Pop<br>Final bounce pops" },
+                    { id: "railgun_ch_t3_1", name: "Kinetic Shock Clamp", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: "Concussion Break Rig<br>Stuns target 1s" },
+                    { id: "railgun_ch_t3_2", name: "Supersonic Node Typhoon", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: "Impact Cluster Core<br>Summons a storm" },
+                    { id: "railgun_ch_t3_3", name: "Master Rails Terminal", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: "Magnetic Matrix Hub<br>Chain Speed +50%" }
+                ],
+                combo: [
+                    { id: "railgun_co_t1_1", name: "Slug Cadence Sync", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: "Triple Impact Loop<br>3rd hit doubles" },
+                    { id: "railgun_co_t1_2", name: "Twin Barrel Coupler", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: "Dual Charge Chamber<br>Quick 2x bursts" },
+                    { id: "railgun_co_t1_3", name: "Kinetic Pace Meter", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: "Velocity Speed Step<br>Hits boost speed" },
+                    { id: "railgun_co_t2_1", name: "Binary Rail Release", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: "Release Gate Switch<br>Double fire cap" },
+                    { id: "railgun_co_t2_2", name: "Catalyst Splinter primer", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: "Concussive Hooks Mod<br>Preps combo hooks" },
+                    { id: "railgun_co_t2_3", name: "Kinetic Grid Reactor", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: "Magnetic Fusion Joint<br>Massive explosion" },
+                    { id: "railgun_co_t3_1", name: "Total Impact Devastate", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: "Annihilation Slugs Line<br>Disintegrates HP" },
+                    { id: "railgun_co_t3_2", name: "Sonic Wave Resonance", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: "Harmonic Splitter Waves<br>Spreads statuses" },
+                    { id: "railgun_co_t3_3", name: "ARK Rod Devastator Cannon", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Orbital Rod Fall Call<br>Calls secondary fire" }
+                ],
+                breakthrough: [
+                    { id: "railgun_b_t1_1", name: "Rails Core Elite V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Magnetic Engine<br>Unlocks Ultimates" },
+                    { id: "railgun_b_t1_2", name: "Aegis Kinetic Barrier", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Magnetic Shield Wall<br>Spatial force shield" },
+                    { id: "railgun_b_t1_3", name: "Concussive Repulsion Shift", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Super Kinetic Blast Kick<br>Knocks back foes" },
+                    { id: "railgun_b_t2_1", name: "Gravity Inertial Sink", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Slug Condenser Unit<br>Pulls targets in" },
+                    { id: "railgun_b_t2_2", name: "Chrono Brake Inertia", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "Heavy Inertial Drag Field<br>Slows space by 40%" },
+                    { id: "railgun_b_t2_3", name: "Dense Core Fracture", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Slug Armor Breaker Edge<br>Bypasses shields" },
+                    { id: "railgun_b_t3_1", name: "Genesis Rails Sovereign", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Alpha Core Sovereign Rules<br>Doubles target count" },
+                    { id: "railgun_b_t3_2", name: "Omni Rail Sovereign Overlord", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "Absolute True Kinetic Force<br>True base damage" },
+                    { id: "railgun_b_t3_3", name: "Void Slugs Cataclysm", class: "Breakthrough", cardTier: "T3", num: 3, art: "🕳️", desc: "Quantum Rails Breakdown<br>Erases map items" }
+                ]
+            },
+            teslacoil: {
+                normal: [
+                    { id: "teslacoil_n_t1_1", name: "Spark Intensifier", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Teslacoil Mod<br>+15% Volt DMG" },
+                    { id: "teslacoil_n_t1_2", name: "Static Field Finder", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Teslacoil Scan<br>+10% Corona Range" },
+                    { id: "teslacoil_n_t1_3", name: "Discharge Adjuster", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Teslacoil Shift<br>+12% Shock Frequency" },
+                    { id: "teslacoil_n_t2_1", name: "Split Ring Terminal", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Dual Toroids<br>+1 Flash, DMG -15%" },
+                    { id: "teslacoil_n_t2_2", name: "Ion Arc Targeter", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Plasma Focus Node<br>CRIT Multi +25%" },
+                    { id: "teslacoil_n_t2_3", name: "Corona Carver V1", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Electrolysis Arcs<br>Melts 15 Armor" },
+                    { id: "teslacoil_n_t3_1", name: "Infinite Resonance", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Induction Tank Core<br>Insta-Reload clip" },
+                    { id: "teslacoil_n_t3_2", name: "Ozone Leak shroud", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Plasma Ring Mesh<br>Ongoing burn aura" },
+                    { id: "teslacoil_n_t3_3", name: "Titan Toroid Framework", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Heavy Coil Stack Assembly<br>Base Stats +30%" }
+                ],
+                chain: [
+                    { id: "teslacoil_ch_t1_1", name: "Corona Jumper Node", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Arc Relay Wire Join<br>+1 extra target" },
+                    { id: "teslacoil_ch_t1_2", name: "Toroid Network Bridge", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: "Plasma Grid Wire Link<br>Boost arc radius" },
+                    { id: "teslacoil_ch_t1_3", name: "Divided Corona Sparks", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: "Forked Zap Paths<br>Splits link DMG" },
+                    { id: "teslacoil_ch_t2_1", name: "Storage Tank Amp Cell", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: "Induction Power Blocks<br>+15% DMG / bounce" },
+                    { id: "teslacoil_ch_t2_2", name: "Zero Leak Jumper Wire", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: "Lossless Wave Jumper<br>No decay on bounce" },
+                    { id: "teslacoil_ch_t2_3", name: "Terminal Spark Burst", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: "End Core Pop Release<br>Final bounce pops" },
+                    { id: "teslacoil_ch_t3_1", name: "Ozone Clamp Grid Lock", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: "Stun Driver Trigger Joint<br>Stuns target 1s" },
+                    { id: "teslacoil_ch_t3_2", name: "Lightning Typhoon Node Hub", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: "Plasma Storm Nexus Point<br>Summons a storm" },
+                    { id: "teslacoil_ch_t3_3", name: "Master Network Sync Hub", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: "Toroid Terminal Interface<br>Chain Speed +50%" }
+                ],
+                combo: [
+                    { id: "teslacoil_co_t1_1", name: "Volt Ring String Sync", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: "Triple Discharge Loop<br>3rd hit doubles" },
+                    { id: "teslacoil_co_t1_2", name: "Double Toroid Coupler", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: "Twin Switch Mod Block<br>Quick 2x bursts" },
+                    { id: "teslacoil_co_t1_3", name: "Frequency Pace Counter", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: "Discharge Speed Tracker<br>Hits boost speed" },
+                    { id: "teslacoil_co_t2_1", name: "Binary Flash Gate Release", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: "Overcharge Gate Switch Key<br>Double fire cap" },
+                    { id: "teslacoil_co_t2_2", name: "Catalyst Virus Primer Core", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: "Static Hook Setup Board<br>Preps combo hooks" },
+                    { id: "teslacoil_co_t2_3", name: "Fusion Spark Reactor Surge", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: "Induction Core Fusion Knot<br>Massive explosion" },
+                    { id: "teslacoil_co_t3_1", name: "Total Electron Melt Down", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: "Annihilation Corona Line<br>Disintegrates HP" },
+                    { id: "teslacoil_co_t3_2", name: "Harmonic Ozone Wave Node", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: "Resonance Spark Echo Track<br>Spreads statuses" },
+                    { id: "teslacoil_co_t3_3", name: "ARK Tesla Storm Devastator", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Orbital Toroid Shock Call<br>Calls secondary fire" }
+                ],
+                breakthrough: [
+                    { id: "teslacoil_b_t1_1", name: "Coil Core Elite Model V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Toroid Engine Block<br>Unlocks Ultimates" },
+                    { id: "teslacoil_b_t1_2", name: "Aegis Ion Field Deflector", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Plasma Force Shield Screen<br>Spatial force shield" },
+                    { id: "teslacoil_b_t1_3", name: "Polar Repulsion Shift Drive", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Shock Backforce Wind Blast<br>Knocks back foes" },
+                    { id: "teslacoil_b_t2_1", name: "Gravity Plasma Vacuum Sink", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Arc Condenser Assembly Unit<br>Pulls targets in" },
+                    { id: "teslacoil_b_t2_2", name: "Chrono Brake Ozone Field", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "EMP Friction Drag System<br>Slows space by 40%" },
+                    { id: "teslacoil_b_t2_3", name: "Corona Ring Shell Fracture", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Toroid Armor Piercer Core<br>Bypasses shields" },
+                    { id: "teslacoil_b_t3_1", name: "Genesis Toroid Master Plan", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Alpha Mind Sovereign Law rules<br>Doubles target count" },
+                    { id: "teslacoil_b_t3_2", name: "Omni Tesla Supreme Overlord", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "Orbital Toroid Shock Call<br>Calls secondary fire" }
+                ],
+            },
+            gravity: {
+                normal: [
+                    { id: "gravity_n_t1_1", name: "Spark Intensifier", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Teslacoil Mod<br>+15% Volt DMG" },
+                    { id: "gravity_n_t1_2", name: "Static Field Finder", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Teslacoil Scan<br>+10% Corona Range" },
+                    { id: "gravity_n_t1_3", name: "Discharge Adjuster", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Teslacoil Shift<br>+12% Shock Frequency" },
+                    { id: "gravity_n_t2_1", name: "Split Ring Terminal", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Dual Toroids<br>+1 Flash, DMG -15%" },
+                    { id: "gravity_n_t2_2", name: "Ion Arc Targeter", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Plasma Focus Node<br>CRIT Multi +25%" },
+                    { id: "gravity_n_t2_3", name: "Corona Carver V1", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Electrolysis Arcs<br>Melts 15 Armor" },
+                    { id: "gravity_n_t3_1", name: "Infinite Resonance", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Induction Tank Core<br>Insta-Reload clip" },
+                    { id: "gravity_n_t3_2", name: "Ozone Leak shroud", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Plasma Ring Mesh<br>Ongoing burn aura" },
+                    { id: "gravity_n_t3_3", name: "Titan Toroid Framework", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Heavy Coil Stack Assembly<br>Base Stats +30%" }
+                ],
+                chain: [
+                    { id: "gravity_ch_t1_1", name: "Corona Jumper Node", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Arc Relay Wire Join<br>+1 extra target" },
+                    { id: "gravity_ch_t1_2", name: "Toroid Network Bridge", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: "Plasma Grid Wire Link<br>Boost arc radius" },
+                    { id: "gravity_ch_t1_3", name: "Divided Corona Sparks", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: "Forked Zap Paths<br>Splits link DMG" },
+                    { id: "gravity_ch_t2_1", name: "Storage Tank Amp Cell", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: "Induction Power Blocks<br>+15% DMG / bounce" },
+                    { id: "gravity_ch_t2_2", name: "Zero Leak Jumper Wire", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: "Lossless Wave Jumper<br>No decay on bounce" },
+                    { id: "gravity_ch_t2_3", name: "Terminal Spark Burst", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: "End Core Pop Release<br>Final bounce pops" },
+                    { id: "gravity_ch_t3_1", name: "Ozone Clamp Grid Lock", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: "Stun Driver Trigger Joint<br>Stuns target 1s" },
+                    { id: "gravity_ch_t3_2", name: "Lightning Typhoon Node Hub", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: "Plasma Storm Nexus Point<br>Summons a storm" },
+                    { id: "gravity_ch_t3_3", name: "Master Network Sync Hub", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: "Toroid Terminal Interface<br>Chain Speed +50%" }
+                ],
+                combo: [
+                    { id: "gravity_co_t1_1", name: "Volt Ring String Sync", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: "Triple Discharge Loop<br>3rd hit doubles" },
+                    { id: "gravity_co_t1_2", name: "Double Toroid Coupler", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: "Twin Switch Mod Block<br>Quick 2x bursts" },
+                    { id: "gravity_co_t1_3", name: "Frequency Pace Counter", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: "Discharge Speed Tracker<br>Hits boost speed" },
+                    { id: "gravity_co_t2_1", name: "Binary Flash Gate Release", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: "Overcharge Gate Switch Key<br>Double fire cap" },
+                    { id: "gravity_co_t2_2", name: "Catalyst Virus Primer Core", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: "Static Hook Setup Board<br>Preps combo hooks" },
+                    { id: "gravity_co_t2_3", name: "Fusion Spark Reactor Surge", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: "Induction Core Fusion Knot<br>Massive explosion" },
+                    { id: "gravity_co_t3_1", name: "Total Electron Melt Down", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: "Annihilation Corona Line<br>Disintegrates HP" },
+                    { id: "gravity_co_t3_2", name: "Harmonic Ozone Wave Node", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: "Resonance Spark Echo Track<br>Spreads statuses" },
+                    { id: "gravity_co_t3_3", name: "ARK Tesla Storm Devastator", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Orbital Toroid Shock Call<br>Calls secondary fire" }
+                ],
+                breakthrough: [
+                    { id: "gravity_b_t1_1", name: "hello", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Toroid Engine Block<br>Unlocks Ultimates" },
+                    { id: "gravity_b_t1_2", name: "hello2", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Plasma Force Shield Screen<br>Spatial force shield" },
+                    { id: "gravity_b_t1_3", name: "hello3", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Shock Backforce Wind Blast<br>Knocks back foes" },
+                    { id: "gravity_b_t2_1", name: "Gravity Plasma Vacuum Sink", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Arc Condenser Assembly Unit<br>Pulls targets in" },
+                    { id: "gravity_b_t2_2", name: "Chrono Brake Ozone Field", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "EMP Friction Drag System<br>Slows space by 40%" },
+                    { id: "gravity_b_t2_3", name: "Corona Ring Shell Fracture", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Toroid Armor Piercer Core<br>Bypasses shields" },
+                    { id: "gravity_b_t3_1", name: "Genesis Toroid Master Plan", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Alpha Mind Sovereign Law rules<br>Doubles target count" },
+                    { id: "gravity_b_t3_2", name: "Omni Tesla Supreme Overlord", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "Orbital Toroid Shock Call<br>Calls secondary fire" }
+                ],
+            }};
 
         let selectedTurrets = [];
         let activeTurretTabId = "";
