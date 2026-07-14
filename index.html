@@ -3,60 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Game Setup Share</title>
+    <title>Galaxy Defense ARK Builder</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; background: #121212; color: white; }
-        select, button { padding: 10px; font-size: 16px; margin: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; }
-        button { background: #0070f3; border: none; cursor: pointer; }
-        #link-box { margin-top: 20px; font-weight: bold; word-break: break-all; color: #0070f3; }
+        :root {
+            --bg-color: #0b141d;
+            --card-bg: #0f2233;
+            --card-border: #1a364d;
+            --card-selected: #0070f3;
+            --text-main: #ffffff;
+            --text-sub: #7a8e9e;
+            
+            /* Type Colors */
+            --color-fire: #ff4a4a;
+            --color-energy: #00bfff;
+            --color-forcefield: #b54cff;
+            --color-physical: #ffaa00;
+            --color-electric: #d4af37;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: left;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .counter {
+            color: #00bfff;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            color: var(--text-sub);
+            font-size: 14px;
+            margin-top: 0;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 30px;
+        }
+
+        /* Turret Card */
+        .card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--card-border);
+            border-radius: 8px;
+            padding: 20px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: #315c80;
+            transform: translateY(-2px);
+        }
+
+        .card.selected {
+            border-color: var(--card-selected);
+            background-color: #132f4c;
+            box-shadow: 0 0 15px rgba(0, 112, 243, 0.4);
+        }
+
+        /* Temporary Mock Icons using pure CSS */
+        .icon-placeholder {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+
+        .turret-name {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Badge/Type styling */
+        .badge {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 10px;
+            background-color: rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .type-fire { color: var(--color-fire); border: 1px solid var(--color-fire); }
+        .type-energy { color: var(--color-energy); border: 1px solid var(--color-energy); }
+        .type-force-field { color: var(--color-forcefield); border: 1px solid var(--color-forcefield); }
+        .type-physical { color: var(--color-physical); border: 1px solid var(--color-physical); }
+        .type-electric { color: var(--color-electric); border: 1px solid var(--color-electric); }
+
+        /* Action Footer */
+        .actions {
+            width: 100%;
+            max-width: 1000px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #0070f3;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:disabled {
+            background-color: #223344;
+            color: #556677;
+            cursor: not-allowed;
+        }
+
+        #link-box {
+            margin-top: 25px;
+            padding: 15px;
+            background: #0f2233;
+            border-radius: 5px;
+            border: 1px dashed #315c80;
+            display: none;
+            word-break: break-all;
+        }
+
+        a {
+            color: #00ffcc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Setup Share Tool</h1>
-    <p>Select a hero to place on your board:</p>
+    <header>
+        <h1>Tourelles de combat <span class="counter" id="countLabel">(0 / 4 sélectionnées)</span></h1>
+        <p class="subtitle">Choisissez exactement 4 tourelles pour votre composition ARK.</p>
+    </header>
 
-    <select id="heroSelect">
-        <option value="none">-- Choose a Hero --</option>
-        <option value="Warrior">Warrior ⚔️</option>
-        <option value="Mage">Mage 🔮</option>
-        <option value="Rogue">Rogue 🗡️</option>
-    </select>
+    <!-- The 11 Turrets Grid -->
+    <div class="grid" id="turretGrid"></div>
 
-    <br>
-    <button onclick="generateLink()">Generate Share Link</button>
-
-    <div id="link-box"></div>
+    <div class="actions">
+        <button id="shareBtn" onclick="generateShareLink()" disabled>Generate Share Link</button>
+        <div id="link-box"></div>
+    </div>
 
     <script>
-        // 1. Read the URL when the page loads
-        const urlParams = new URLSearchParams(window.location.search);
-        const savedHero = urlParams.get('hero');
+        // Data mapping matching your image exactly
+        const turretsData = [
+            { id: "skyguard", name: "Sky Guard", type: "fire", icon: "📡", color: "var(--color-fire)" },
+            { id: "laser", name: "Laser", type: "energy", icon: "🔦", color: "var(--color-energy)" },
+            { id: "disruption", name: "Disruption Drone", type: "force-field", icon: "🛸", color: "var(--color-forcefield)" },
+            { id: "aeroblast", name: "Aeroblast", type: "physical", icon: "💨", color: "var(--color-physical)" },
+            { id: "thunderbolt", name: "Thunderbolt", type: "electric", icon: "🔮", color: "var(--color-electric)" },
+            { id: "beam", name: "Beam", type: "energy", icon: "📐", color: "var(--color-energy)" },
+            { id: "firewheel", name: "Firewheel Drone", type: "fire", icon: "🔥", color: "var(--color-fire)" },
+            { id: "hive", name: "Hive", type: "force-field", icon: "⬡", color: "var(--color-forcefield)" },
+            { id: "railgun", name: "Railgun", type: "physical", icon: "🔫", color: "var(--color-physical)" },
+            { id: "teslacoil", name: "Teslacoil", type: "electric", icon: "⚡", color: "var(--color-electric)" },
+            { id: "gravity", name: "Gravity Vortex Gun", type: "force-field", icon: "🕳️", color: "var(--color-forcefield)" }
+        ];
 
-        if (savedHero) {
-            // If there's a hero in the link, auto-select it and show an alert
-            document.getElementById('heroSelect').value = savedHero;
-            alert("Loaded setup: " + savedHero + " is on the board!");
+        let selectedTurrets = [];
+
+        // Generate the visual grid dynamically
+        const gridEl = document.getElementById('turretGrid');
+        
+        turretsData.forEach(turret => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.id = `card-${turret.id}`;
+            card.onclick = () => toggleSelect(turret.id);
+
+            card.innerHTML = `
+                <div class="icon-placeholder" style="color: ${turret.color}">${turret.icon}</div>
+                <div class="turret-name">${turret.name}</div>
+                <div class="badge type-${turret.type}">${turret.type.replace('-', ' ')}</div>
+            `;
+            gridEl.appendChild(card);
+        });
+
+        // Selection engine logic
+        function toggleSelect(id) {
+            const index = selectedTurrets.indexOf(id);
+            
+            if (index > -1) {
+                // Remove if already selected
+                selectedTurrets.splice(index, 1);
+            } else {
+                // Prevent adding more than 4
+                if (selectedTurrets.length >= 4) {
+                    alert("Vous ne pouvez sélectionner que 4 tourelles maximum !");
+                    return;
+                }
+                selectedTurrets.push(id);
+            }
+
+            updateUI();
         }
 
-        // 2. Generate a link with the current setup
-        function generateLink() {
-            const selectedHero = document.getElementById('heroSelect').value;
-            if (selectedHero === 'none') {
-                alert("Please select a hero first!");
-                return;
-            }
+        function updateUI() {
+            // Reset all card selections
+            turretsData.forEach(t => {
+                document.getElementById(`card-${t.id}`).classList.remove('selected');
+            });
+
+            // Add selected visual class
+            selectedTurrets.forEach(id => {
+                const card = document.getElementById(`card-${id}`);
+                if(card) card.classList.add('selected');
+            });
+
+            // Update Counter Text
+            document.getElementById('countLabel').innerText = `(${selectedTurrets.length} / 4 sélectionnées)`;
+
+            // Enable Share button ONLY if exactly 4 are chosen
+            document.getElementById('shareBtn').disabled = (selectedTurrets.length !== 4);
+        }
+
+        // URL Generation Engine
+        function generateShareLink() {
+            if(selectedTurrets.length !== 4) return;
             
-            // Create the new URL
+            // Join choices by comma (e.g. ?t=laser,beam,hive,railgun)
+            const paramString = selectedTurrets.join(',');
             const currentDomain = window.location.origin + window.location.pathname;
-            const shareableLink = `${currentDomain}?hero=${selectedHero}`;
+            const shareableLink = `${currentDomain}?t=${paramString}`;
             
-            // Display the link to the user
-            document.getElementById('link-box').innerHTML = `
-                <p>Share this link with friends:</p>
-                <a href="${shareableLink}" target="_blank" style="color: #00DF89;">${shareableLink}</a>
+            const box = document.getElementById('link-box');
+            box.style.display = 'block';
+            box.innerHTML = `
+                <p style="margin-top:0;">ARK Setup Generated Successfully! Copy the link below:</p>
+                <a href="${shareableLink}" target="_blank">${shareableLink}</a>
             `;
         }
+
+        // On Page Load: Check if a setup link was opened
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const savedParam = urlParams.get('t');
+
+            if (savedParam) {
+                const incomingIds = savedParam.split(',');
+                // Filter to make sure they are valid ids from our array and clamp to max 4
+                selectedTurrets = incomingIds.filter(id => turretsData.some(t => t.id === id)).slice(0, 4);
+                updateUI();
+            }
+        };
     </script>
 </body>
 </html>
