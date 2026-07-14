@@ -20,10 +20,10 @@
             --color-physical: #ffaa00;
             --color-electric: #d4af37;
 
-            /* Card Tiers */
-            --green-border: rgba(0, 223, 137, 0.4);
-            --green-glow: rgba(0, 223, 137, 0.2);
-            --purple-border: rgba(181, 76, 255, 0.4);
+            /* Card Rarities */
+            --white-border: rgba(255, 255, 255, 0.3);
+            --white-glow: rgba(255, 255, 255, 0.1);
+            --purple-border: rgba(181, 76, 255, 0.5);
             --purple-glow: rgba(181, 76, 255, 0.2);
         }
 
@@ -64,9 +64,7 @@
             letter-spacing: 0.5px;
         }
 
-        .logo-title span {
-            color: #00bfff;
-        }
+        .logo-title span { color: #00bfff; }
 
         .badge-ver {
             background: #0070f3;
@@ -76,10 +74,7 @@
             font-weight: bold;
         }
 
-        .nav-tabs {
-            display: flex;
-            gap: 15px;
-        }
+        .nav-tabs { display: flex; gap: 15px; }
 
         .nav-tab {
             background: transparent;
@@ -105,14 +100,9 @@
             max-width: 1100px;
         }
 
-        .section-panel.active {
-            display: block;
-        }
+        .section-panel.active { display: block; }
 
-        h2 {
-            font-size: 22px;
-            margin-bottom: 5px;
-        }
+        h2 { font-size: 22px; margin-bottom: 5px; }
 
         .subtitle {
             color: var(--text-sub);
@@ -218,7 +208,7 @@
             color: #fff;
         }
 
-        /* Deck Board Style (Matches Image 2) */
+        /* Deck Board Style */
         .deck-board {
             background: #081521;
             border: 1px solid #142d44;
@@ -296,7 +286,7 @@
             flex-direction: column;
             padding: 6px;
             box-sizing: border-box;
-            border: 2px solid var(--green-border);
+            border: 2px solid var(--white-border);
             text-align: center;
         }
 
@@ -315,7 +305,7 @@
 
         .slotted-card .card-num {
             font-size: 10px;
-            color: #00df89;
+            color: #ffffff;
             font-weight: bold;
             margin-bottom: 2px;
         }
@@ -324,7 +314,7 @@
             color: #b54cff;
         }
 
-        /* Selectable Pool Section */
+        /* Selection Pool Section */
         .pool-title {
             font-size: 12px;
             font-weight: bold;
@@ -335,8 +325,8 @@
             gap: 8px;
         }
 
-        .pool-title.green { color: #00df89; }
-        .pool-title.purple { color: #b54cff; }
+        .pool-title.white-card { color: #ffffff; }
+        .pool-title.purple-card { color: #b54cff; }
 
         .cards-pool {
             display: grid;
@@ -348,7 +338,7 @@
         /* Actionable Card Items */
         .pool-card {
             background: #0f2233;
-            border: 2px solid var(--green-border);
+            border: 2px solid var(--white-border);
             border-radius: 6px;
             height: 140px;
             padding: 8px;
@@ -367,7 +357,7 @@
 
         .pool-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(0, 223, 137, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
         }
 
         .pool-card.breakthrough:hover {
@@ -384,6 +374,15 @@
             font-size: 22px;
             margin-top: 8px;
             margin-bottom: 5px;
+        }
+
+        .card-type-sub {
+            font-size: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 1px 4px;
+            border-radius: 3px;
+            margin-bottom: 4px;
+            color: #b5d3ee;
         }
 
         /* Action Footer */
@@ -427,7 +426,6 @@
 </head>
 <body>
 
-    <!-- Top Navigation -->
     <div class="top-nav">
         <div class="logo-area">
             <div class="logo-title">Galaxy Defense <span>ARK BUILDER</span></div>
@@ -439,27 +437,25 @@
         </div>
     </div>
 
-    <!-- PANEL 1: TURRET SELECTION -->
     <div id="panel-1" class="section-panel active">
         <h2>Combat Turrets <span class="counter" id="countLabel">(0 / 4 selected)</span></h2>
         <p class="subtitle">Select exactly 4 turrets for your ARK setup.</p>
         <div class="grid" id="turretGrid"></div>
+        <div class="actions">
+            <button class="btn-primary" id="nextBtn" onclick="goToCardsPage()" disabled>Next ➔</button>
+        </div>
     </div>
 
-    <!-- PANEL 2: CARDS DECK LAYOUT -->
     <div id="panel-2" class="section-panel">
         <h2>Cards Custom Deck Setup</h2>
-        <p class="subtitle">Equip up to 3 Normal (Green) cards and 1 Breakthrough (Purple) card per Tier (T1-T3) for each of your selected turrets.</p>
+        <p class="subtitle">Equip White cards (Normal, Chain, Combo) or Purple Breakthrough cards. T1 cards fit anywhere. T2 fits T2/T3 rows. T3 fits T3 rows only.</p>
 
-        <!-- Subtabs for Selected Turrets -->
         <div class="turret-subtabs" id="turretSubtabs"></div>
 
-        <!-- Current Selected Turret Deck Board -->
         <div class="deck-board">
             <div class="deck-header">DECK CONFIGURATION</div>
 
-            <!-- T1 Row -->
-            <div class="deck-row">
+            <div class="deck-row" id="row-T1">
                 <div class="deck-row-label">T1</div>
                 <div class="deck-slots">
                     <div class="deck-slot" onclick="removeCard('T1', 0)" id="slot-T1-0">Empty</div>
@@ -469,8 +465,7 @@
                 </div>
             </div>
 
-            <!-- T2 Row -->
-            <div class="deck-row">
+            <div class="deck-row" id="row-T2">
                 <div class="deck-row-label">T2</div>
                 <div class="deck-slots">
                     <div class="deck-slot" onclick="removeCard('T2', 0)" id="slot-T2-0">Empty</div>
@@ -480,8 +475,7 @@
                 </div>
             </div>
 
-            <!-- T3 Row -->
-            <div class="deck-row">
+            <div class="deck-row" id="row-T3">
                 <div class="deck-row-label">T3</div>
                 <div class="deck-slots">
                     <div class="deck-slot" onclick="removeCard('T3', 0)" id="slot-T3-0">Empty</div>
@@ -492,22 +486,19 @@
             </div>
         </div>
 
-        <!-- Selection Pool -->
-        <div class="pool-title green">● NORMAL CARDS</div>
-        <div class="cards-pool" id="normalCardsPool"></div>
+        <div class="pool-title white-card">○ SELECTABLE CARDS (WHITE)</div>
+        <div class="cards-pool" id="whiteCardsPool"></div>
 
-        <div class="pool-title purple">● BREAKTHROUGH CARDS</div>
+        <div class="pool-title purple-card">● BREAKTHROUGH CARDS (PURPLE)</div>
         <div class="cards-pool" id="breakthroughCardsPool"></div>
-    </div>
 
-    <!-- Action Footer / Share Area -->
-    <div class="actions">
-        <button class="btn-primary" id="shareBtn" onclick="generateShareLink()">Generate Share Link</button>
-        <div id="link-box"></div>
+        <div class="actions">
+            <button class="btn-primary" id="shareBtn" onclick="generateShareLink()">Generate Share Link</button>
+            <div id="link-box"></div>
+        </div>
     </div>
 
     <script>
-        // Data containing all 11 Turrets (Ordered strategically for index indexing)
         const turretsData = [
             { id: "skyguard", name: "Sky Guard", type: "fire", icon: "📡", color: "var(--color-fire)" },
             { id: "laser", name: "Laser", type: "energy", icon: "🔦", color: "var(--color-energy)" },
@@ -522,57 +513,36 @@
             { id: "gravity", name: "Gravity Vortex Gun", type: "force-field", icon: "🕳️", color: "var(--color-forcefield)" }
         ];
 
-        // Unique dynamic cards available to pick per Turret (ID-index map works on indices 0-8 for normal, 0-2 for breakthrough)
-        const cardLibrary = {
-            "disruption": {
-                normal: [
-                    { id: "dd_dmg", name: "Drone DMG +50%", tier: "T1", art: "🔋" },
-                    { id: "dd_dur", name: "Duration +30%", tier: "T1", art: "⏱️" },
-                    { id: "dd_rng", name: "Range +30%", tier: "T1", art: "📡" },
-                    { id: "dd_comb1", name: "Teleport Backwards", tier: "T2", art: "🌀" },
-                    { id: "dd_comb2", name: "Stacking Disruption", tier: "T2", art: "💥" },
-                    { id: "dd_comb3", name: "Rewind Field", tier: "T2", art: "⏪" },
-                    { id: "dd_ulti1", name: "Disruption Burst", tier: "T3", art: "⚡" },
-                    { id: "dd_ulti2", name: "Teleport Slash", tier: "T3", art: "🗡️" },
-                    { id: "dd_ulti3", name: "Area Disruption", tier: "T3", art: "🌌" }
+        let cardLibrary = {};
+
+        // Generate full structured dynamic library matching categories (Normal, Chain, Combo, Breakthrough)
+        // Each has exactly 3x T1, 3x T2, 3x T3 cards
+        turretsData.forEach(turret => {
+            cardLibrary[turret.id] = {
+                white: [
+                    // T1 Pool
+                    { id: `${turret.id}_n1`, name: "Base Mod Alpha", class: "Normal", cardTier: "T1", art: "📦" },
+                    { id: `${turret.id}_ch1`, name: "Link Protocol A", class: "Chain", cardTier: "T1", art: "🔗" },
+                    { id: `${turret.id}_co1`, name: "Dual Strike Phase", class: "Combo", cardTier: "T1", art: "♊" },
+                    // T2 Pool
+                    { id: `${turret.id}_n2`, name: "Overdrive Boost", class: "Normal", cardTier: "T2", art: "⚡" },
+                    { id: `${turret.id}_ch2`, name: "Chain Surge Matrix", class: "Chain", cardTier: "T2", art: "⚡🔗" },
+                    { id: `${turret.id}_co2`, name: "Catalyst Strike", class: "Combo", cardTier: "T2", art: "🧬" },
+                    // T3 Pool
+                    { id: `${turret.id}_n3`, name: "Omega Array", class: "Normal", cardTier: "T3", art: "🌌" },
+                    { id: `${turret.id}_ch3`, name: "Quantum Loop Engine", class: "Chain", cardTier: "T3", art: "🌀" },
+                    { id: `${turret.id}_co3`, name: "ARK Devastation", class: "Combo", cardTier: "T3", art: "💥" }
                 ],
                 breakthrough: [
-                    { id: "dd_bt1", name: "Field Amplification", tier: "T1", art: "🪐" },
-                    { id: "dd_bt2", name: "Quantum Rewind", tier: "T2", art: "⏳" },
-                    { id: "dd_bt3", name: "Fortress Support Set", tier: "T3", art: "🏰" }
+                    { id: `${turret.id}_b1`, name: "Super Core V1", cardTier: "T1", art: "💎" },
+                    { id: `${turret.id}_b2`, name: "Dimensional Gate", cardTier: "T2", art: "👁️" },
+                    { id: `${turret.id}_b3`, name: "Genesis Command", cardTier: "T3", art: "👑" }
                 ]
-            }
-        };
-
-        // Generates default card sets dynamically for all other turrets on-the-fly
-        turretsData.forEach(turret => {
-            if (!cardLibrary[turret.id]) {
-                cardLibrary[turret.id] = {
-                    normal: [
-                        { id: `${turret.id}_n1`, name: `${turret.name} DMG +50%`, tier: "T1", art: "⚔️" },
-                        { id: `${turret.id}_n2`, name: `Rate of Fire +30%`, tier: "T1", art: "🏹" },
-                        { id: `${turret.id}_n3`, name: `Crit Chance +15%`, tier: "T1", art: "🎯" },
-                        { id: `${turret.id}_n4`, name: `Armor Shredding`, tier: "T2", art: "🛡️" },
-                        { id: `${turret.id}_n5`, name: `Ricochet Shells`, tier: "T2", art: "🔀" },
-                        { id: `${turret.id}_n6`, name: `Overload Matrix`, tier: "T2", art: "⚛️" },
-                        { id: `${turret.id}_n7`, name: `Plasma Explosion`, tier: "T3", art: "🔥" },
-                        { id: `${turret.id}_n8`, name: `Vortex Pull`, tier: "T3", art: "🕳️" },
-                        { id: `${turret.id}_n9`, name: `Titan Barrage`, tier: "T3", art: "☄️" }
-                    ],
-                    breakthrough: [
-                        { id: `${turret.id}_b1`, name: `Supercharge Core`, tier: "T1", art: "💎" },
-                        { id: `${turret.id}_b2`, name: `Shatter Breakthrough`, tier: "T2", art: "👁️" },
-                        { id: `${turret.id}_b3`, name: `ARK Command Protocol`, tier: "T3", art: "👑" }
-                    ]
-                };
-            }
+            };
         });
 
-        // App State
         let selectedTurrets = [];
         let activeTurretTabId = "";
-        
-        // Decks data organized: { turretId: { T1: [c1, c2, c3, bt], T2: [...], T3: [...] } }
         let deckData = {};
 
         // 1. Initial UI Setup & Render
@@ -591,7 +561,6 @@
             gridEl.appendChild(card);
         });
 
-        // 2. Navigation Tab Switches
         function switchMainTab(tabIndex) {
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
@@ -599,12 +568,13 @@
             document.getElementById(`tab${tabIndex}-btn`).classList.add('active');
             document.getElementById(`panel-${tabIndex}`).classList.add('active');
 
-            if (tabIndex === 2) {
-                renderCardsPage();
-            }
+            if (tabIndex === 2) renderCardsPage();
         }
 
-        // Toggle Selection in Tab 1
+        function goToCardsPage() {
+            if (selectedTurrets.length === 4) switchMainTab(2);
+        }
+
         function toggleSelect(id) {
             const index = selectedTurrets.indexOf(id);
             if (index > -1) {
@@ -616,7 +586,6 @@
                     return;
                 }
                 selectedTurrets.push(id);
-                // Initialize default empty slots
                 deckData[id] = {
                     T1: [null, null, null, null],
                     T2: [null, null, null, null],
@@ -627,32 +596,26 @@
         }
 
         function updateTurretUI() {
-            turretsData.forEach(t => {
-                document.getElementById(`card-${t.id}`).classList.remove('selected');
-            });
+            turretsData.forEach(t => document.getElementById(`card-${t.id}`).classList.remove('selected'));
             selectedTurrets.forEach(id => {
                 const card = document.getElementById(`card-${id}`);
                 if (card) card.classList.add('selected');
             });
             document.getElementById('countLabel').innerText = `(${selectedTurrets.length} / 4 selected)`;
+            document.getElementById('nextBtn').disabled = (selectedTurrets.length !== 4);
         }
 
-        // 3. Render Cards Page
+        // 3. Render Deck Configuration Dashboard
         function renderCardsPage() {
             const subtabsContainer = document.getElementById('turretSubtabs');
             subtabsContainer.innerHTML = '';
 
-            if (selectedTurrets.length === 0) {
-                subtabsContainer.innerHTML = `<div style="padding: 10px; color: var(--text-sub);">Please select some turrets on Tab 1 first!</div>`;
-                return;
-            }
+            if (selectedTurrets.length === 0) return;
 
-            // Default active subtab
             if (!activeTurretTabId || !selectedTurrets.includes(activeTurretTabId)) {
                 activeTurretTabId = selectedTurrets[0];
             }
 
-            // Render Turret subtabs
             selectedTurrets.forEach(id => {
                 const turret = turretsData.find(t => t.id === id);
                 const btn = document.createElement('button');
@@ -669,7 +632,6 @@
             renderSelectionPools();
         }
 
-        // Draw slots for current turret
         function renderDeckBoard() {
             const activeDeck = deckData[activeTurretTabId];
             ["T1", "T2", "T3"].forEach(tier => {
@@ -681,7 +643,7 @@
                         const isBt = i === 3;
                         slot.innerHTML = `
                             <div class="slotted-card ${isBt ? 'breakthrough' : ''}">
-                                <div class="card-num">${tier}</div>
+                                <div class="card-num" style="font-size:8px; opacity:0.7;">${card.cardTier} ${card.class || 'BT'}</div>
                                 <div class="card-art">${card.art}</div>
                                 <div class="card-title">${card.name}</div>
                             </div>
@@ -693,41 +655,41 @@
             });
         }
 
-        // Draw pool list of cards
         function renderSelectionPools() {
-            const normalPool = document.getElementById('normalCardsPool');
+            const whitePool = document.getElementById('whiteCardsPool');
             const btPool = document.getElementById('breakthroughCardsPool');
-            normalPool.innerHTML = '';
+            whitePool.innerHTML = '';
             btPool.innerHTML = '';
 
             const activeDeck = deckData[activeTurretTabId];
             const turretLibrary = cardLibrary[activeTurretTabId];
 
-            // Helper to check if card is slotted
             const isSlotted = (cardId) => {
                 return ["T1", "T2", "T3"].some(tier => activeDeck[tier].some(c => c && c.id === cardId));
             };
 
-            // Normal cards
-            turretLibrary.normal.forEach(card => {
+            // Render Selectable White pool
+            turretLibrary.white.forEach(card => {
                 const div = document.createElement('div');
                 div.className = `pool-card ${isSlotted(card.id) ? 'in-deck' : ''}`;
                 div.onclick = () => addCardToDeck(card, false);
                 div.innerHTML = `
-                    <div style="font-size:10px; color:#00df89; font-weight:bold;">${card.tier}</div>
+                    <div style="font-size:10px; color:#ffffff; font-weight:bold;">${card.cardTier}</div>
+                    <div class="card-type-sub">${card.class}</div>
                     <div class="card-art">${card.art}</div>
                     <div class="card-title">${card.name}</div>
                 `;
-                normalPool.appendChild(div);
+                whitePool.appendChild(div);
             });
 
-            // Breakthrough cards
+            // Render Selectable Purple Breakthrough pool
             turretLibrary.breakthrough.forEach(card => {
                 const div = document.createElement('div');
                 div.className = `pool-card breakthrough ${isSlotted(card.id) ? 'in-deck' : ''}`;
                 div.onclick = () => addCardToDeck(card, true);
                 div.innerHTML = `
-                    <div style="font-size:10px; color:#b54cff; font-weight:bold;">${card.tier}</div>
+                    <div style="font-size:10px; color:#b54cff; font-weight:bold;">${card.cardTier}</div>
+                    <div class="card-type-sub">Breakthrough</div>
                     <div class="card-art">${card.art}</div>
                     <div class="card-title">${card.name}</div>
                 `;
@@ -735,27 +697,44 @@
             });
         }
 
-        // 4. Deck Slot Modification Logic
+        // 4. Custom Slot Engine with Downstream Tier Validation rules
         function addCardToDeck(card, isBreakthrough) {
             const activeDeck = deckData[activeTurretTabId];
-            const tier = card.tier; // T1, T2, or T3
+            const srcTier = card.cardTier; // Card tier limit boundary (T1, T2, T3)
 
-            if (isBreakthrough) {
-                activeDeck[tier][3] = card;
-            } else {
-                let added = false;
-                for (let i = 0; i < 3; i++) {
-                    if (activeDeck[tier][i] === null) {
-                        activeDeck[tier][i] = card;
-                        added = true;
+            // Let's look for a valid row slot to auto-fill based on card rules
+            let validRowFound = null;
+            let targetSlotIdx = -1;
+
+            const tiersToTry = srcTier === "T1" ? ["T1", "T2", "T3"] : (srcTier === "T2" ? ["T2", "T3"] : ["T3"]);
+
+            for (let row of tiersToTry) {
+                if (isBreakthrough) {
+                    if (activeDeck[row][3] === null) {
+                        validRowFound = row;
+                        targetSlotIdx = 3;
                         break;
                     }
+                } else {
+                    for (let i = 0; i < 3; i++) {
+                        if (activeDeck[row][i] === null) {
+                            validRowFound = row;
+                            targetSlotIdx = i;
+                            break;
+                        }
+                    }
                 }
-                if (!added) {
-                    alert(`Your ${tier} deck normal slots are full! Remove a card to add a new one.`);
-                    return;
-                }
+                if (validRowFound) break;
             }
+
+            if (!validRowFound) {
+                if (srcTier === "T3") alert("T3 cards can only be placed on T3 slots, which are currently full!");
+                else if (srcTier === "T2") alert("T2 cards can only go to T2 or T3 slots, which are currently full!");
+                else alert("All valid slots matching this card are full!");
+                return;
+            }
+
+            activeDeck[validRowFound][targetSlotIdx] = card;
             renderDeckBoard();
             renderSelectionPools();
         }
@@ -768,14 +747,9 @@
             }
         }
 
-        // 5. Advanced Short Compression Engine
-        // Serializes complex data state into a ultra-short structured string parameter: ?s=A_B_C_D
+        // 5. Short Encoding Compression Engine Link
         function generateShareLink() {
-            if (selectedTurrets.length === 0) {
-                alert("Please select at least 1 turret!");
-                return;
-            }
-
+            if (selectedTurrets.length === 0) return;
             const segments = [];
 
             selectedTurrets.forEach(turretId => {
@@ -786,36 +760,26 @@
                 const compressRow = (rowSlots) => {
                     return rowSlots.map((card, idx) => {
                         if (!card) return 'x';
-                        // Breakthrough sits in last position (slot index 3)
-                        if (idx === 3) {
-                            return lib.breakthrough.findIndex(c => c.id === card.id);
-                        }
-                        return lib.normal.findIndex(c => c.id === card.id);
+                        if (idx === 3) return lib.breakthrough.findIndex(c => c.id === card.id);
+                        return lib.white.findIndex(c => c.id === card.id);
                     }).join('-');
                 };
 
-                const t1Str = compressRow(activeDeck.T1);
-                const t2Str = compressRow(activeDeck.T2);
-                const t3Str = compressRow(activeDeck.T3);
-
-                // Format: TurretIdx-T1Slots-T2Slots-T3Slots
-                // E.g: 2-0-1-x-x-3-x-x-x-x-x-x-x
-                segments.push(`${turretIndex}-${t1Str}-${t2Str}-${t3Str}`);
+                segments.push(`${turretIndex}-${compressRow(activeDeck.T1)}-${compressRow(activeDeck.T2)}-${compressRow(activeDeck.T3)}`);
             });
 
-            const shortState = segments.join('_'); // Joins each turret profile with an underscore
             const currentDomain = window.location.origin + window.location.pathname;
-            const shareableLink = `${currentDomain}?s=${shortState}`;
+            const shareableLink = `${currentDomain}?s=${segments.join('_')}`;
 
             const box = document.getElementById('link-box');
             box.style.display = 'block';
             box.innerHTML = `
-                <p style="margin-top:0; font-size: 14px;">ARK Combat Setup & Deck Configured! Copy your short link below:</p>
+                <p style="margin-top:0; font-size: 14px;">Setup generated successfully!</p>
                 <a href="${shareableLink}" target="_blank">${shareableLink}</a>
             `;
         }
 
-        // Decode short state parameter on page load
+        // On Load Parameters Restore Engine
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
             const shortState = urlParams.get('s');
@@ -842,21 +806,15 @@
                             };
 
                             const lib = cardLibrary[turretId];
-
                             const loadTier = (tierKey, tokensSubset) => {
                                 tokensSubset.forEach((token, idx) => {
                                     if (token !== 'x') {
-                                        const parsedIdx = parseInt(token, 10);
-                                        if (idx === 3) {
-                                            deckData[turretId][tierKey][idx] = lib.breakthrough[parsedIdx] || null;
-                                        } else {
-                                            deckData[turretId][tierKey][idx] = lib.normal[parsedIdx] || null;
-                                        }
+                                        const pIdx = parseInt(token, 10);
+                                        deckData[turretId][tierKey][idx] = (idx === 3) ? lib.breakthrough[pIdx] : lib.white[pIdx];
                                     }
                                 });
                             };
 
-                            // Slice indices correspond to compiled token segments
                             loadTier('T1', tokens.slice(1, 5));
                             loadTier('T2', tokens.slice(5, 9));
                             loadTier('T3', tokens.slice(9, 13));
@@ -867,7 +825,7 @@
                     switchMainTab(2);
 
                 } catch (e) {
-                    console.error("Failed decoding short link state", e);
+                    console.error("Link translation failure", e);
                 }
             }
         };
