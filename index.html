@@ -571,8 +571,8 @@
     </div>
 
     <script>
-        const turretsData = [
-            //{ id: "guardian", name: "Guardian", type: "physical", art: '<img src="images/skyguard.jpg">', color: "var(--color-physical)", isDefault: true },
+        //{ id: "guardian", name: "Guardian", type: "physical", art: '<img src="images/skyguard.jpg">', color: "var(--color-physical)", isDefault: true },
+        const turretsData = [            
             { id: "guardian", name: "Guardian", type: "physical", art: '<img src="images/skyguard.jpg">', color: "var(--color-physical)" },
             { id: "skyguard", name: "Sky Guard", type: "fire", art: '<img src="images/skyguard.jpg">', color: "var(--color-fire)" },
             { id: "laser", name: "Laser", type: "energy", art: '<img src="images/skyguard.jpg">', color: "var(--color-energy)" },
@@ -1210,6 +1210,26 @@
         }
 
         function toggleSelect(id) {
+            const index = selectedTurrets.indexOf(id);
+            if (index > -1) {
+                selectedTurrets.splice(index, 1);
+                delete deckData[id];
+            } else {
+                if (selectedTurrets.length >= 4) {
+                    alert("You can only select a maximum of 4 turrets!");
+                    return;
+                }
+                selectedTurrets.push(id);
+                deckData[id] = {
+                    T1: [null, null, null, null],
+                    T2: [null, null, null, null],
+                    T3: [null, null, null, null]
+                };
+            }
+            updateTurretUI();
+        }
+        
+  /*      function toggleSelect(id) {
             const turret = turretsData.find(t => t.id === id);
             const index = selectedTurrets.indexOf(id);
 
@@ -1235,7 +1255,7 @@
                 };
             }
             updateTurretUI();
-        }
+        } */
 
         function updateTurretUI() {
             turretsData.forEach(t => document.getElementById(`card-${t.id}`).classList.remove('selected'));
