@@ -164,12 +164,21 @@
             justify-content: center;
         }
         
-        /* Ark Work images */
-        .card-mid-artwork img {
-            width: 80%;
-            height: 80%;
-            object-fit: cover; /* Ensures the image fills the area gracefully without stretching */
-            border-radius: 10px; /* Optional: rounds the corners of your artwork slightly */
+        /* Fixes image sizing inside the main turret selection cards */
+        .icon-placeholder img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        /* Fixes image sizing inside the smaller subtabs menu on Tab 2 */
+        .subtab-btn img {
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
+            border-radius: 4px;
+            vertical-align: middle;
         }
 
         .badge {
@@ -727,7 +736,7 @@
                     activeTurretTabId = id;
                     renderCardsPage();
                 };
-                btn.innerHTML = `${turret.icon} ${turret.name}`;
+                btn.innerHTML = `${turret.art} ${turret.name}`;
                 subtabsContainer.appendChild(btn);
             });
 
