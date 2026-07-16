@@ -300,7 +300,7 @@
             grid-column: 4; /* Puts Breakthrough directly in 4th slot alignment */
         }
 
-        /* Thinner Card Structure Blueprint */
+        /* Card Structure Blueprint */
         .styled-card {
             position: absolute;
             top: 0;
@@ -379,7 +379,7 @@
 
         .card-desc-body {
             padding: 6px 4px;
-            font-size: 9px;
+            font-size: 8px;
             line-height: 1.2;
             color: #d1f1ee;
             min-height: 52px;
@@ -497,8 +497,8 @@
 
     <!-- PANEL 1: TURRET SELECTION -->
     <div id="panel-1" class="section-panel active">
-        <h2>Combat Turrets <span class="counter" id="countLabel">(0 / 5 selected)</span></h2>
-        <p class="subtitle">Select exactly 5 turrets for your ARK setup.</p>
+        <h2>Guardian and Turrets <span class="counter" id="countLabel">(0 / 5 selected)</span></h2>
+        <p class="subtitle">Select 1 guardian and 4 turrets for your ARK setup.</p>
         <div class="grid" id="turretGrid"></div>
         <div class="actions">
             <button class="btn-primary" id="nextBtn" onclick="goToCardsPage()" disabled>Next ➔</button>
@@ -591,15 +591,15 @@
         let cardLibrary = {
             guardian: {
                 normal: [
-                    { id: "guardian_n_t1_1", name: "Volt Coil", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Thunderbolt Mod<br>+15% Shock DMG" },
-                    { id: "guardian_n_t1_2", name: "Ion Finder", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Thunderbolt Scan<br>+10% Zap Range" },
-                    { id: "guardian_n_t1_3", name: "Amp Frequency", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Thunderbolt Shift<br>+12% Bolt Rate" },
-                    { id: "guardian_n_t2_1", name: "Split Sparker", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Forked Emitters<br>+1 Arc, DMG -15%" },
-                    { id: "guardian_n_t2_2", name: "Fulminant Lens", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Lightning Focus<br>CRIT Multi +25%" },
-                    { id: "guardian_n_t2_3", name: "Conductive Shred", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Corrosive Arcs<br>Melts 15 Armor" },
-                    { id: "guardian_n_t3_1", name: "Overcharge Capacitor", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Lightning Engine<br>Insta-Reload clip" },
-                    { id: "guardian_n_t3_2", name: "Static Cloud", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Ozone Shroud<br>Ongoing burn aura" },
-                    { id: "guardian_n_t3_3", name: "Storm Master Core", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Tesla Framework<br>Base Stats +30%" }
+                    { id: "guardian_n_t1_1", name: "Volley Shot", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Thunderbolt Mod<br>+15% Shock DMG" },
+                    { id: "guardian_n_t1_2", name: "Volley Shot", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Thunderbolt Scan<br>+10% Zap Range" },
+                    { id: "guardian_n_t1_3", name: "Rapid Fire", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Thunderbolt Shift<br>+12% Bolt Rate" },
+                    { id: "guardian_n_t1_4", name: "Bullet Boost", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Forked Emitters<br>+1 Arc, DMG -15%" },
+                    { id: "guardian_n_t1_5", name: "Bullet Boost", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Lightning Focus<br>CRIT Multi +25%" },
+                    { id: "guardian_n_t1_6", name: "Bullet Boost", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Corrosive Arcs<br>Melts 15 Armor" },
+                    { id: "guardian_n_t1_7", name: "Piercing Bullet", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Lightning Engine<br>Insta-Reload clip" },
+                    { id: "guardian_n_t1_8", name: "Piercing Bullet", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Ozone Shroud<br>Ongoing burn aura" },
+                    { id: "guardian_n_t1_9", name: "Piercing Bullet", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Tesla Framework<br>Base Stats +30%" }
                 ],
                 chain: [
                     { id: "guardian_ch_t1_1", name: "Lightning Relay", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Zap Bouncer<br>+1 extra target" },
