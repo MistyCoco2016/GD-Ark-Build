@@ -1442,37 +1442,29 @@
             // 1. Clear the selected card slot
             activeDeck[tier][slotIndex] = null;
         
-            // 2. Cascade check: Repeatedly scan the deck for any remaining cards that lost their prerequisite
+            // 2. Cascade check: Drop dependent chain cards automatically
             let changesMade;
             do {
                 changesMade = false;
-                
-                // Loop through all active slots on the board
                 for (let tKey of ["T1", "T2", "T3"]) {
                     for (let i = 0; i < activeDeck[tKey].length; i++) {
                         const currentCard = activeDeck[tKey][i];
-                        
-                        // If a slot contains a card that has a prerequisite...
                         if (currentCard && currentCard.prereq) {
-                            
-                            // See if that prerequisite card is still equipped anywhere on the board
                             const prereqStillEquipped = ["T1", "T2", "T3"].some(t => 
                                 activeDeck[t].some(c => c && c.id === currentCard.prereq)
                             );
-                            
-                            // If the parent card is missing, drop this dependent card back down!
                             if (!prereqStillEquipped) {
                                 activeDeck[tKey][i] = null;
-                                changesMade = true; // Flag true to re-verify dependencies on the next loop iteration
+                                changesMade = true;
                             }
                         }
                     }
                 }
             } while (changesMade);
         
-            // 3. Refresh UI grids and panels to reflect changes
-            updateDeckUI();          // Reflect the empty slots on your deck configuration board
-            renderSelectionPools();  // Re-evaluate what pool elements should be grayed out/locked
+            // 3. Trigger your file's exact UI refresh loops immediately
+            renderDeck();            // Updates the top equipped slots visually
+            renderSelectionPools();  // Updates the bottom selection pool colors/states
         }
 
         function generateShareLink() {
