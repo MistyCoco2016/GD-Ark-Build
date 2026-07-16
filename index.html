@@ -573,7 +573,7 @@
     <script>
         //{ id: "guardian", name: "Guardian", type: "physical", art: '<img src="images/skyguard.jpg">', color: "var(--color-physical)", isDefault: true },
         const turretsData = [
-            { id: "guardian", name: "Guardian", type: "physical", art: '<img src="images/skyguard.jpg">', color: "var(--color-physical)" },
+            { id: "guardian", name: "Guardian", type: "physical", art: '<img src="images/guardian.jpg">', color: "var(--color-physical)" },
             { id: "skyguard", name: "Sky Guard", type: "fire", art: '<img src="images/skyguard.jpg">', color: "var(--color-fire)" },
             { id: "laser", name: "Laser", type: "energy", art: '<img src="images/skyguard.jpg">', color: "var(--color-energy)" },
             { id: "disruption", name: "Disruption Drone", type: "force-field",art: '<img src="images/skyguard.jpg">', color: "var(--color-forcefield)" },
@@ -591,48 +591,38 @@
         let cardLibrary = {
             guardian: {
                 normal: [
-                    { id: "guardian_n_t1_1", name: "Volley Shot", class: "Normal", cardTier: "T1", num: 1, art: "⚔️", desc: "Thunderbolt Mod<br>+15% Shock DMG" },
-                    { id: "guardian_n_t1_2", name: "Volley Shot", class: "Normal", cardTier: "T1", num: 1, art: "📏", desc: "Thunderbolt Scan<br>+10% Zap Range" },
-                    { id: "guardian_n_t1_3", name: "Rapid Fire", class: "Normal", cardTier: "T1", num: 1, art: "⚡", desc: "Thunderbolt Shift<br>+12% Bolt Rate" },
-                    { id: "guardian_n_t1_4", name: "Bullet Boost", class: "Normal", cardTier: "T2", num: 2, art: "📦", desc: "Forked Emitters<br>+1 Arc, DMG -15%" },
-                    { id: "guardian_n_t1_5", name: "Bullet Boost", class: "Normal", cardTier: "T2", num: 2, art: "🎯", desc: "Lightning Focus<br>CRIT Multi +25%" },
-                    { id: "guardian_n_t1_6", name: "Bullet Boost", class: "Normal", cardTier: "T2", num: 2, art: "🛡️", desc: "Corrosive Arcs<br>Melts 15 Armor" },
-                    { id: "guardian_n_t1_7", name: "Piercing Bullet", class: "Normal", cardTier: "T3", num: 3, art: "🚀", desc: "Lightning Engine<br>Insta-Reload clip" },
-                    { id: "guardian_n_t1_8", name: "Piercing Bullet", class: "Normal", cardTier: "T3", num: 3, art: "🌌", desc: "Ozone Shroud<br>Ongoing burn aura" },
-                    { id: "guardian_n_t1_9", name: "Piercing Bullet", class: "Normal", cardTier: "T3", num: 3, art: "🤖", desc: "Tesla Framework<br>Base Stats +30%" }
+                    { id: "guardian_n_t1_1", name: "Volley Shot", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "Bullets +1, DMG -15%" },
+                    { id: "guardian_n_t1_2", name: "Volley Shot", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "Bullets +1, DMG -15%" },
+                    { id: "guardian_n_t1_3", name: "Rapid Fire", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "Fire rate +20%" },
+                    { id: "guardian_n_t1_4", name: "Bullet Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "Bullet DMG +50%" },
+                    { id: "guardian_n_t1_5", name: "Bullet Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "Bullet DMG +50%" },
+                    { id: "guardian_n_t1_6", name: "Bullet Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "Bullet DMG +50%" },
+                    { id: "guardian_n_t1_7", name: "Piercing Bullet", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "Bullet Penetration +1" },
+                    { id: "guardian_n_t1_8", name: "Piercing Bullet", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "Bullet Penetration +1" },
+                    { id: "guardian_n_t1_9", name: "Piercing Bullet", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "Bullet Penetration +1" }
                 ],
                 chain: [
-                    { id: "guardian_ch_t1_1", name: "Lightning Relay", class: "Chain", cardTier: "T1", num: 1, art: "🔗", desc: "Zap Bouncer<br>+1 extra target" },
-                    { id: "guardian_ch_t1_2", name: "Ion Mesh", class: "Chain", cardTier: "T1", num: 1, art: "📡", desc: "Discharge Net<br>Boost arc radius" },
-                    { id: "guardian_ch_t1_3", name: "Forked Ground", class: "Chain", cardTier: "T1", num: 1, art: "🔀", desc: "Split Lightning<br>Splits link DMG" },
-                    { id: "guardian_ch_t2_1", name: "Charge Conduit", class: "Chain", cardTier: "T2", num: 2, art: "🔋", desc: "Battery Jumper<br>+15% DMG / bounce" },
-                    { id: "guardian_ch_t2_2", name: "Super Sparker", class: "Chain", cardTier: "T2", num: 2, art: "🧲", desc: "Zero Resistance<br>No decay on bounce" },
-                    { id: "guardian_ch_t2_3", name: "Discharge Shock", class: "Chain", cardTier: "T2", num: 2, art: "💥", desc: "End Arc Burst<br>Final bounce pops" },
-                    { id: "guardian_ch_t3_1", name: "Paralysis Arc", class: "Chain", cardTier: "T3", num: 3, art: "⚡", desc: "Neuro Clipper<br>Stuns target 1s" },
-                    { id: "guardian_ch_t3_2", name: "Nimbus Core", class: "Chain", cardTier: "T3", num: 3, art: "🌀", desc: "Storm Nexus Node<br>Summons a storm" },
-                    { id: "guardian_ch_t3_3", name: "Volt Command", class: "Chain", cardTier: "T3", num: 3, art: "⚙️", desc: "Matrix Terminal<br>Chain Speed +50%" }
+                    { id: "guardian_ch_t1_1", name: "Bullet Explosion", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "10% chance to explode on hit" },
+                    { id: "guardian_ch_t2_1", name: "Explosion Expansion", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "Explosion range +50%" },
+                    { id: "guardian_ch_t3_1", name: "Explosion Boost", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "Explosion DMG +60%, explosion chance +10%" },
+                    { id: "guardian_ch_t1_2", name: "Charge Activation", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "Guardian enters Charged State, gaining Charge Points by firing bullets" },
+                    { id: "guardian_ch_t2_2", name: "Sustained Charge", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "In Charged State, number of shots fired +100%" },
+                    { id: "guardian_ch_t2_3", name: "Quick Charge", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "Charge Points from Bullets +100%" }
                 ],
                 combo: [
-                    { id: "guardian_co_t1_1", name: "Zap Stacker", class: "Combo", cardTier: "T1", num: 1, art: "♊", desc: "Charge Loop<br>3rd hit doubles" },
-                    { id: "guardian_co_t1_2", name: "Double Striker", class: "Combo", cardTier: "T1", num: 1, art: "👥", desc: "Twin Shockers<br>Quick 2x bursts" },
-                    { id: "guardian_co_t1_3", name: "Lightning Cadence", class: "Combo", cardTier: "T1", num: 1, art: "🎵", desc: "Frequency Step<br>Hits boost speed" },
-                    { id: "guardian_co_t2_1", name: "Overload Trigger", class: "Combo", cardTier: "T2", num: 2, art: "⏱️", desc: "Dual Contacts<br>Double fire cap" },
-                    { id: "guardian_co_t2_2", name: "Ion Catalyst", class: "Combo", cardTier: "T2", num: 2, art: "🧪", desc: "Static Primer<br>Preps combo hooks" },
-                    { id: "guardian_co_t2_3", name: "Plasma Singularity", class: "Combo", cardTier: "T2", num: 2, art: "⚛️", desc: "Reactor Spark<br>Massive explosion" },
-                    { id: "guardian_co_t3_1", name: "Atomize Ray", class: "Combo", cardTier: "T3", num: 3, art: "☢️", desc: "Electron Disintegrator<br>Disintegrates HP" },
-                    { id: "guardian_co_t3_2", name: "Ozone Hub", class: "Combo", cardTier: "T3", num: 3, art: "🔔", desc: "Harmonic Waves<br>Spreads statuses" },
-                    { id: "guardian_co_t3_3", name: "Thor Devastator", class: "Combo", cardTier: "T3", num: 3, art: "☄️", desc: "Lightning Strike Call<br>Calls secondary fire" }
+                    { id: "guardian_co_t2_1", name: "Flame Bullet", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "Bullets become flame bullets, adding extra fire DMG on hit" },
+                    { id: "guardian_co_t2_2", name: "Electric Bullet", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "When bullets kill an enemy, there is a 50% chance to trigger a Small Lightning Strike" },
+                    { id: "guardian_co_t2_3", name: "Counterbust Scatter", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "After every 40 shots, the guardian fires a wave of Penetrating Shotgun Shells at enemies near the Fortress" },
+                    { id: "guardian_co_t3_1", name: "Laser Shot", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "20% chance to trigger a Ripping Laser when hitting enemies with bullets, doubled chance in Charged State" },
+                    { id: "guardian_co_t3_2", name: "Disruption Fire", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "All bullets dealing damage to enemies, 10% chance inflicts 1 stack of [Disruption] effect" },
+                    { id: "guardian_co_t3_3", name: "Mirror Guardian", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "Creates a clone guardian that deal 50% of the guardian's DMG" }
                 ],
                 breakthrough: [
-                    { id: "guardian_b_t1_1", name: "Volt Core V1", class: "Breakthrough", cardTier: "T1", num: 1, art: "💎", desc: "Elite Storm Item<br>Unlocks Ultimates" },
-                    { id: "guardian_b_t1_2", name: "Static Aegis", class: "Breakthrough", cardTier: "T1", num: 1, art: "🛡️", desc: "Ion Field Screen<br>Spatial force shield" },
-                    { id: "guardian_b_t1_3", name: "Magnetic Repulsion", class: "Breakthrough", cardTier: "T1", num: 1, art: "🌀", desc: "Polar Shift Kick<br>Knocks back foes" },
-                    { id: "guardian_b_t2_1", name: "Ion Well", class: "Breakthrough", cardTier: "T2", num: 2, art: "👁️", desc: "Static Vortex<br>Pulls targets in" },
-                    { id: "guardian_b_t2_2", name: "Ozone Stasis", class: "Breakthrough", cardTier: "T2", num: 2, art: "⏳", desc: "EMP Grid Lock<br>Slows space by 40%" },
-                    { id: "guardian_b_t2_3", name: "Lightning Fracture", class: "Breakthrough", cardTier: "T2", num: 2, art: "💔", desc: "Arc Piercer<br>Bypasses shields" },
-                    { id: "guardian_b_t3_1", name: "Zeus Protocol", class: "Breakthrough", cardTier: "T3", num: 3, art: "👑", desc: "Storm Sovereign Law<br>Doubles target count" },
-                    { id: "guardian_b_t3_2", name: "Odin Overlord", class: "Breakthrough", cardTier: "T3", num: 3, art: "🌟", desc: "True Base Spark Damage<br>True base damage" },
-                    { id: "guardian_b_t3_3", name: "Ozone Storm End", class: "Breakthrough", cardTier: "T3", num: 3, art: "🕳️", desc: "Sky Grid Breakdown<br>Erases map items" }
+                    { id: "guardian_b_t1_1", name: "Shotgun Evolution", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/guardian_purple.jpg">', desc: "Each shot scatters 2 additional sub-bullet" },
+                    { id: "guardian_b_t1_2", name: "Splitting Bullet", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/guardian_purple.jpg">', desc: "Bullets split into 1 sub-bullet; 2 sub-bullets in Charged State" },
+                    { id: "guardian_b_t1_3", name: "Impact Bullet", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/guardian_purple.jpg">', desc: "Bullet DMG +100%, with weak knockback; knockback +200% in Charged State" },
+                    { id: "guardian_b_t2_1", name: "Penetration Boost", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/guardian_purple.jpg">', desc: "All bullets penetration +2" },
+                    { id: "guardian_b_t2_2", name: "Reflection Boost", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/guardian_purple.jpg">', desc: "All bullets reflection +2" }
                 ]
             },
             skyguard: {
