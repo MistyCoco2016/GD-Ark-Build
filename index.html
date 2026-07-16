@@ -709,10 +709,10 @@
                 ],
                 chain: [
                     { id: "guardian_ch_t1_1", name: "Bullet Explosion", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "10% chance to explode on hit" },
-                    { id: "guardian_ch_t2_1", name: "Explosion Expansion", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "Explosion range +50%", prereq: "guardian_ch_t1_1" },
-                    { id: "guardian_ch_t3_1", name: "Explosion Boost", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "Explosion DMG +60%, explosion chance +10%", prereq: "guardian_ch_t2_1" },
+                    { id: "guardian_ch_t2_1", name: "Explosion Expansion", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "Explosion range +50%", prereq: ["guardian_ch_t1_1"] },
+                    { id: "guardian_ch_t3_1", name: "Explosion Boost", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "Explosion DMG +60%, explosion chance +10%", prereq: ["guardian_ch_t2_1"] },
                     { id: "guardian_ch_t1_2", name: "Charge Activation", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "Guardian enters Charged State, gaining Charge Points by firing bullets" },
-                    { id: "guardian_ch_t2_2", name: "Sustained Charge", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "In Charged State, number of shots fired +100%", prereq: "guardian_ch_t1_2" },
+                    { id: "guardian_ch_t2_2", name: "Sustained Charge", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "In Charged State, number of shots fired +100%", prereq: ["guardian_ch_t1_2"] },
                     { id: "guardian_ch_t2_3", name: "Quick Charge", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "Charge Points from Bullets +100%", prereq: "guardian_ch_t1_2" }
                 ],
                 combo: [
@@ -745,9 +745,9 @@
                 ],
                 chain: [
                     { id: "skyguard_ch_t1_1", name: "Impact Reinforcement", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/skyguard.jpg">', desc: "After hitting the target, Sky Guard Missile launches 3 Small Sky Guard Missiles that only deal impact DMG" },
-                    { id: "skyguard_ch_t2_1", name: "Thermal Warhead", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/skyguard.jpg">', desc: "Small Sky Guard Missiles have a 60% chance to explode upon hitting enemies" },
-                    { id: "skyguard_ch_t2_2", name: "Missile Amplification", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/skyguard.jpg">', desc: "Small Sky Guard Missiles +3" },
-                    { id: "skyguard_ch_t3_1", name: "Chain Reaction", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/skyguard.jpg">', desc: "Small Sky Guard Missiles have a 60% chance to launch an additional Small Sky Guard Missile upon hitting an enemy" },
+                    { id: "skyguard_ch_t2_1", name: "Thermal Warhead", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/skyguard.jpg">', desc: "Small Sky Guard Missiles have a 60% chance to explode upon hitting enemies", prereq: ["skyguard_ch_t1_1"] },
+                    { id: "skyguard_ch_t2_2", name: "Missile Amplification", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/skyguard.jpg">', desc: "Small Sky Guard Missiles +3", prereq: ["skyguard_ch_t1_1"] },
+                    { id: "skyguard_ch_t3_1", name: "Chain Reaction", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/skyguard.jpg">', desc: "Small Sky Guard Missiles have a 60% chance to launch an additional Small Sky Guard Missile upon hitting an enemy", prereq: ["skyguard_ch_t2_1","skyguard_ch_t2_2"] },
                     { id: "skyguard_ch_t1_2", name: "Ignition", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/skyguard.jpg">', desc: "Enemies hit by Sky Guard Missiles receive [Burn] effect" },
                     { id: "skyguard_ch_t2_3", name: "Ignition Amplification", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/skyguard.jpg">', desc: "[Burn] DMG +100%" },
                     { id: "skyguard_ch_t3_2", name: "Death Ignition", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/skyguard.jpg">', desc: "Triggers an explosion when an enemy dies while under [Burn] effect" }
@@ -1347,8 +1347,12 @@
                 
                 // Check if this card has a prerequisite and if it's currently equipped
                 let isLockedByPrereq = false;
-                if (card.prereq) {
-                    isLockedByPrereq = !isSlotted(card.prereq);
+                if (card.prereq && card.prereq.length > 0) {
+                    // Look through the array of prerequisite IDs:
+                    // The card is UNLOCKED if AT LEAST ONE (.some) prerequisite is slotted.
+                    // Therefore, it is LOCKED if NONE of them are slotted.
+                    const hasAnyPrereq = card.prereq.some(prereqId => isSlotted(prereqId));
+                    isLockedByPrereq = !hasAnyPrereq;
                 }
         
                 // Apply class based on status
@@ -1449,11 +1453,19 @@
                 for (let tKey of ["T1", "T2", "T3"]) {
                     for (let i = 0; i < activeDeck[tKey].length; i++) {
                         const currentCard = activeDeck[tKey][i];
-                        if (currentCard && currentCard.prereq) {
-                            const prereqStillEquipped = ["T1", "T2", "T3"].some(t => 
-                                activeDeck[t].some(c => c && c.id === currentCard.prereq)
-                            );
-                            if (!prereqStillEquipped) {
+                        
+                        // If this equipped card uses the prerequisite array
+                        if (currentCard && currentCard.prereq && currentCard.prereq.length > 0) {
+                            
+                            // Check if ANY prerequisite is still equipped on the board
+                            const anyPrereqStillEquipped = currentCard.prereq.some(prereqId => {
+                                return ["T1", "T2", "T3"].some(t => 
+                                    activeDeck[t].some(c => c && c.id === prereqId)
+                                );
+                            });
+                            
+                            // If NONE of its prerequisites are equipped anymore, drop it down!
+                            if (!anyPrereqStillEquipped) {
                                 activeDeck[tKey][i] = null;
                                 changesMade = true;
                             }
@@ -1462,9 +1474,9 @@
                 }
             } while (changesMade);
         
-            // 3. Trigger your file's exact UI refresh loops immediately
-            renderDeckBoard();       // Updates the top equipped slots visually
-            renderSelectionPools();  // Updates the bottom selection pool colors/states
+            // 3. Trigger UI refreshes
+            renderDeckBoard();            
+            renderSelectionPools();  
         }
 
         function generateShareLink() {
