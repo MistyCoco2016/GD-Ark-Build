@@ -24,6 +24,10 @@
             --white-card-bg: #0d282b;
             --white-card-header: #286e6b;
             --white-card-border: #245856;
+
+            --chain-card-bg: #2A7E6F;
+            --chain-card-header: #519E95;
+            --chain-card-border: #67CAC0;
             
             --purple-card-bg: #1f112e;
             --purple-card-header: #5f288f;
@@ -319,6 +323,11 @@
             border: 1.5px solid var(--white-card-border);
         }
 
+        .styled-card.chain-rarity {
+            background-color: var(--chain-card-bg);
+            border: 1.5px solid var(--chain-card-border);
+        }
+
         .styled-card.purple-rarity {
             background-color: var(--purple-card-bg);
             border: 1.5px solid var(--purple-card-border);
@@ -339,6 +348,7 @@
         }
 
         .styled-card.white-rarity .card-top-header { background-color: var(--white-card-header); }
+        .styled-card.chain-rarity .card-top-header { background-color: var(--chain-card-header); }
         .styled-card.purple-rarity .card-top-header { background-color: var(--purple-card-header); }
 
         .card-mid-artwork {
@@ -411,6 +421,7 @@
         }
 
         .pool-title.white-card { color: #ffffff; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4px; }
+        .pool-title.chain-card { color: #ffffff; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4px; }
         .pool-title.purple-card { color: #b54cff; border-bottom: 1px solid rgba(181,76,255,0.2); padding-bottom: 4px; }
 
         /* Explicitly force 9 matching columns per tier row layout */
@@ -437,6 +448,7 @@
         }
         
         .pool-card-wrapper.white-type:hover { box-shadow: 0 0 10px rgba(40, 110, 107, 0.6); }
+        .pool-card-wrapper.chain-type:hover { box-shadow: 0 0 10px rgba(40, 110, 107, 0.6); }
         .pool-card-wrapper.purple-type:hover { box-shadow: 0 0 10px rgba(95, 40, 143, 0.6); }
 
         .pool-card-wrapper.in-deck {
@@ -561,7 +573,7 @@
         <div class="pool-title white-card">○ NORMAL CARDS</div>
         <div class="cards-pool" id="normalPool"></div>
 
-        <div class="pool-title white-card">○ CHAIN CARDS</div>
+        <div class="pool-title chain-card">○ CHAIN CARDS</div>
         <div class="cards-pool" id="chainPool"></div>
 
         <div class="pool-title white-card">○ COMBO CARDS</div>
@@ -1121,12 +1133,6 @@
         let activeTurretTabId = "";
         let deckData = {};
         
-/*        let selectedTurrets = ["guardian"];
-        let activeTurretTabId = "guardian";
-        let deckData = {
-            guardian: []
-        };*/
-
         // Initial UI Render
         const gridEl = document.getElementById('turretGrid');
         turretsData.forEach(turret => {
