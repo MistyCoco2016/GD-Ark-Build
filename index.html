@@ -324,17 +324,6 @@
             border: 1.5px solid var(--purple-card-border);
         }
 
-        /* Custom Glows for Selection and Deck Cards */
-        .card-glow-chain {
-            box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.7) !important;
-            border-color: #ffffff !important;
-        }
-        
-        .card-glow-combo {
-            box-shadow: 0 0 12px 3px rgba(0, 255, 150, 0.7) !important;
-            border-color: #00ff96 !important;
-        }
-
         /* Top Title centered across header line */
         .card-top-header {
             padding: 5px 4px;
@@ -1322,38 +1311,27 @@
             const chainContainer = document.getElementById('chainPool');
             const comboContainer = document.getElementById('comboPool');
             const btContainer = document.getElementById('breakthroughPool');
-        
+
             normalContainer.innerHTML = '';
             chainContainer.innerHTML = '';
             comboContainer.innerHTML = '';
             btContainer.innerHTML = '';
-        
+
             const activeDeck = deckData[activeTurretTabId];
             const library = cardLibrary[activeTurretTabId];
-        
+
             const isSlotted = (cardId) => {
                 return ["T1", "T2", "T3"].some(tier => activeDeck[tier].some(c => c && c.id === cardId));
             };
-        
+
             const buildCardNode = (card, container, isBt) => {
                 const wrapper = document.createElement('div');
-                
-                // Start with your base classes
-                let finalClass = `pool-card-wrapper ${isBt ? 'purple-type' : 'white-type'} ${isSlotted(card.id) ? 'in-deck' : ''}`;
-                
-                // Add the glow class based on card type
-                if (card.class === "Chain") {
-                    finalClass += ' card-glow-chain';
-                } else if (card.class === "Combo") {
-                    finalClass += ' card-glow-combo';
-                }
-                
-                wrapper.className = finalClass;
+                wrapper.className = `pool-card-wrapper ${isBt ? 'purple-type' : 'white-type'} ${isSlotted(card.id) ? 'in-deck' : ''}`;
                 wrapper.onclick = () => addCardToDeck(card, isBt);
                 wrapper.innerHTML = getCardHTML(card, isBt);
                 container.appendChild(wrapper);
             };
-        
+
             library.normal.forEach(card => buildCardNode(card, normalContainer, false));
             library.chain.forEach(card => buildCardNode(card, chainContainer, false));
             library.combo.forEach(card => buildCardNode(card, comboContainer, false));
