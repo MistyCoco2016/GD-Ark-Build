@@ -454,6 +454,14 @@
             pointer-events: none; /* Disables clicking entirely */
         }
 
+        /* Unique white-grey style for missing team requirements */
+        .pool-card-wrapper.team-locked {
+            filter: grayscale(1) brightness(0.85) contrast(0.8);
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none; /* Block selection completely */
+        }
+
         /* Action Footer */
         .actions {
             width: 100%;
@@ -717,12 +725,12 @@
                     { id: "guardian_ch_t2_3", name: "Quick Charge", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "Charge Points from Bullets +100%", prereq: ["guardian_ch_t1_2"] }
                 ],
                 combo: [
-                    { id: "guardian_co_t2_1", name: "Flame Bullet", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "Bullets become flame bullets, adding extra fire DMG on hit" },
-                    { id: "guardian_co_t2_2", name: "Electric Bullet", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "When bullets kill an enemy, there is a 50% chance to trigger a Small Lightning Strike" },
-                    { id: "guardian_co_t2_3", name: "Counterbust Scatter", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "After every 40 shots, the guardian fires a wave of Penetrating Shotgun Shells at enemies near the Fortress" },
-                    { id: "guardian_co_t3_1", name: "Laser Shot", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "20% chance to trigger a Ripping Laser when hitting enemies with bullets, doubled chance in Charged State" },
-                    { id: "guardian_co_t3_2", name: "Disruption Fire", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "All bullets dealing damage to enemies, 10% chance inflicts 1 stack of [Disruption] effect" },
-                    { id: "guardian_co_t3_3", name: "Mirror Guardian", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "Creates a clone guardian that deal 50% of the guardian's DMG" }
+                    { id: "guardian_co_t2_1", name: "Flame Bullet", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "Bullets become flame bullets, adding extra fire DMG on hit", teamPrereq: "skyguard" },
+                    { id: "guardian_co_t2_2", name: "Electric Bullet", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "When bullets kill an enemy, there is a 50% chance to trigger a Small Lightning Strike", teamPrereq: "thunderbolt" },
+                    { id: "guardian_co_t2_3", name: "Counterbust Scatter", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "After every 40 shots, the guardian fires a wave of Penetrating Shotgun Shells at enemies near the Fortress", teamPrereq: "aeroblast" },
+                    { id: "guardian_co_t3_1", name: "Laser Shot", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "20% chance to trigger a Ripping Laser when hitting enemies with bullets, doubled chance in Charged State", teamPrereq: "laser" },
+                    { id: "guardian_co_t3_2", name: "Disruption Fire", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "All bullets dealing damage to enemies, 10% chance inflicts 1 stack of [Disruption] effect", teamPrereq: "disruption" },
+                    { id: "guardian_co_t3_3", name: "Mirror Guardian", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "Creates a clone guardian that deal 50% of the guardian's DMG", teamPrereq: "hive" }
                 ],
                 breakthrough: [
                     { id: "guardian_b_t1_1", name: "Shotgun Evolution", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/guardian_purple.jpg">', desc: "Each shot scatters 2 additional sub-bullet" },
@@ -1346,35 +1354,41 @@
                 const wrapper = document.createElement('div');
                 const slottedInfo = getSlottedInfo(card.id);
                 
-                // Check if this card has a prerequisite and if it's currently equipped
+                // 1. Check for Chain Card Prereqs (From previous step)
                 let isLockedByPrereq = false;
                 if (card.prereq && card.prereq.length > 0) {
-                    // Look through the array of prerequisite IDs:
-                    // The card is UNLOCKED if AT LEAST ONE (.some) prerequisite is slotted.
-                    // Therefore, it is LOCKED if NONE of them are slotted.
                     const hasAnyPrereq = card.prereq.some(prereqId => isSlotted(prereqId));
                     isLockedByPrereq = !hasAnyPrereq;
                 }
-        
-                // Apply class based on status
+            
+                // 2. NEW: Check for Team Deployed Prerequisites (Combo Cards)
+                let isLockedByTeam = false;
+                if (card.teamPrereq) {
+                    // Look if the required turret ID exists in the selected team array
+                    const isTeamDeployed = selectedTurrets.includes(card.teamPrereq);
+                    isLockedByTeam = !isTeamDeployed;
+                }
+            
+                // 3. Evaluate visual presentation flags
                 let statusClass = '';
                 if (slottedInfo) {
                     statusClass = 'in-deck';
                 } else if (isLockedByPrereq) {
                     statusClass = 'prereq-locked';
+                } else if (isLockedByTeam) {
+                    statusClass = 'team-locked'; // Apply new theme
                 }
-        
+            
                 wrapper.className = `pool-card-wrapper ${isBt ? 'purple-type' : 'white-type'} ${statusClass}`;
                 
-                // Define click handler
                 wrapper.onclick = () => {
                     if (slottedInfo) {
                         removeCard(slottedInfo.tier, slottedInfo.index);
-                    } else if (!isLockedByPrereq) {
+                    } else if (!isLockedByPrereq && !isLockedByTeam) {
                         addCardToDeck(card, isBt);
                     }
                 };
-        
+            
                 wrapper.innerHTML = getCardHTML(card, isBt);
                 container.appendChild(wrapper);
             };
@@ -1387,6 +1401,16 @@
 
         function addCardToDeck(card, isBreakthrough) {
             const activeDeck = deckData[activeTurretTabId];
+
+            // Check for missing team requirements
+            if (card.teamPrereq) {
+                const isTeamDeployed = selectedTurrets.includes(card.teamPrereq);
+                if (!isTeamDeployed) {
+                    alert(`Cannot equip "${card.name}". The required turret is not in your active team configuration!`);
+                    return; // Block execution
+                }
+            }
+            
             // 1. UPDATED MULTI-PREREQ VALIDATION
             if (card.prereq && card.prereq.length > 0) {           
                 // A card is valid if AT LEAST ONE of its prerequisite IDs is found anywhere in the deck layout
