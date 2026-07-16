@@ -492,7 +492,7 @@
         <div class="logo-area">
             <div class="logo-title">Galaxy Defense <span>ARK BUILDER</span></div>
             <div class="badge-ver">v0.18.0</div>
-            <div class="logo-title" style="font-size: 0.5rem;">by MistyCoco</div>
+            <div class="logo-title" style="font-size: 0.7rem;">by MistyCoco</div>
         </div>
         <div class="nav-tabs">
             <button class="nav-tab active" id="tab1-btn" onclick="switchMainTab(1)">1. Turrets</button>
@@ -920,138 +920,107 @@
             },
             railgun: {
                 normal: [
-                    { id: "railgun_n_t1_1", name: "Hyper", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun" },
-                    { id: "railgun_n_t1_2", name: "Supersonic", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun" },
-                    { id: "railgun_n_t1_3", name: "Magnetic", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun" },
-                    { id: "railgun_n_t2_1", name: "Dual", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Twin" },
-                    { id: "railgun_n_t2_2", name: "Hawkeye", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Hypersonic" },
-                    { id: "railgun_n_t2_3", name: "Depleted", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Heavy" },
-                    { id: "railgun_n_t3_1", name: "Infinite", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "Tachyon" },
-                    { id: "railgun_n_t3_2", name: "Friction", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "Heat" },
-                    { id: "railgun_n_t3_3", name: "Titan", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "Heavy" }
+                    { id: "railgun_n_t1_1", name: "Ammo Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun Shell DMG +50%" },
+                    { id: "railgun_n_t1_2", name: "Ammo Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun Shell DMG +50%" },
+                    { id: "railgun_n_t1_3", name: "Ammo Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun Shell DMG +50%" },
+                    { id: "railgun_n_t1_4", name: "Shell Salvo", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun Shell +1, DMG -15%" },
+                    { id: "railgun_n_t1_5", name: "Shell Salvo", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun Shell +1, DMG -15%" },
+                    { id: "railgun_n_t1_6", name: "Shell Salvo", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun Shell +1, DMG -15%" },
+                    { id: "railgun_n_t1_7", name: "Railgun Upgrade", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun Shell DMG +30%, Penetration +1" },
+                    { id: "railgun_n_t1_8", name: "Railgun Upgrade", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun Shell DMG +30%, Penetration +1" },
+                    { id: "railgun_n_t1_9", name: "Railgun Upgrade", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun Shell DMG +30%, Penetration +1" }
                 ],
                 chain: [
-                    { id: "railgun_ch_t1_1", name: "Slug", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Kinetic" },
-                    { id: "railgun_ch_t1_2", name: "Shrapnel", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Splinter" },
-                    { id: "railgun_ch_t1_3", name: "Split", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Forked" },
-                    { id: "railgun_ch_t2_1", name: "Velocity", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Magnetic" },
-                    { id: "railgun_ch_t2_2", name: "Lossless", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Zero" },
-                    { id: "railgun_ch_t2_3", name: "Impact", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Terminal" },
-                    { id: "railgun_ch_t3_1", name: "Kinetic", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "Concussion" },
-                    { id: "railgun_ch_t3_2", name: "Supersonic", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "Impact" },
-                    { id: "railgun_ch_t3_3", name: "Master", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "Magnetic" }
+                    { id: "railgun_ch_t1_1", name: "Basic Split", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Upon hitting the first enemy, Railgun Shell splits into 2 Small Railgun Shells, with a 20% chance to split into 2 more" },
+                    { id: "railgun_ch_t2_1", name: "Piercing Enhancement", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Upon hitting the first enemy, Small Railgun Shell splits into 2 Mini Railgun Shells, with a 20% chance to split into 2 more" },
+                    { id: "railgun_ch_t3_1", name: "Split Mastery", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "All Railgun shells' split chance +40%" },
+                    { id: "railgun_ch_t1_2", name: "Explosive Shells", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Railgun Shell explodes on hit" },
+                    { id: "railgun_ch_t2_2", name: "Impact Boost", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Railgun Shell explosion DMG +30% for each penetration" },
+                    { id: "railgun_ch_t2_3", name: "Impact Spread", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Railgun Shell explosion range +20% for each penetration" }
                 ],
                 combo: [
-                    { id: "railgun_co_t1_1", name: "Slug", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Triple" },
-                    { id: "railgun_co_t1_2", name: "Twin", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Dual" },
-                    { id: "railgun_co_t1_3", name: "Kinetic", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/rg.jpg">', desc: "Velocity" },
-                    { id: "railgun_co_t2_1", name: "Binary", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Release" },
-                    { id: "railgun_co_t2_2", name: "Catalyst", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Concussive" },
-                    { id: "railgun_co_t2_3", name: "Kinetic", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Magnetic" },
-                    { id: "railgun_co_t3_1", name: "Total", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "Annihilation" },
-                    { id: "railgun_co_t3_2", name: "Sonic", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "Harmonic" },
-                    { id: "railgun_co_t3_3", name: "ARK", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "Orbital" }
+                    { id: "railgun_co_t2_1", name: "Piercing Mark", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Enemies hit by all Railgun shells receive [Physical Vulnerable] effect" },
+                    { id: "railgun_co_t2_2", name: "Surge Pierce", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "Railgun Shells have a 50% chance to trigger a High-voltage shock upon enemy kill" },
+                    { id: "railgun_co_t2_3", name: "Armor Piercing Pulse", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/rg.jpg">', desc: "A Pulse Wave is generated when the Railgun Shell is fired" },
+                    { id: "railgun_co_t3_1", name: "Secondary Minefield", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "Railgun Shell releases 1 Floating Mine on hit" },
+                    { id: "railgun_co_t3_2", name: "Piercing Ricochet", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "All Railgun Shells penetration +1, reflection +1" },
+                    { id: "railgun_co_t3_3", name: "Armor-Piercing Light Split", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/rg.jpg">', desc: "Enemies hit by all Railgun Shell have a 10% chance to trigger Ripping Laser" }
                 ],
                 breakthrough: [
-                    { id: "railgun_b_t1_1", name: "Rails", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/rg_purple.jpg">', desc: "Elite" },
-                    { id: "railgun_b_t1_2", name: "Aegis", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/rg_purple.jpg">', desc: "Magnetic" },
-                    { id: "railgun_b_t1_3", name: "Concussive", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/rg_purple.jpg">', desc: "Super" },
-                    { id: "railgun_b_t2_1", name: "Gravity", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/rg_purple.jpg">', desc: "Slug" },
-                    { id: "railgun_b_t2_2", name: "Chrono", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/rg_purple.jpg">', desc: "Heavy" },
-                    { id: "railgun_b_t2_3", name: "Dense", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/rg_purple.jpg">', desc: "Slug" },
-                    { id: "railgun_b_t3_1", name: "Genesis", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/rg_purple.jpg">', desc: "Alpha" },
-                    { id: "railgun_b_t3_2", name: "Omni", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/rg_purple.jpg">', desc: "Absolute" },
-                    { id: "railgun_b_t3_3", name: "Void", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/rg_purple.jpg">', desc: "Quantum" }
+                    { id: "railgun_b_t1_1", name: "Power Penetration", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/rg_purple.jpg">', desc: "Railgun Shell penetration +3, knockback +100%" },
+                    { id: "railgun_b_t1_2", name: "Weak Spot Strike", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/rg_purple.jpg">', desc: "Railgun Shell DMG increases with target HP (MAX: 150%)" },
+                    { id: "railgun_b_t2_1", name: "Shell Crit Boost", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/rg_purple.jpg">', desc: "All Railgun Shells DMG +40%, Crit Rate +30%" },
+                    { id: "railgun_b_t2_2", name: "Execution Penetration", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/rg_purple.jpg">', desc: "Railgun Shell penetration +1 on kill (MAX: +5)" }
                 ]
             },
             teslacoil: {
                 normal: [
-                    { id: "teslacoil_n_t1_1", name: "Spark", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil" },
-                    { id: "teslacoil_n_t1_2", name: "Static", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil" },
-                    { id: "teslacoil_n_t1_3", name: "Discharge", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil" },
-                    { id: "teslacoil_n_t2_1", name: "Split", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "Dual" },
-                    { id: "teslacoil_n_t2_2", name: "Ion", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "Plasma" },
-                    { id: "teslacoil_n_t2_3", name: "Corona", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "Electrolysis" },
-                    { id: "teslacoil_n_t3_1", name: "Infinite", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Induction" },
-                    { id: "teslacoil_n_t3_2", name: "Ozone", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Plasma" },
-                    { id: "teslacoil_n_t3_3", name: "Titan", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Heavy" }
+                    { id: "teslacoil_n_t1_1", name: "Electro Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil DMG +50%" },
+                    { id: "teslacoil_n_t1_2", name: "Electro Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil DMG +50%" },
+                    { id: "teslacoil_n_t1_3", name: "Electro Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil DMG +50%" },
+                    { id: "teslacoil_n_t1_4", name: "Electro Chain", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil bounces +1, DMG -15%" },
+                    { id: "teslacoil_n_t1_5", name: "Electro Chain", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil bounces +1, DMG -15%" },
+                    { id: "teslacoil_n_t1_6", name: "Electro Chain", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil bounces +1, DMG -15%" },
+                    { id: "teslacoil_n_t1_7", name: "Electro Acceleration", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil cooldown speed +30%" },
+                    { id: "teslacoil_n_t1_8", name: "Electro Acceleration", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil cooldown speed +30%" },
+                    { id: "teslacoil_n_t1_9", name: "Electro Acceleration", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil cooldown speed +30%" }
                 ],
                 chain: [
-                    { id: "teslacoil_ch_t1_1", name: "Corona", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Arc" },
-                    { id: "teslacoil_ch_t1_2", name: "Toroid", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Plasma" },
-                    { id: "teslacoil_ch_t1_3", name: "Divided", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Forked" },
-                    { id: "teslacoil_ch_t2_1", name: "Storage", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "Induction" },
-                    { id: "teslacoil_ch_t2_2", name: "Zero", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "Lossless" },
-                    { id: "teslacoil_ch_t2_3", name: "Terminal", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "End" },
-                    { id: "teslacoil_ch_t3_1", name: "Ozone", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Stun" },
-                    { id: "teslacoil_ch_t3_2", name: "Lightning", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Plasma" },
-                    { id: "teslacoil_ch_t3_3", name: "Master", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Toroid" }
+                    { id: "teslacoil_ch_t1_1", name: "Charge Expansion", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil charge time +0.5s, DMG range increases with charge time" },
+                    { id: "teslacoil_ch_t2_1", name: "Charge Destruction", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "Teslacoil charge time +0.5s, DMG increases with charge time" },
+                    { id: "teslacoil_ch_t3_1", name: "Charge Delayed", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Charge time +1s" },
+                    { id: "teslacoil_ch_t1_2", name: "Trap Matrix", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Teslacoil releases Electric Matrix with additional DMG and [Slow] effect for 2s in explosion area" },
+                    { id: "teslacoil_ch_t2_2", name: "Enhanced Matrix", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "Electric Matrix DMG +100%, duration +1s" },
+                    { id: "teslacoil_ch_t3_2", name: "Matrix Thunderbolt", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "The Electric Matrix spawns a stationary Small Thunderbolt every 0.5s, lasting 5s" }
                 ],
                 combo: [
-                    { id: "teslacoil_co_t1_1", name: "Volt", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Triple" },
-                    { id: "teslacoil_co_t1_2", name: "Double", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Twin" },
-                    { id: "teslacoil_co_t1_3", name: "Frequency", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/tesla.jpg">', desc: "Discharge" },
-                    { id: "teslacoil_co_t2_1", name: "Binary", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "Overcharge" },
-                    { id: "teslacoil_co_t2_2", name: "Catalyst", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "Static" },
-                    { id: "teslacoil_co_t2_3", name: "Fusion", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "Induction" },
-                    { id: "teslacoil_co_t3_1", name: "Total", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Annihilation" },
-                    { id: "teslacoil_co_t3_2", name: "Harmonic", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Resonance" },
-                    { id: "teslacoil_co_t3_3", name: "ARK", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Orbital" }
+                    { id: "teslacoil_co_t2_1", name: "Cooperative Beam", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "During charging, Teslacoil releases 2 Refracted Beams" },
+                    { id: "teslacoil_co_t2_2", name: "Wasp Mirage", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "Hitting an enemy with the Teslacoil summons a Echo Wasp" },
+                    { id: "teslacoil_co_t2_3", name: "Electromagnetic Fission", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/tesla.jpg">', desc: "Teslacoil Explosion splits into two small Teslacoils" },
+                    { id: "teslacoil_co_t3_1", name: "Highvolt Trigger", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Teslacoil Explosion triggers 1 Chain Lightning on hit enemies (MAX:5)" },
+                    { id: "teslacoil_co_t3_2", name: "Spinning Laser", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Teslacoil releases 1 Spinning Laser on hit" },
+                    { id: "teslacoil_co_t3_3", name: "Magnetic Storm Flare", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/tesla.jpg">', desc: "Unlock at Lv.38 After Teslacoil hits an enemy, it spawns 3 Small Firewheel Drones." }
                 ],
                 breakthrough: [
-                    { id: "teslacoil_b_t1_1", name: "Coil", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/tesla_purple.jpg">', desc: "Elite" },
-                    { id: "teslacoil_b_t1_2", name: "Aegis", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/tesla_purple.jpg">', desc: "Plasma" },
-                    { id: "teslacoil_b_t1_3", name: "Polar", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/tesla_purple.jpg">', desc: "Shock" },
-                    { id: "teslacoil_b_t2_1", name: "Gravity", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/tesla_purple.jpg">', desc: "Arc" },
-                    { id: "teslacoil_b_t2_2", name: "Chrono", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/tesla_purple.jpg">', desc: "EMP" },
-                    { id: "teslacoil_b_t2_3", name: "Corona", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/tesla_purple.jpg">', desc: "Toroid" },
-                    { id: "teslacoil_b_t3_1", name: "Genesis", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/tesla_purple.jpg">', desc: "Alpha" },
-                    { id: "teslacoil_b_t3_2", name: "Omni", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/tesla_purple.jpg">', desc: "Orbital" }
+                    { id: "teslacoil_b_t1_1", name: "Electric Chain Surge", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/tesla_purple.jpg">', desc: "Teslacoil releases up to 5 High-voltage shock on hit to nearby enemies" },
+                    { id: "teslacoil_b_t1_2", name: "Electro Interference", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/tesla_purple.jpg">', desc: "Teslacoil Explosion range +30%, Teslacoil Explosion and Electro Matrix inflict [Paralyze] effect" },
+                    { id: "teslacoil_b_t2_1", name: "Expanded Shockwave", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/tesla_purple.jpg">', desc: "Teslacoil explosion range increased, outer DMG halved" },
+                    { id: "teslacoil_b_t2_2", name: "Charged Shock", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/tesla_purple.jpg">', desc: "During the Teslacoil charging time, it releases up to 2 High-voltage shock to nearby enemies every 0.25s" }
                 ]
             },
             gravity: {
                 normal: [
-                    { id: "gravity_n_t1_1", name: "Spark", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Teslacoil" },
-                    { id: "gravity_n_t1_2", name: "Static", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Teslacoil" },
-                    { id: "gravity_n_t1_3", name: "Discharge", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Teslacoil" },
-                    { id: "gravity_n_t2_1", name: "Split", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Dual" },
-                    { id: "gravity_n_t2_2", name: "Ion", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Plasma" },
-                    { id: "gravity_n_t2_3", name: "Corona", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Electrolysis" },
-                    { id: "gravity_n_t3_1", name: "Infinite", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "Induction" },
-                    { id: "gravity_n_t3_2", name: "Ozone", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "Plasma" },
-                    { id: "gravity_n_t3_3", name: "Titan", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "Heavy" }
+                    { id: "gravity_n_t1_1", name: "High Power Field", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Gravitational Field DMG +50%" },
+                    { id: "gravity_n_t1_2", name: "High Power Field", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Gravitational Field DMG +50%" },
+                    { id: "gravity_n_t1_3", name: "High Power Field", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Gravitational Field DMG +50%" },
+                    { id: "gravity_n_t1_4", name: "Wide Field", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Gravitational Field range +25%" },
+                    { id: "gravity_n_t1_5", name: "Wide Field", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Gravitational Field range +25%" },
+                    { id: "gravity_n_t1_6", name: "Wide Field", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Gravitational Field range +25%" },
+                    { id: "gravity_n_t1_7", name: "Extended Field", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Gravitational Field flight distance +30%" },
+                    { id: "gravity_n_t1_8", name: "Extended Field", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Gravitational Field flight distance +30%" },
+                    { id: "gravity_n_t1_9", name: "Extended Field", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Gravitational Field flight distance +30%" }
                 ],
                 chain: [
-                    { id: "gravity_ch_t1_1", name: "Corona", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Arc" },
-                    { id: "gravity_ch_t1_2", name: "Toroid", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Plasma" },
-                    { id: "gravity_ch_t1_3", name: "Divided", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Forked" },
-                    { id: "gravity_ch_t2_1", name: "Storage", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Induction" },
-                    { id: "gravity_ch_t2_2", name: "Zero", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Lossless" },
-                    { id: "gravity_ch_t2_3", name: "Terminal", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "End" },
-                    { id: "gravity_ch_t3_1", name: "Ozone", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "Stun" },
-                    { id: "gravity_ch_t3_2", name: "Lightning", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "Plasma" },
-                    { id: "gravity_ch_t3_3", name: "Master", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "Toroid" }
+                    { id: "gravity_ch_t1_1", name: "Static Wormhole", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "When Gravitational Field hits the first enemy, a portal is created to teleport enemies to the location where the field disappears for 3s" },
+                    { id: "gravity_ch_t2_1", name: "Wormhole Enhancement", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Portal duration (entrance and exit) +100%" },
+                    { id: "gravity_ch_t2_2", name: "Wormhole Expansion", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Portal entry range +100%" },
+                    { id: "gravity_ch_t1_2", name: "Small Black Hole", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Creates a small black hole continuously pulling enemies for 5s after the Gravitational Field disappears." },
+                    { id: "gravity_ch_t2_3", name: "Black Hole Expansion", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Small Black Hole range +50%, pulling force +50%" },
+                    { id: "gravity_ch_t3_1", name: "Destructive Black Hole", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "Small Black Hole DMG +250%" }
                 ],
                 combo: [
-                    { id: "gravity_co_t1_1", name: "Volt", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Triple" },
-                    { id: "gravity_co_t1_2", name: "Double", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Twin" },
-                    { id: "gravity_co_t1_3", name: "Frequency", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/gravity.jpg">', desc: "Discharge" },
-                    { id: "gravity_co_t2_1", name: "Binary", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Overcharge" },
-                    { id: "gravity_co_t2_2", name: "Catalyst", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Static" },
-                    { id: "gravity_co_t2_3", name: "Fusion", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Induction" },
-                    { id: "gravity_co_t3_1", name: "Total", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "Annihilation" },
-                    { id: "gravity_co_t3_2", name: "Harmonic", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "Resonance" },
-                    { id: "gravity_co_t3_3", name: "ARK", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "Orbital" }
+                    { id: "gravity_co_t2_1", name: "Field Reflection", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "All Gravitational Fields can reflect" },
+                    { id: "gravity_co_t2_2", name: "Field Disruption", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Gravitational Field inflicts [Disruption] effect on hit" },
+                    { id: "gravity_co_t2_3", name: "Gravity Lightning", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/gravity.jpg">', desc: "Gravitational Field releases 4 high-voltage shocks every 0.5 seconds" },
+                    { id: "gravity_co_t3_1", name: "Double Fission", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "Gravitational Field splits into two small Gravitational Fields at the end" },
+                    { id: "gravity_co_t3_2", name: "Binary Stars", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "Gravitational field splits into a pair of spinning Binary Stars" },
+                    { id: "gravity_co_t3_3", name: "Gravity Increase", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/gravity.jpg">', desc: "The farther you fly with the Gravitational Field, the stronger the pull and the higher the DMG" }
                 ],
                 breakthrough: [
-                    { id: "gravity_b_t1_1", name: "hello", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/gravity_purple.jpg">', desc: "Elite" },
-                    { id: "gravity_b_t1_2", name: "hello2", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/gravity_purple.jpg">', desc: "Plasma" },
-                    { id: "gravity_b_t1_3", name: "hello3", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/gravity_purple.jpg">', desc: "Shock" },
-                    { id: "gravity_b_t2_1", name: "Gravity", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/gravity_purple.jpg">', desc: "Arc" },
-                    { id: "gravity_b_t2_2", name: "Chrono", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/gravity_purple.jpg">', desc: "EMP" },
-                    { id: "gravity_b_t2_3", name: "Corona", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/gravity_purple.jpg">', desc: "Toroid" },
-                    { id: "gravity_b_t3_1", name: "Genesis", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/gravity_purple.jpg">', desc: "Alpha" },
-                    { id: "gravity_b_t3_2", name: "Omni", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/gravity_purple.jpg">', desc: "Orbital" }
+                    { id: "gravity_b_t1_1", name: "Extended Pull", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/gravity_purple.jpg">', desc: "The further the Gravitational Field flies, the larger the range" },
+                    { id: "gravity_b_t1_2", name: "Field Amplification", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/gravity_purple.jpg">', desc: "Gravitational Field DMG +80%, pulling force +100%" },
+                    { id: "gravity_b_t2_1", name: "Extra Field", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/gravity_purple.jpg">', desc: "Gravitational Field +1" },
+                    { id: "gravity_b_t2_2", name: "Extended Range", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/gravity_purple.jpg">', desc: "Gravitational Field flight distance doubled" }
                 ]
             }};
 
