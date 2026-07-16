@@ -483,6 +483,94 @@
 
         a { color: #00ffcc; text-decoration: none; }
         a:hover { text-decoration: underline; }
+
+        /* --- MOBILE RESPONSIVE FIX --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+        
+            /* 1. Make navigation bar stack or adapt better */
+            .top-nav {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+                text-align: center;
+            }
+            .logo-area {
+                justify-content: center;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+        
+            /* 2. Convert grid rows into horizontally scrollable rows on mobile */
+            .deck-slots, .cards-pool {
+                display: flex !important;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 8px;
+                padding-bottom: 10px; /* Space for the scrollbar */
+                width: 100%;
+                box-sizing: border-box;
+            }
+        
+            /* Ensure scrollbar looks clean on mobile */
+            .deck-slots::-webkit-scrollbar, 
+            .cards-pool::-webkit-scrollbar {
+                height: 5px;
+            }
+            .deck-slots::-webkit-scrollbar-thumb, 
+            .cards-pool::-webkit-scrollbar-thumb {
+                background: #1a364d;
+                border-radius: 10px;
+            }
+        
+            /* 3. Scale down the cards slightly so more fit on screen */
+            .deck-slot, .pool-card-wrapper {
+                flex: 0 0 85px; /* Keeps cards at a fixed, readable width */
+                height: 145px;  /* Scale down height proportionally */
+                scroll-snap-align: start;
+            }
+        
+            /* Adjust breakthrough slot spacing */
+            .deck-slot.breakthrough-slot {
+                grid-column: auto; /* Reset grid positioning to flow naturally in flex */
+            }
+        
+            /* 4. Adjust card internal text sizes so they don't overflow */
+            .card-top-header {
+                font-size: 8px;
+                padding: 4px 2px;
+            }
+            .card-mid-artwork img {
+                height: 45px;
+            }
+            .card-tier-circle {
+                width: 16px;
+                height: 16px;
+                font-size: 8px;
+                left: -5px;
+                bottom: -5px;
+            }
+            .card-desc-body {
+                font-size: 8px;
+                line-height: 1.1;
+                padding: 4px 2px;
+                min-height: 50px;
+            }
+        
+            /* 5. Make subtabs scrollable if they don't fit */
+            .turret-subtabs {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .subtab-btn {
+                flex: 0 0 auto;
+                padding: 8px 12px;
+            }
+        }
+        
     </style>
 </head>
 <body>
