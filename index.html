@@ -445,6 +445,13 @@
             cursor: pointer;
             pointer-events: auto;
         }
+        
+        /* Different grey styling for locked prerequisites */
+        .pool-card-wrapper.prereq-locked {
+            filter: grayscale(1) brightness(0.4) contrast(1.2);
+            cursor: not-allowed;
+            pointer-events: none; /* Disables clicking entirely */
+        }
 
         /* Action Footer */
         .actions {
@@ -1321,7 +1328,7 @@
             const activeDeck = deckData[activeTurretTabId];
             const library = cardLibrary[activeTurretTabId];
         
-            // Helper to check if a card is slotted and find where it is
+            // Helper to find exactly where an equipped card is located
             const getSlottedInfo = (cardId) => {
                 for (let tier of ["T1", "T2", "T3"]) {
                     const index = activeDeck[tier].findIndex(c => c && c.id === cardId);
@@ -1338,15 +1345,27 @@
                 const wrapper = document.createElement('div');
                 const slottedInfo = getSlottedInfo(card.id);
                 
-                wrapper.className = `pool-card-wrapper ${isBt ? 'purple-type' : 'white-type'} ${slottedInfo ? 'in-deck' : ''}`;
+                // Check if this card has a prerequisite and if it's currently equipped
+                let isLockedByPrereq = false;
+                if (card.prereq) {
+                    isLockedByPrereq = !isSlotted(card.prereq);
+                }
+        
+                // Apply class based on status
+                let statusClass = '';
+                if (slottedInfo) {
+                    statusClass = 'in-deck';
+                } else if (isLockedByPrereq) {
+                    statusClass = 'prereq-locked';
+                }
+        
+                wrapper.className = `pool-card-wrapper ${isBt ? 'purple-type' : 'white-type'} ${statusClass}`;
                 
-                // Dynamic click behavior based on slot status
+                // Define click handler
                 wrapper.onclick = () => {
                     if (slottedInfo) {
-                        // If already in deck, remove it using the row tier and slot index
                         removeCard(slottedInfo.tier, slottedInfo.index);
-                    } else {
-                        // Otherwise, proceed with the default behavior to add it
+                    } else if (!isLockedByPrereq) {
                         addCardToDeck(card, isBt);
                     }
                 };
@@ -1418,11 +1437,42 @@
         }
 
         function removeCard(tier, slotIndex) {
-            if (deckData[activeTurretTabId]) {
-                deckData[activeTurretTabId][tier][slotIndex] = null;
-                renderDeckBoard();
-                renderSelectionPools();
-            }
+            const activeDeck = deckData[activeTurretTabId];
+            
+            // 1. Clear the selected card slot
+            activeDeck[tier][slotIndex] = null;
+        
+            // 2. Cascade check: Repeatedly scan the deck for any remaining cards that lost their prerequisite
+            let changesMade;
+            do {
+                changesMade = false;
+                
+                // Loop through all active slots on the board
+                for (let tKey of ["T1", "T2", "T3"]) {
+                    for (let i = 0; i < activeDeck[tKey].length; i++) {
+                        const currentCard = activeDeck[tKey][i];
+                        
+                        // If a slot contains a card that has a prerequisite...
+                        if (currentCard && currentCard.prereq) {
+                            
+                            // See if that prerequisite card is still equipped anywhere on the board
+                            const prereqStillEquipped = ["T1", "T2", "T3"].some(t => 
+                                activeDeck[t].some(c => c && c.id === currentCard.prereq)
+                            );
+                            
+                            // If the parent card is missing, drop this dependent card back down!
+                            if (!prereqStillEquipped) {
+                                activeDeck[tKey][i] = null;
+                                changesMade = true; // Flag true to re-verify dependencies on the next loop iteration
+                            }
+                        }
+                    }
+                }
+            } while (changesMade);
+        
+            // 3. Refresh UI grids and panels to reflect changes
+            updateDeckUI();          // Reflect the empty slots on your deck configuration board
+            renderSelectionPools();  // Re-evaluate what pool elements should be grayed out/locked
         }
 
         function generateShareLink() {
