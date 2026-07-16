@@ -668,48 +668,38 @@
             },
             laser: {
                 normal: [
-                    { id: "laser_n_t1_1", name: "Focuser", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Laser" },
-                    { id: "laser_n_t1_2", name: "Long", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Laser" },
-                    { id: "laser_n_t1_3", name: "Diode", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Laser" },
-                    { id: "laser_n_t2_1", name: "Split", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "Dual" },
-                    { id: "laser_n_t2_2", name: "Glow", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "Pinpoint" },
-                    { id: "laser_n_t2_3", name: "Thermal", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "Melt" },
-                    { id: "laser_n_t3_1", name: "Infinity", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "Zero" },
-                    { id: "laser_n_t3_2", name: "Gamma", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "Rad" },
-                    { id: "laser_n_t3_3", name: "Photon", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "Mirror" }
+                    { id: "laser_n_t1_1", name: "Laser Amplification", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Laser DMG +50%" },
+                    { id: "laser_n_t1_2", name: "Laser Amplification", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Laser DMG +50%" },
+                    { id: "laser_n_t1_3", name: "Laser Amplification", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Laser DMG +50%" },
+                    { id: "laser_n_t1_4", name: "Stable Energy", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Laser duration +40%" },
+                    { id: "laser_n_t1_5", name: "Stable Energy", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Laser duration +40%" },
+                    { id: "laser_n_t1_6", name: "Stable Energy", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Laser duration +40%" },
+                    { id: "laser_n_t1_7", name: "Laser Reflection", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Laser Reflection +1, DMG -20% per reflection" },
+                    { id: "laser_n_t1_8", name: "Laser Reflection", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Laser Reflection +1, DMG -20% per reflection" },
+                    { id: "laser_n_t1_9", name: "Laser Reflection", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Laser Reflection +1, DMG -20% per reflection" }
                 ],
                 chain: [
-                    { id: "laser_ch_t1_1", name: "Ray", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Light" },
-                    { id: "laser_ch_t1_2", name: "Reflect", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Mirror" },
-                    { id: "laser_ch_t1_3", name: "Scatter", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Split" },
-                    { id: "laser_ch_t2_1", name: "Prism", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "Refract" },
-                    { id: "laser_ch_t2_2", name: "Total", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "Glass" },
-                    { id: "laser_ch_t2_3", name: "Photon", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "End" },
-                    { id: "laser_ch_t3_1", name: "Gamma", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "Solar" },
-                    { id: "laser_ch_t3_2", name: "Aurora", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "Sky" },
-                    { id: "laser_ch_t3_3", name: "Array", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "Matrix" }
+                    { id: "laser_ch_t1_1", name: "Additional Sweep", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Fires 1 additional Sweeping Laser" },
+                    { id: "laser_ch_t2_1", name: "Vulnerable Laser", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "Enemies hit by Sweeping Lasers receive [Vulnerable] effect" },
+                    { id: "laser_ch_t3_1", name: "Sweep Boost", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "Sweeping Laser sweeps once again" },
+                    { id: "laser_ch_t1_2", name: "Energy Surge", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Fires 2 additional Deflected Lasers" },
+                    { id: "laser_ch_t2_2", name: "Slow Laser", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "Enemies hit by Deflected Lasers receive [Slow] effect" },
+                    { id: "laser_ch_t3_2", name: "Deflected Laser Reflection", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "Deflected Laser reflections +1" }
                 ],
                 combo: [
-                    { id: "laser_co_t1_1", name: "Laser", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Ray" },
-                    { id: "laser_co_t1_2", name: "Double", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Pulse" },
-                    { id: "laser_co_t1_3", name: "Photon", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/laser.jpg">', desc: "Wave" },
-                    { id: "laser_co_t2_1", name: "Pulse", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "Overcharge" },
-                    { id: "laser_co_t2_2", name: "Reactive", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "Primer" },
-                    { id: "laser_co_t2_3", name: "Nuclear", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "Core" },
-                    { id: "laser_co_t3_1", name: "Hyper", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "Melt" },
-                    { id: "laser_co_t3_2", name: "Prism", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "Glow" },
-                    { id: "laser_co_t3_3", name: "Quantum", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "Sun" }
+                    { id: "laser_co_t2_1", name: "Energy Paralysis", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "Enemies hit by Laser receive [Paralyze] effect" },
+                    { id: "laser_co_t2_2", name: "Graviton Laser", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "Lasers creates a pull effect in nearby enemies" },
+                    { id: "laser_co_t2_3", name: "Emberrail Laser", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/laser.jpg">', desc: "While the Piercing Laser is active, it leaves a Flame Trail" },
+                    { id: "laser_co_t3_1", name: "Energy Detonation", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "All Lasers hitting enemies with [Burn] effect will trigger an Ignition Explosion" },
+                    { id: "laser_co_t3_2", name: "Convergence Trigger", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "30% chance to generates a Refracted Beam upon Laser hitting enemies" },
+                    { id: "laser_co_t3_3", name: "Disruption Laser", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/laser.jpg">', desc: "When Laser deals damage, it has a 10% chance to apply 1 stack of [Disruption]" }
                 ],
                 breakthrough: [
-                    { id: "laser_b_t1_1", name: "Photon", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/laser_purple.jpg">', desc: "Elite" },
-                    { id: "laser_b_t1_2", name: "Mirror", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/laser_purple.jpg">', desc: "Glass" },
-                    { id: "laser_b_t1_3", name: "Pulse", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/laser_purple.jpg">', desc: "Light" },
-                    { id: "laser_b_t2_1", name: "Laser", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/laser_purple.jpg">', desc: "Beam" },
-                    { id: "laser_b_t2_2", name: "Chrono", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/laser_purple.jpg">', desc: "Time" },
-                    { id: "laser_b_t2_3", name: "Ray", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/laser_purple.jpg">', desc: "Pure" },
-                    { id: "laser_b_t3_1", name: "Giga", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/laser_purple.jpg">', desc: "Master" },
-                    { id: "laser_b_t3_2", name: "Solar", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/laser_purple.jpg">', desc: "True" },
-                    { id: "laser_b_t3_3", name: "Laser", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/laser_purple.jpg">', desc: "Light" }
+                    { id: "laser_b_t1_1", name: "High-Energy Pulse", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/laser_purple.jpg">', desc: "Laser DMG Range +100%" },
+                    { id: "laser_b_t1_2", name: "Multi-Strike", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/laser_purple.jpg">', desc: "Laser duration +100%, cooldown speed +20%" },
+                    { id: "laser_b_t2_1", name: "Energy Overload", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/laser_purple.jpg">', desc: "Debuff duration from all Lasers +100%" },
+                    { id: "laser_b_t2_2", name: "Tear Explosion", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/laser_purple.jpg">', desc: "20% chance to trigger a Ripping Laser when hitting enemies with Laser" },
+                    { id: "laser_b_t2_3", name: "Energy Boost", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/laser_purple.jpg">', desc: "Laser DMG +60% for each debuff on enemies (MAX:300%)" }
                 ]
             },
             disruption: {
