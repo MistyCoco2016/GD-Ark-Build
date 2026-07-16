@@ -1386,20 +1386,19 @@
 
         function addCardToDeck(card, isBreakthrough) {
             const activeDeck = deckData[activeTurretTabId];
-            if (card.prereq) {         
-                // Scan T1, T2, and T3 arrays to check if the prereq card ID exists somewhere in the active layout
-                const hasPrereq = ["T1", "T2", "T3"].some(tier => 
-                    activeDeck[tier].some(equippedCard => equippedCard && equippedCard.id === card.prereq)
-                );
+            // 1. UPDATED MULTI-PREREQ VALIDATION
+            if (card.prereq && card.prereq.length > 0) {           
+                // A card is valid if AT LEAST ONE of its prerequisite IDs is found anywhere in the deck layout
+                const hasAnyPrereq = card.prereq.some(prereqId => {
+                    return ["T1", "T2", "T3"].some(tier => 
+                        activeDeck[tier].some(equippedCard => equippedCard && equippedCard.id === prereqId)
+                    );
+                });
                 
-                if (!hasPrereq) {
-                    // Find the name of the missing card inside the library to show a friendly error
-                    const library = cardLibrary[activeTurretTabId];
-                    const prereqCard = library.chain.find(c => c.id === card.prereq);
-                    const prereqName = prereqCard ? prereqCard.name : "its prerequisite card";
-                    
-                    alert(`Cannot select "${card.name}". You must equip "${prereqName}" first!`);
-                    return; // Halt execution so the card is not added
+                // If they don't have ANY of the required prerequisites equipped, block it
+                if (!hasAnyPrereq) {
+                    alert(`Cannot select "${card.name}". You must equip a valid prerequisite card first!`);
+                    return; // Halt placement
                 }
             }
             const srcTier = card.cardTier; 
