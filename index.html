@@ -713,7 +713,7 @@
                     { id: "guardian_ch_t3_1", name: "Explosion Boost", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/guardian.jpg">', desc: "Explosion DMG +60%, explosion chance +10%", prereq: ["guardian_ch_t2_1"] },
                     { id: "guardian_ch_t1_2", name: "Charge Activation", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/guardian.jpg">', desc: "Guardian enters Charged State, gaining Charge Points by firing bullets" },
                     { id: "guardian_ch_t2_2", name: "Sustained Charge", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "In Charged State, number of shots fired +100%", prereq: ["guardian_ch_t1_2"] },
-                    { id: "guardian_ch_t2_3", name: "Quick Charge", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "Charge Points from Bullets +100%", prereq: "guardian_ch_t1_2" }
+                    { id: "guardian_ch_t2_3", name: "Quick Charge", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "Charge Points from Bullets +100%", [prereq: "guardian_ch_t1_2"] }
                 ],
                 combo: [
                     { id: "guardian_co_t2_1", name: "Flame Bullet", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/guardian.jpg">', desc: "Bullets become flame bullets, adding extra fire DMG on hit" },
