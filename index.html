@@ -705,186 +705,146 @@
             },
             disruption: {
                 normal: [
-                    { id: "disruption_n_t1_1", name: "EMP", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Disruption" },
-                    { id: "disruption_n_t1_2", name: "Signal", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Disruption" },
-                    { id: "disruption_n_t1_3", name: "Rotary", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Disruption" },
-                    { id: "disruption_n_t2_1", name: "Sub-Drones", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "Mini" },
-                    { id: "disruption_n_t2_2", name: "Sensor", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "Radar" },
-                    { id: "disruption_n_t2_3", name: "Shield", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "Static" },
-                    { id: "disruption_n_t3_1", name: "Warp", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "Infinite" },
-                    { id: "disruption_n_t3_2", name: "Feedback", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "Stall" },
-                    { id: "disruption_n_t3_3", name: "Drone", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "Titan" }
+                    { id: "disruption_n_t1_1", name: "Field Amplification", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Disruption Field DMG +50%" },
+                    { id: "disruption_n_t1_2", name: "Field Amplification", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Disruption Field DMG +50%" },
+                    { id: "disruption_n_t1_3", name: "Field Amplification", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Disruption Field DMG +50%" },
+                    { id: "disruption_n_t1_4", name: "Field Duration", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Disruption Field duration +30%" },
+                    { id: "disruption_n_t1_5", name: "Field Duration", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Disruption Field duration +30%" },
+                    { id: "disruption_n_t1_6", name: "Field Duration", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Disruption Field duration +30%" },
+                    { id: "disruption_n_t1_7", name: "Field Expansion", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Disruption Field DMG Range +30%" },
+                    { id: "disruption_n_t1_8", name: "Field Expansion", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Disruption Field DMG Range +30%" },
+                    { id: "disruption_n_t1_9", name: "Field Expansion", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Disruption Field DMG Range +30%" }
                 ],
                 chain: [
-                    { id: "disruption_ch_t1_1", name: "Jumper", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Node" },
-                    { id: "disruption_ch_t1_2", name: "Cross", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Mesh" },
-                    { id: "disruption_ch_t1_3", name: "Diffused", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Split" },
-                    { id: "disruption_ch_t2_1", name: "Interference", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "Dynamic" },
-                    { id: "disruption_ch_t2_2", name: "Static", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "No" },
-                    { id: "disruption_ch_t2_3", name: "Signal", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "Terminal" },
-                    { id: "disruption_ch_t3_1", name: "Stasis", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "Crash" },
-                    { id: "disruption_ch_t3_2", name: "EMP", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "Overload" },
-                    { id: "disruption_ch_t3_3", name: "Swarm", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "Network" }
+                    { id: "disruption_ch_t1_1", name: "Disruption Force", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Each time Disruption Field deals damage to enemies, it inflicts 1 stack of [Disruption] effect" },
+                    { id: "disruption_ch_t2_1", name: "Disruption Burst", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "When [Disruption] effect reaches MAX stacks, deals 1 high burst DMG" },
+                    { id: "disruption_ch_t2_2", name: "Overcharged Disruption", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "[Disruption] DMG +100%, maximum stack count changed to 5 stacks" },
+                    { id: "disruption_ch_t3_1", name: "Area Disruption", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "When [Disruption] effect reaches MAX stacks, deals 1 extra DMG" },
+                    { id: "disruption_ch_t1_2", name: "Random Disturbance", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Enemies hit by Disruption Field have a 5% chance to be teleported back a certain distance" },
+                    { id: "disruption_ch_t2_3", name: "Rewind Teleport", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "Enemies hit by Disruption Field have a 2.5% chance to be transported to start point" },
+                    { id: "disruption_ch_t3_2", name: "Teleport Damage", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "Teleportation from the Disruption Field deals 3% of the target's MAX HP as DMG (Max: 60000 × ATK)" }
                 ],
                 combo: [
-                    { id: "disruption_co_t1_1", name: "Pulse", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Echo" },
-                    { id: "disruption_co_t1_2", name: "Dual", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Double" },
-                    { id: "disruption_co_t1_3", name: "Frequency", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/dd.jpg">', desc: "Hz" },
-                    { id: "disruption_co_t2_1", name: "Repeater", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "Overclock" },
-                    { id: "disruption_co_t2_2", name: "Catalyst", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "Primer" },
-                    { id: "disruption_co_t2_3", name: "Core", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "Grid" },
-                    { id: "disruption_co_t3_1", name: "Total", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "Disintegrate" },
-                    { id: "disruption_co_t3_2", name: "Resonator", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "Vibration" },
-                    { id: "disruption_co_t3_3", name: "Orbital", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "Mega" }
+                    { id: "disruption_co_t2_1", name: "Small Laser", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "A Sweeping Laser is generated in the center of Disruption Drone" },
+                    { id: "disruption_co_t2_2", name: "Electric Field", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "Enemies hit by Disruption Field have a 30% chance to be inflicted [Paralyze]" },
+                    { id: "disruption_co_t2_3", name: "Interference Thunder Core", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/dd.jpg">', desc: "Enemies have a 30% chance to generate a Small thunderbolt when they die in a Disruption Field." },
+                    { id: "disruption_co_t3_1", name: "Fortress Support", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "Launch an additional set of Disruption Drones above Fortress" },
+                    { id: "disruption_co_t3_2", name: "Field Replication", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "When Railgun Shell enters Disruption Field first time, it 100% splits into 1 additional Railgun Shell" },
+                    { id: "disruption_co_t3_3", name: "Disruption Shotgun", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/dd.jpg">', desc: "During the Field Duration of the Disruption Field, Disruption Drones fire Penetrating Shotgun Shells into the Force-field." }
                 ],
                 breakthrough: [
-                    { id: "disruption_b_t1_1", name: "Pod", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/dd_purple.jpg">', desc: "Elite" },
-                    { id: "disruption_b_t1_2", name: "Aegis", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/dd_purple.jpg">', desc: "Drone" },
-                    { id: "disruption_b_t1_3", name: "Repulsion", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/dd_purple.jpg">', desc: "Force" },
-                    { id: "disruption_b_t2_1", name: "Singularity", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/dd_purple.jpg">', desc: "Magnetic" },
-                    { id: "disruption_b_t2_2", name: "Stasis", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/dd_purple.jpg">', desc: "Field" },
-                    { id: "disruption_b_t2_3", name: "Shield", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/dd_purple.jpg">', desc: "Phase" },
-                    { id: "disruption_b_t3_1", name: "Swarm", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/dd_purple.jpg">', desc: "Hive" },
-                    { id: "disruption_b_t3_2", name: "Apex", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/dd_purple.jpg">', desc: "Ultimate" },
-                    { id: "disruption_b_t3_3", name: "Vortex", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/dd_purple.jpg">', desc: "Drone" }
+                    { id: "disruption_b_t1_1", name: "Final Blast", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/dd_purple.jpg">', desc: "Disruption Field causes explosion DMG when it ends" },
+                    { id: "disruption_b_t1_2", name: "Stasis Field", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/dd_purple.jpg">', desc: "Each time enemies take damage from Disruption Field, [Slow] effect +10% (MAX: 90%)." },
+                    { id: "disruption_b_t2_1", name: "Quick Cooldown", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/dd_purple.jpg">', desc: "Disruption Drone DMG Interval -30%, cooldown speed +30%" },
+                    { id: "disruption_b_t2_2", name: "Field Suppression", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/dd_purple.jpg">', desc: "Enemies in the Disruption Field take increased additional DMG based on their reduced speed (MAX: 200% additional DMG )" },
+                    { id: "disruption_b_t3_1", name: "Converging Field", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/dd_purple.jpg">', desc: "Disruption Drone DMG +100%, each DMG pulls enemies toward the center" }
                 ]
             },
             aeroblast: {
                 normal: [
-                    { id: "aeroblast_n_t1_1", name: "Wind", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Aeroblast" },
-                    { id: "aeroblast_n_t1_2", name: "Jet", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Aeroblast" },
-                    { id: "aeroblast_n_t1_3", name: "Quick", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Aeroblast" },
-                    { id: "aeroblast_n_t2_1", name: "Dual", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Double" },
-                    { id: "aeroblast_n_t2_2", name: "Vortex", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Gale" },
-                    { id: "aeroblast_n_t2_3", name: "Pressure", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Carving" },
-                    { id: "aeroblast_n_t3_1", name: "Cyclone", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Infinite" },
-                    { id: "aeroblast_n_t3_2", name: "Vacuum", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Friction" },
-                    { id: "aeroblast_n_t3_3", name: "Hurricane", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Alloy" }
+                    { id: "aeroblast_n_t1_1", name: "Powerful Blast", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Aeroblast Shell DMG +50%" },
+                    { id: "aeroblast_n_t1_2", name: "Powerful Blast", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Aeroblast Shell DMG +50%" },
+                    { id: "aeroblast_n_t1_3", name: "Powerful Blast", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Aeroblast Shell DMG +50%" },
+                    { id: "aeroblast_n_t1_4", name: "Multiple Blast", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Aeroblast Shell +1, DMG -15%" },
+                    { id: "aeroblast_n_t1_5", name: "Multiple Blast", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Aeroblast Shell +1, DMG -15%" },
+                    { id: "aeroblast_n_t1_6", name: "Multiple Blast", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Aeroblast Shell +1, DMG -15%" },
+                    { id: "aeroblast_n_t1_7", name: "Impact Enhancement", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Aeroblast Shell knockback +50%, DMG +30%" },
+                    { id: "aeroblast_n_t1_8", name: "Impact Enhancement", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Aeroblast Shell knockback +50%, DMG +30%" },
+                    { id: "aeroblast_n_t1_9", name: "Impact Enhancement", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Aeroblast Shell knockback +50%, DMG +30%" }
                 ],
                 chain: [
-                    { id: "aeroblast_ch_t1_1", name: "Gale", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Draft" },
-                    { id: "aeroblast_ch_t1_2", name: "Wind", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Jet" },
-                    { id: "aeroblast_ch_t1_3", name: "Split", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Forked" },
-                    { id: "aeroblast_ch_t2_1", name: "Aero", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Pressure" },
-                    { id: "aeroblast_ch_t2_2", name: "Zephyr", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Smooth" },
-                    { id: "aeroblast_ch_t2_3", name: "Air", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Draft" },
-                    { id: "aeroblast_ch_t3_1", name: "Tornado", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Air" },
-                    { id: "aeroblast_ch_t3_2", name: "Typhoon", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Vortex" },
-                    { id: "aeroblast_ch_t3_3", name: "Tempest", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Wind" }
+                    { id: "aeroblast_ch_t1_1", name: "Shotgun Barrage", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "After Aeroblast fires, it launches 5 penetrating Shotgun Shells" },
+                    { id: "aeroblast_ch_t2_1", name: "Extra Loading", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "For each enemy killed, Aeroblast fires 1 additional penetrating Shotgun Shell(MAX: 10)" },
+                    { id: "aeroblast_ch_t3_1", name: "Shotgun Penetration", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Penetrating Shotgun Shells penetration DMG +50%, range +70%" },
+                    { id: "aeroblast_ch_t1_2", name: "Floating Mine", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Upon explosion, Aeroblast Shell leaves 2 Floating Mines in the explosion area" },
+                    { id: "aeroblast_ch_t2_2", name: "Mine Shockwave", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Floating Mine +2, knockback +100%" },
+                    { id: "aeroblast_ch_t2_3", name: "Wide Minefield", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Floating Mine +2, explosion DMG +25%" }
                 ],
                 combo: [
-                    { id: "aeroblast_co_t1_1", name: "Draft", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Wind" },
-                    { id: "aeroblast_co_t1_2", name: "Twin", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Double" },
-                    { id: "aeroblast_co_t1_3", name: "Cyclone", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/aero.jpg">', desc: "Draft" },
-                    { id: "aeroblast_co_t2_1", name: "Binary", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Release" },
-                    { id: "aeroblast_co_t2_2", name: "Primer", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Low" },
-                    { id: "aeroblast_co_t2_3", name: "Storm", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Kinetic" },
-                    { id: "aeroblast_co_t3_1", name: "Vacuum", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Aero" },
-                    { id: "aeroblast_co_t3_2", name: "Sonic", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Pressure" },
-                    { id: "aeroblast_co_t3_3", name: "Gale", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Sky" }
+                    { id: "aeroblast_co_t2_1", name: "Piercing Blast", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Aeroblast Shell Penetration +1" },
+                    { id: "aeroblast_co_t2_2", name: "Firewheel Summon", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "For each enemy hit by Aeroblast Shell explosion, it generate a Small Firewheel Drone" },
+                    { id: "aeroblast_co_t2_3", name: "Bouncing Barrage", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/aero.jpg">', desc: "Aeroblast Shell Bounce +1" },
+                    { id: "aeroblast_co_t3_1", name: "Gravity Bomb", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Aeroblast shell DMG +100%, pulls enemies to the center before the explosion" },
+                    { id: "aeroblast_co_t3_2", name: "Shatter Impact", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Aeroblast Shell creates two additional Ripping Lasers upon impact" },
+                    { id: "aeroblast_co_t3_3", name: "Charge Blast", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/aero.jpg">', desc: "Has a 30% chance to fire Charge Shots, continuously firing Charge Shots during the Guardian's charge period." }
                 ],
                 breakthrough: [
-                    { id: "aeroblast_b_t1_1", name: "Wind", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/aero_purple.jpg">', desc: "Elite" },
-                    { id: "aeroblast_b_t1_2", name: "Gale", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/aero_purple.jpg">', desc: "Wind" },
-                    { id: "aeroblast_b_t1_3", name: "Sonic", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/aero_purple.jpg">', desc: "Super" },
-                    { id: "aeroblast_b_t2_1", name: "Vacuum", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/aero_purple.jpg">', desc: "Low" },
-                    { id: "aeroblast_b_t2_2", name: "Zephyr", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/aero_purple.jpg">', desc: "Air" },
-                    { id: "aeroblast_b_t2_3", name: "Pressure", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/aero_purple.jpg">', desc: "Wind" },
-                    { id: "aeroblast_b_t3_1", name: "Hurricane", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/aero_purple.jpg">', desc: "Typhoon" },
-                    { id: "aeroblast_b_t3_2", name: "God", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/aero_purple.jpg">', desc: "Pure" },
-                    { id: "aeroblast_b_t3_3", name: "Sky", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/aero_purple.jpg">', desc: "Atmosphere" }
+                    { id: "aeroblast_b_t1_1", name: "Massive Explosion", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/aero_purple.jpg">', desc: "Aeroblast Shell explosion range +70%" },
+                    { id: "aeroblast_b_t1_2", name: "Central Blast", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/aero_purple.jpg">', desc: "Aeroblast Shells deal an additional high-energy explosion to the center area" },
+                    { id: "aeroblast_b_t2_1", name: "Chain Explosion", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/aero_purple.jpg">', desc: "For each enemy hit by Aeroblast Shell explosion, explosion DMG +20%(MAX: 200%)" },
+                    { id: "aeroblast_b_t2_2", name: "Range Extension", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/aero_purple.jpg">', desc: "Aeroblast range +70%" },
+                    { id: "aeroblast_b_t2_3", name: "Secondary Explosion", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/aero_purple.jpg">', desc: "Enemies hit by Aeroblast Shell will trigger an additional explosion after 1s" }
                 ]
             },
             thunderbolt: {
                 normal: [
-                    { id: "thunderbolt_n_t1_1", name: "Volt", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Thunderbolt" },
-                    { id: "thunderbolt_n_t1_2", name: "Ion", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Thunderbolt" },
-                    { id: "thunderbolt_n_t1_3", name: "Amp", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Thunderbolt" },
-                    { id: "thunderbolt_n_t2_1", name: "Split", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "Forked" },
-                    { id: "thunderbolt_n_t2_2", name: "Fulminant", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "Lightning" },
-                    { id: "thunderbolt_n_t2_3", name: "Conductive", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "Corrosive" },
-                    { id: "thunderbolt_n_t3_1", name: "Overcharge", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "Lightning" },
-                    { id: "thunderbolt_n_t3_2", name: "Static", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "Ozone" },
-                    { id: "thunderbolt_n_t3_3", name: "Storm", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "Tesla" }
+                    { id: "thunderbolt_n_t1_1", name: "Continuous Strike", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Thunderbolt +1, Lightning Strike DMG -15%" },
+                    { id: "thunderbolt_n_t1_2", name: "Continuous Strike", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Thunderbolt +1, Lightning Strike DMG -15%" },
+                    { id: "thunderbolt_n_t1_3", name: "Continuous Strike", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Thunderbolt +1, Lightning Strike DMG -15%" },
+                    { id: "thunderbolt_n_t1_4", name: "Swift Strike", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Lightning Strike cooldown speed +10%, DMG +30%" },
+                    { id: "thunderbolt_n_t1_5", name: "Swift Strike", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Lightning Strike cooldown speed +10%, DMG +30%" },
+                    { id: "thunderbolt_n_t1_6", name: "Swift Strike", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Lightning Strike cooldown speed +10%, DMG +30%" },
+                    { id: "thunderbolt_n_t1_7", name: "Lightning Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Lightning Strike DMG +50%" },
+                    { id: "thunderbolt_n_t1_8", name: "Lightning Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Lightning Strike DMG +50%" },
+                    { id: "thunderbolt_n_t1_9", name: "Lightning Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Lightning Strike DMG +50%" }
                 ],
                 chain: [
-                    { id: "thunderbolt_ch_t1_1", name: "Lightning", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Zap" },
-                    { id: "thunderbolt_ch_t1_2", name: "Ion", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Discharge" },
-                    { id: "thunderbolt_ch_t1_3", name: "Forked", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Split" },
-                    { id: "thunderbolt_ch_t2_1", name: "Charge", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "Battery" },
-                    { id: "thunderbolt_ch_t2_2", name: "Super", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "Zero" },
-                    { id: "thunderbolt_ch_t2_3", name: "Discharge", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "End" },
-                    { id: "thunderbolt_ch_t3_1", name: "Paralysis", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "Neuro" },
-                    { id: "thunderbolt_ch_t3_2", name: "Nimbus", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "Storm" },
-                    { id: "thunderbolt_ch_t3_3", name: "Volt", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "Matrix" }
+                    { id: "thunderbolt_ch_t1_1", name: "Lightning Paralysis", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Enemies hit by Lightning Strike receive [Paralyze] effect" },
+                    { id: "thunderbolt_ch_t2_1", name: "Paralysis Extension", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "Duration of [Paralyze] effect caused by the Thunderbolt +100%" },
+                    { id: "thunderbolt_ch_t2_2", name: "Paralyzing Shock", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "When the Thunderbolt trigger causes a [Paralyze] status, it triggers a small lightning strike every second" },
+                    { id: "thunderbolt_ch_t3_1", name: "Life Erosion", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "Lightning Strike deals an additional 1% of the target's MAX HP as DMG when inflicting [Paralyze] effect (Max: 20000 × ATK)" },
+                    { id: "thunderbolt_ch_t1_2", name: "Chain Lightning", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Lightning Strike trigger 1 Chain Lightning on hit(MAX: 5)" },
+                    { id: "thunderbolt_ch_t2_3", name: "Chain Expansion", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "Chain Lightning's target +4" },
+                    { id: "thunderbolt_ch_t3_1", name: "Chain Interference", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "Enemies hit by Chain Lightning receive [Paralyze] effect, Chain Lightning DMG +100%" }
                 ],
                 combo: [
-                    { id: "thunderbolt_co_t1_1", name: "Zap", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Charge" },
-                    { id: "thunderbolt_co_t1_2", name: "Double", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Twin" },
-                    { id: "thunderbolt_co_t1_3", name: "Lightning", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/tb.jpg">', desc: "Frequency" },
-                    { id: "thunderbolt_co_t2_1", name: "Overload", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "Dual" },
-                    { id: "thunderbolt_co_t2_2", name: "Ion", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "Static" },
-                    { id: "thunderbolt_co_t2_3", name: "Plasma", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "Reactor" },
-                    { id: "thunderbolt_co_t3_1", name: "Atomize", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "Electron" },
-                    { id: "thunderbolt_co_t3_2", name: "Ozone", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "Harmonic" },
-                    { id: "thunderbolt_co_t3_3", name: "Thor", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "Lightning" }
+                    { id: "thunderbolt_co_t2_1", name: "Lightning Aftershock", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "There is a 50% chance to generate 1 Floating Mine by Thunderbolt hits enemies" },
+                    { id: "thunderbolt_co_t2_2", name: "Lightning Trail", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "After Lightning Strike, leaving a flame trail during flight" },
+                    { id: "thunderbolt_co_t2_3", name: "Stormcall Laser", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/tb.jpg">', desc: "After each Lightning Strike ends, the Lightning Orb fires a Secondary Beam" },
+                    { id: "thunderbolt_co_t3_1", name: "Lightning Teleportation", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "Enemies hit by Lightning Strike or Chain Lightning have a 50% chance to be teleported back a certain distance" },
+                    { id: "thunderbolt_co_t3_2", name: "Lightning Strike Burst", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/tb.jpg">', desc: "When Lightning Strike hits an enemy, it has a 10% chance to trigger an Explosion." }
                 ],
                 breakthrough: [
-                    { id: "thunderbolt_b_t1_1", name: "Volt", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/tb_purple.jpg">', desc: "Elite" },
-                    { id: "thunderbolt_b_t1_2", name: "Static", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/tb_purple.jpg">', desc: "Ion" },
-                    { id: "thunderbolt_b_t1_3", name: "Magnetic", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/tb_purple.jpg">', desc: "Polar" },
-                    { id: "thunderbolt_b_t2_1", name: "Ion", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/tb_purple.jpg">', desc: "Static" },
-                    { id: "thunderbolt_b_t2_2", name: "Ozone", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/tb_purple.jpg">', desc: "EMP" },
-                    { id: "thunderbolt_b_t2_3", name: "Lightning", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/tb_purple.jpg">', desc: "Arc" },
-                    { id: "thunderbolt_b_t3_1", name: "Zeus", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/tb_purple.jpg">', desc: "Storm" },
-                    { id: "thunderbolt_b_t3_2", name: "Odin", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/tb_purple.jpg">', desc: "True" },
-                    { id: "thunderbolt_b_t3_3", name: "Ozone", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/tb_purple.jpg">', desc: "Sky" }
+                    { id: "thunderbolt_b_t1_1", name: "Lightning Expansion", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/tb_purple.jpg">', desc: "Lightning Strike width +100%" },
+                    { id: "thunderbolt_b_t1_2", name: "Slaughtering Lightning", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/tb_purple.jpg">', desc: "Lightning Strike has a 60% chance to trigger a stationary small Thunderbolt when killing enemies" },
+                    { id: "thunderbolt_b_t2_1", name: "Extra Strike", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/tb_purple.jpg">', desc: "Lightning Strike has a 50% chance to trigger 1 more time" },
+                    { id: "thunderbolt_b_t2_2", name: "Thunder Chain", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/tb_purple.jpg">', desc: "Enemies hit by Lightning Strike trigger a Small Chain Lightning each time they take damage (lasts 2s, 0.5s interval)" },
+                    { id: "thunderbolt_b_t2_3", name: "Chain Strike", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/tb_purple.jpg">', desc: "Enemies hit by Chain Lightning have a 25% chance to trigger a Small Lightning Strike" }
                 ]
             },
             beam: {
                 normal: [
-                    { id: "beam_n_t1_1", name: "Refractive", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam" },
-                    { id: "beam_n_t1_2", name: "Collimator", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam" },
-                    { id: "beam_n_t1_3", name: "Focus", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam" },
-                    { id: "beam_n_t2_1", name: "Dual", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "Parallel" },
-                    { id: "beam_n_t2_2", name: "Pinpoint", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "Crosshair" },
-                    { id: "beam_n_t2_3", name: "Vector", class: "Normal", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "Plasma" },
-                    { id: "beam_n_t3_1", name: "Hyper", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Zero" },
-                    { id: "beam_n_t3_2", name: "Thermal", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Degrade" },
-                    { id: "beam_n_t3_3", name: "Titan", class: "Normal", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Heavy" }
+                    { id: "beam_n_t1_1", name: "Beam Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam DMG +50%" },
+                    { id: "beam_n_t1_2", name: "Beam Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam DMG +50%" },
+                    { id: "beam_n_t1_3", name: "Beam Boost", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam DMG +50%" },
+                    { id: "beam_n_t1_4", name: "Efficient Beam", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam cooldown speed +30%" },
+                    { id: "beam_n_t1_5", name: "Efficient Beam", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam cooldown speed +30%" },
+                    { id: "beam_n_t1_6", name: "Efficient Beam", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam cooldown speed +30%" },
+                    { id: "beam_n_t1_7", name: "High-Frequency Beam", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam duration +40%" },
+                    { id: "beam_n_t1_8", name: "High-Frequency Beam", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam duration +40%" },
+                    { id: "beam_n_t1_9", name: "High-Frequency Beam", class: "Normal", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam duration +40%" }
                 ],
                 chain: [
-                    { id: "beam_ch_t1_1", name: "Vector", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Line" },
-                    { id: "beam_ch_t1_2", name: "Emitter", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Discharge" },
-                    { id: "beam_ch_t1_3", name: "Fractured", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Split" },
-                    { id: "beam_ch_t2_1", name: "Conduit", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "Linked" },
-                    { id: "beam_ch_t2_2", name: "Total", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "Lossless" },
-                    { id: "beam_ch_t2_3", name: "Vector", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "End" },
-                    { id: "beam_ch_t3_1", name: "Stasis", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Ray" },
-                    { id: "beam_ch_t3_2", name: "Ion", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Vector" },
-                    { id: "beam_ch_t3_3", name: "Master", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Lattice" }
+                    { id: "beam_ch_t1_1", name: "Damage Increase", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Beam deals increasing damage to the same target(MAX: 200%)" },
+                    { id: "beam_ch_t2_1", name: "Stacking Damage", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "When the Beam switches targets, damage continues to increase" },
+                    { id: "beam_ch_t3_1", name: "Extreme Focus", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Damage stacking cap increased to 400%" },
+                    { id: "beam_ch_t1_2", name: "Beam Refraction", class: "Chain", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "When the Beam hits a target, it generates Refracted Beams with +2 refractions" },
+                    { id: "beam_ch_t2_2", name: "Refraction Pull", class: "Chain", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "Refraction +2, Refracted Beams will pull the hit target towards the center" },
+                    { id: "beam_ch_t3_2", name: "Refraction Explosion", class: "Chain", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Each hit by Refracted Beam will cause an explosion" }
                 ],
                 combo: [
-                    { id: "beam_co_t1_1", name: "Sync", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Pulse" },
-                    { id: "beam_co_t1_2", name: "Double", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Buffer" },
-                    { id: "beam_co_t1_3", name: "Tempo", class: "Combo", cardTier: "T1", num: 1, art: '<img src="images/beam.jpg">', desc: "Wave" },
-                    { id: "beam_co_t2_1", name: "Binary", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "Gate" },
-                    { id: "beam_co_t2_2", name: "Primer", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "Energy" },
-                    { id: "beam_co_t2_3", name: "Quantum", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "Reactor" },
-                    { id: "beam_co_t3_1", name: "Total", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Collapse" },
-                    { id: "beam_co_t3_2", name: "Wave", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Harmonic" },
-                    { id: "beam_co_t3_3", name: "ARK", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Orbital" }
+                    { id: "beam_co_t2_1", name: "Target Explosion", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "Each hit from Beam triggers an explosion" },
+                    { id: "beam_co_t2_2", name: "Disruptive Beam", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "Targets hit by Beam generate a small disruption field" },
+                    { id: "beam_co_t2_3", name: "Black Hole Spotlight", class: "Combo", cardTier: "T2", num: 2, art: '<img src="images/beam.jpg">', desc: "All Laser endpoints generate a Black Hole" },
+                    { id: "beam_co_t3_1", name: "Beam Lightning", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Each hit from Beam has a 30% chance to trigger 1 Chain Lightning" },
+                    { id: "beam_co_t3_2", name: "Matrix Resonance", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "Beam releases an expanding Electric Matrix on hit" },
+                    { id: "beam_co_t3_3", name: "Power-Accumulating Bee Wave", class: "Combo", cardTier: "T3", num: 3, art: '<img src="images/beam.jpg">', desc: "When Charged Lasers deal DMG, there is a 40% chance to fire a Pulse Wave" }
                 ],
                 breakthrough: [
-                    { id: "beam_b_t1_1", name: "Vector", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/beam_purple.jpg">', desc: "Elite" },
-                    { id: "beam_b_t1_2", name: "Aegis", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/beam_purple.jpg">', desc: "Plasma" },
-                    { id: "beam_b_t1_3", name: "Kinetic", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/beam_purple.jpg">', desc: "Pressure" },
-                    { id: "beam_b_t2_1", name: "Void", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/beam_purple.jpg">', desc: "Ray" },
-                    { id: "beam_b_t2_2", name: "Chrono", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/beam_purple.jpg">', desc: "Space" },
-                    { id: "beam_b_t2_3", name: "Phase", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/beam_purple.jpg">', desc: "Vector" },
-                    { id: "beam_b_t3_1", name: "Omni", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/beam_purple.jpg">', desc: "Master" },
-                    { id: "beam_b_t3_2", name: "Core", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/beam_purple.jpg">', desc: "Absolute" },
-                    { id: "beam_b_t3_3", name: "Void", class: "Breakthrough", cardTier: "T3", num: 3, art: '<img src="images/beam_purple.jpg">', desc: "Space" }
+                    { id: "beam_b_t1_1", name: "DMG Multiplier", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/beam_purple.jpg">', desc: "Beam DMG interval -40%" },
+                    { id: "beam_b_t1_2", name: "Beam Penetration", class: "Breakthrough", cardTier: "T1", num: 1, art: '<img src="images/beam_purple.jpg">', desc: "All Beams inflict [Vulnerable] effect to targets" },
+                    { id: "beam_b_t2_1", name: "Slaughtering Beam", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/beam_purple.jpg">', desc: "Every enemy killed by Beam, the Beam duration +10% (MAX:100%)" },
+                    { id: "beam_b_t2_2", name: "Extra Beam", class: "Breakthrough", cardTier: "T2", num: 2, art: '<img src="images/beam_purple.jpg">', desc: "Release an additional secondary Beam" }
                 ]
             },
             firewheel: {
