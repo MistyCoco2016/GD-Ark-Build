@@ -442,8 +442,8 @@
 
         .pool-card-wrapper.in-deck {
             opacity: 0.35;
-            cursor: not-allowed;
-            pointer-events: none;
+            cursor: pointer;
+            pointer-events: auto;
         }
 
         /* Action Footer */
@@ -1312,27 +1312,49 @@
             const chainContainer = document.getElementById('chainPool');
             const comboContainer = document.getElementById('comboPool');
             const btContainer = document.getElementById('breakthroughPool');
-
+        
             normalContainer.innerHTML = '';
             chainContainer.innerHTML = '';
             comboContainer.innerHTML = '';
             btContainer.innerHTML = '';
-
+        
             const activeDeck = deckData[activeTurretTabId];
             const library = cardLibrary[activeTurretTabId];
-
-            const isSlotted = (cardId) => {
-                return ["T1", "T2", "T3"].some(tier => activeDeck[tier].some(c => c && c.id === cardId));
+        
+            // Helper to check if a card is slotted and find where it is
+            const getSlottedInfo = (cardId) => {
+                for (let tier of ["T1", "T2", "T3"]) {
+                    const index = activeDeck[tier].findIndex(c => c && c.id === cardId);
+                    if (index !== -1) {
+                        return { tier, index };
+                    }
+                }
+                return null;
             };
-
+        
+            const isSlotted = (cardId) => !!getSlottedInfo(cardId);
+        
             const buildCardNode = (card, container, isBt) => {
                 const wrapper = document.createElement('div');
-                wrapper.className = `pool-card-wrapper ${isBt ? 'purple-type' : 'white-type'} ${isSlotted(card.id) ? 'in-deck' : ''}`;
-                wrapper.onclick = () => addCardToDeck(card, isBt);
+                const slottedInfo = getSlottedInfo(card.id);
+                
+                wrapper.className = `pool-card-wrapper ${isBt ? 'purple-type' : 'white-type'} ${slottedInfo ? 'in-deck' : ''}`;
+                
+                // Dynamic click behavior based on slot status
+                wrapper.onclick = () => {
+                    if (slottedInfo) {
+                        // If already in deck, remove it using the row tier and slot index
+                        removeCard(slottedInfo.tier, slottedInfo.index);
+                    } else {
+                        // Otherwise, proceed with the default behavior to add it
+                        addCardToDeck(card, isBt);
+                    }
+                };
+        
                 wrapper.innerHTML = getCardHTML(card, isBt);
                 container.appendChild(wrapper);
             };
-
+        
             library.normal.forEach(card => buildCardNode(card, normalContainer, false));
             library.chain.forEach(card => buildCardNode(card, chainContainer, false));
             library.combo.forEach(card => buildCardNode(card, comboContainer, false));
